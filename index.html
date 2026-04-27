@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#f5f1eb;--surface:#fffdfa;--surface2:#efe8df;--line:#ded4c7;--text:#211b15;--muted:#6f665c;--accent:#6a1f24;--chip:#f1e7da;--r:18px;--shadow:0 18px 45px rgba(44,32,22,.08);--good:#244f38}
-    [data-theme="dark"]{--bg:#151210;--surface:#211b17;--surface2:#2a231e;--line:#3f352d;--text:#f3ece4;--muted:#b8ab9e;--accent:#b86c73;--chip:#302822;--shadow:none;--good:#7fb58f}
+    :root{--bg:#f5f1eb;--surface:#fffdfa;--surface2:#efe8df;--line:#ded4c7;--text:#211b15;--muted:#6f665c;--accent:#6a1f24;--chip:#f1e7da;--r:18px;--shadow:0 18px 45px rgba(44,32,22,.08);--good:#244f38;--danger:#a33b3b}
+    [data-theme="dark"]{--bg:#151210;--surface:#211b17;--surface2:#2a231e;--line:#3f352d;--text:#f3ece4;--muted:#b8ab9e;--accent:#b86c73;--chip:#302822;--shadow:none;--good:#7fb58f;--danger:#de8f8f}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:"Noto Sans KR",sans-serif;background:linear-gradient(180deg,var(--bg),var(--surface2));color:var(--text)}
@@ -40,15 +40,16 @@
     .quote{padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-bottom:10px}.quote strong{display:block;font-size:13px;margin-bottom:4px}.quote p{margin:0;color:var(--muted);line-height:1.6;font-size:13px}
     .note{padding:14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.7}
     .chat-wrap{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--surface),rgba(255,255,255,.4))}
-    .chat-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
-    .chat-top h4{margin:0;font-size:14px;color:var(--accent)}
-    .avg-badge{padding:7px 10px;border-radius:999px;background:var(--chip);font-size:12px;color:var(--text)}
-    .chat-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
-    .chat-empty{padding:14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:13px;background:var(--surface)}
+    .chat-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px;flex-wrap:wrap}.chat-top h4{margin:0;font-size:14px;color:var(--accent)}
+    .avg-badge,.status-badge{padding:7px 10px;border-radius:999px;background:var(--chip);font-size:12px;color:var(--text)}
+    .status-badge.error{color:var(--danger)}
+    .chat-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;max-height:480px;overflow:auto;padding-right:4px}
+    .chat-empty,.loading{padding:14px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:13px;background:var(--surface)}
     .chat-item{padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
     .chat-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
     .chat-user{font-size:13px;font-weight:700;color:var(--text)}
     .chat-score{font-size:12px;color:var(--good);background:var(--chip);padding:5px 8px;border-radius:999px}
+    .chat-time{font-size:11px;color:var(--muted)}
     .chat-text{font-size:13px;line-height:1.6;color:var(--muted);white-space:pre-wrap}
     .chat-form{display:grid;gap:10px}
     .form-row{display:grid;grid-template-columns:1fr 120px;gap:10px}
@@ -57,6 +58,7 @@
     .chat-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
     .helper{font-size:12px;color:var(--muted)}
     .submit-btn{background:var(--accent);color:#fff;border-color:transparent}
+    .submit-btn:disabled{opacity:.6;cursor:not-allowed}
     .footer{margin-top:18px;padding:14px 16px;font-size:12px;color:var(--muted)}
     @media (max-width:720px){.wine-grid{grid-template-columns:1fr}.headline{flex-direction:column}.intro h1{font-size:26px}.kv{grid-template-columns:100px 1fr}.wrap{padding:16px}.toolbar{align-items:flex-start;flex-direction:column}.form-row{grid-template-columns:1fr}.chat-actions{align-items:stretch}.submit-btn{width:100%}}
   </style>
@@ -71,7 +73,7 @@
   <section class="hero">
     <article class="card intro">
       <h1>와인을 누르면 산지·블렌딩·특징·전문가 코멘트와 시음평 기록을 바로 보는 구조</h1>
-      <p>각 와인 카드 아래에 상세 정보와 함께, 참석자들이 이름·평점·시음 메모를 남길 수 있는 채팅형 시음평 영역을 추가했습니다. 같은 화면에서 누가 어떤 인상을 받았는지 빠르게 비교하는 용도에 맞춰 구성했습니다.</p>
+      <p>각 와인 카드 아래에 상세 정보와 함께, 참석자들이 이름·평점·시음 메모를 남길 수 있는 채팅형 시음평 영역을 추가했습니다. Google Apps Script 웹 앱과 연결해 실제로 기록이 남도록 구성했습니다.</p>
     </article>
   </section>
 
@@ -82,11 +84,13 @@
   </section>
 
   <div class="card footer">
-    시음평 채팅 영역은 현재 정적 HTML 기준으로 동작하므로, 같은 화면에서 기록·비교하는 용도에 적합합니다. 브라우저를 새로 열거나 환경이 바뀌면 입력 내용은 유지되지 않을 수 있습니다.
+    시음평은 Google Apps Script 웹 앱으로 저장되며, 와인별로 다시 불러와 표시됩니다. 저장이 안 될 경우 Apps Script 권한, 시트 이름(notes), 배포 URL을 먼저 확인하세요.
   </div>
 </div>
 
 <script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbxeB02OaUbFi4NpCntasit_P5YxN69lie3lCJsD5f4eiMPt7nbJTjH8ifo7TdHNCiZ5/exec';
+
 const wines = [
   {id:'conte-aymo', name:'마르케제 안티노리 콘테 아이모', eng:'Marchese Antinori Conte Aymo', vintage:'2020', region:'이탈리아 롬바르디아 프란차코르타', blend:'피노 누아(블랑 드 누아 스타일)', style:'전통 방식 스파클링', price:'Wine-Searcher 평균 약 7만~8만원대', profile:'섬세한 기포, 브리오슈, 시트러스, 깔끔한 마감이 핵심입니다.', key:'첫 잔으로 입맛을 깨우기 좋고, 뒤에 나올 화이트와 레드의 강도를 방해하지 않는 장점이 있습니다.', expert:[{source:'학습 메모',score:'-',text:'프란차코르타의 전형을 보기 좋은 와인으로, 샴페인 방식 스파클링의 효모감과 산도의 균형을 체크하면 좋습니다.'}], tags:['스파클링','프란차코르타','피노누아']},
   {id:'cervaro', name:'체르바로 델라 살라', eng:'Cervaro della Sala', vintage:'2016 / 2024', region:'이탈리아 움브리아 Castello della Sala', blend:'샤르도네, 그레케토', style:'오크 숙성 프리미엄 화이트', price:'Wine-Searcher 평균 약 11만~13만원대', profile:'버터, 헤이즐넛, 흰 꽃, 핵과실, 토스티함이 잘 드러나는 이탈리아 대표급 화이트입니다.', key:'말로락틱과 배럴 숙성이 만드는 크리미한 질감과 숙성 잠재력을 보는 와인입니다.', expert:[{source:'판매 페이지 요약',score:'-',text:'2024 빈티지는 샤르도네와 그레케토 블렌드로, 파인애플·망고·바닐라·로스티드 넛 향과 복합적인 질감이 강조됩니다.'}], tags:['화이트','움브리아','샤르도네']},
@@ -106,43 +110,69 @@ const wines = [
   {id:'pitio', name:'하라스 데 피르케 피티오', eng:'Haras de Pirque Pitio', vintage:'2023', region:'칠레', blend:'현장 라벨명 재확인 필요', style:'리스트 표기 확인 필요', price:'Wine-Searcher 기준 / 라벨 확인 후 보정 권장', profile:'첨부 리스트 표기상 존재하나 실제 제품명과 라벨 표기 재확인이 필요합니다.', key:'현장에서 병 라벨을 확인한 뒤 정확한 상세 정보를 보강하는 것이 좋습니다.', expert:[{source:'학습 메모',score:'-',text:'이 항목은 우선 placeholder 성격으로 넣었고, 실제 병명을 확인한 뒤 상세 업데이트를 권장합니다.'}], tags:['확인필요','칠레']}
 ];
 
-const notesByWine = {};
+let allNotes = [];
 const wineGrid = document.getElementById('wineGrid');
 const searchInput = document.getElementById('search');
 let openedId = null;
 
 function escapeHtml(str=''){
-  return str.replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+  return String(str).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+}
+
+function formatDate(value){
+  if (!value) return '';
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return String(value);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 }
 
 function getWineNotes(wineId){
-  return notesByWine[wineId] || [];
+  return allNotes
+    .filter(n => n.wineId === wineId)
+    .sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
 }
 
 function getAverageScore(wineId){
-  const notes = getWineNotes(wineId);
+  const notes = getWineNotes(wineId).filter(n => !isNaN(Number(n.score)));
   if (!notes.length) return null;
   const avg = notes.reduce((sum, n) => sum + Number(n.score), 0) / notes.length;
   return avg.toFixed(1);
 }
 
+async function fetchNotes(){
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error('불러오기 실패');
+  const data = await res.json();
+  allNotes = Array.isArray(data) ? data : [];
+}
+
+async function saveNote(payload){
+  const res = await fetch(API_URL, {
+    method:'POST',
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error('저장 실패');
+  return res.json();
+}
+
 function renderChatList(wineId){
   const notes = getWineNotes(wineId);
-  if (!notes.length) {
-    return `<div class="chat-empty">아직 남겨진 시음평이 없습니다. 첫 코멘트를 남겨보세요.</div>`;
-  }
+  if (!notes.length) return `<div class="chat-empty">아직 남겨진 시음평이 없습니다. 첫 코멘트를 남겨보세요.</div>`;
   return notes.map(note => `
     <div class="chat-item">
       <div class="chat-meta">
-        <div class="chat-user">${escapeHtml(note.user)}</div>
-        <div class="chat-score">평점 ${note.score}/10</div>
+        <div>
+          <div class="chat-user">${escapeHtml(note.userName || note.user || '')}</div>
+          <div class="chat-time">${escapeHtml(formatDate(note.timestamp))}</div>
+        </div>
+        <div class="chat-score">평점 ${escapeHtml(note.score)}/10</div>
       </div>
-      <div class="chat-text">${escapeHtml(note.text)}</div>
+      <div class="chat-text">${escapeHtml(note.comment || note.text || '')}</div>
     </div>
   `).join('');
 }
 
-function detailHTML(w){
+function detailHTML(w, status=''){
   const avg = getAverageScore(w.id);
   return `
     <div class="headline">
@@ -166,7 +196,10 @@ function detailHTML(w){
     <div class="chat-wrap">
       <div class="chat-top">
         <h4>참석자 시음평</h4>
-        <div class="avg-badge">${avg ? `평균 평점 ${avg}/10 · ${getWineNotes(w.id).length}명` : '아직 평점 없음'}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <div class="avg-badge">${avg ? `평균 평점 ${avg}/10 · ${getWineNotes(w.id).length}명` : '아직 평점 없음'}</div>
+          ${status ? `<div class="status-badge ${status.includes('실패') ? 'error' : ''}">${escapeHtml(status)}</div>` : ''}
+        </div>
       </div>
       <div class="chat-list" data-chat-list="${w.id}">${renderChatList(w.id)}</div>
       <form class="chat-form" data-wine-form="${w.id}">
@@ -179,7 +212,7 @@ function detailHTML(w){
         </div>
         <textarea class="textarea" name="text" placeholder="향, 산도, 질감, 여운, 음식 페어링 인상 등을 자유롭게 남겨보세요." maxlength="300" required></textarea>
         <div class="chat-actions">
-          <div class="helper">같은 화면에서만 임시로 기록됩니다.</div>
+          <div class="helper">실제 시트에 저장됩니다.</div>
           <button class="submit-btn" type="submit">시음평 남기기</button>
         </div>
       </form>
@@ -188,23 +221,34 @@ function detailHTML(w){
 
 function bindChatForms(){
   document.querySelectorAll('[data-wine-form]').forEach(form => {
-    form.addEventListener('submit', e => {
+    if (form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const wineId = form.getAttribute('data-wine-form');
-      const user = form.user.value.trim();
-      const score = form.score.value;
-      const text = form.text.value.trim();
-
-      if (!user || !score || !text) return;
-
-      if (!notesByWine[wineId]) notesByWine[wineId] = [];
-      notesByWine[wineId].unshift({ user, score, text });
-
       const wine = wines.find(v => v.id === wineId);
+      const userName = form.user.value.trim();
+      const score = form.score.value;
+      const comment = form.text.value.trim();
+      const submitBtn = form.querySelector('.submit-btn');
       const detail = form.closest('.detail-inline');
-      detail.innerHTML = detailHTML(wine);
-      bindChatForms();
-    }, { once:true });
+
+      if (!userName || !score || !comment) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '저장 중...';
+
+      try {
+        await saveNote({ wineId, wineName: wine.name, userName, score, comment });
+        await fetchNotes();
+        detail.innerHTML = detailHTML(wine, '저장 완료');
+        bindChatForms();
+      } catch (err) {
+        detail.innerHTML = detailHTML(wine, '저장 실패 · Apps Script 설정 확인');
+        bindChatForms();
+      }
+    });
   });
 }
 
@@ -243,17 +287,10 @@ function renderList(filter=''){
 
     item.addEventListener('click', () => {
       const isSame = openedId === wine.id;
-
-      document.querySelectorAll('.wine-item').forEach(el => {
-        el.classList.remove('active');
-        el.setAttribute('aria-expanded', 'false');
-      });
+      document.querySelectorAll('.wine-item').forEach(el => { el.classList.remove('active'); el.setAttribute('aria-expanded', 'false'); });
       document.querySelectorAll('.detail-inline').forEach(el => el.classList.remove('open'));
 
-      if (isSame){
-        openedId = null;
-        return;
-      }
+      if (isSame){ openedId = null; return; }
 
       item.classList.add('active');
       item.setAttribute('aria-expanded', 'true');
@@ -289,7 +326,16 @@ searchInput.addEventListener('input', e => {
   renderList(e.target.value);
 });
 
-renderList();
+async function init(){
+  try {
+    await fetchNotes();
+  } catch (e) {
+    allNotes = [];
+  }
+  renderList();
+}
+
+init();
 
 document.getElementById('themeBtn').addEventListener('click', () => {
   const html = document.documentElement;
