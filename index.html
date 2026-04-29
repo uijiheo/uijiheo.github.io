@@ -628,14 +628,13 @@
       </div>
     </div>
 
-    <script>
+      <script>
       // ★ 이 URL은 아래 Apps Script 코드로 새로 만든 Web App의 /exec 주소로 바꿔줘야 한다.
-     const CONFIG = {
-  API_URL:
-    "https://script.google.com/macros/s/AKfycby0cag1qOfRomGXkJRrDt2b_IjY3Nx4YaYG-cThrxmfF9VdJLfUlEcWrg9iD6jPkp3b/exec",
-};
+      const CONFIG = {
+        API_URL:
+          "https://script.google.com/macros/s/AKfycby0cag1qOfRomGXkJRrDt2b_IjY3Nx4YaYG-cThrxmfF9VdJLfUlEcWrg9iD6jPkp3b/exec",
+      };
 
-      // 1단계: 먼저 기본 6종만 넣어서 UI/연동 확인
       const wines = [
         {
           id: "biserno",
@@ -784,17 +783,40 @@
           tags: ["레드", "칠레", "2023"],
         },
       ];
-            const blindWines = [
-        { id: "blind-1", code: "Flight 1", clue: "색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 관찰해보세요.", note: "" },
-        { id: "blind-2", code: "Flight 2", clue: "첫 향과 시간이 지난 뒤 향의 변화를 비교해보세요.", note: "" },
-        { id: "blind-3", code: "Flight 3", clue: "당도 느낌, 산도, 알코올, 질감의 균형을 체크해보세요.", note: "" },
+
+      const blindWines = [
+        {
+          id: "blind-1",
+          code: "Flight 1",
+          clue:
+            "색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 관찰해보세요.",
+          note: "",
+        },
+        {
+          id: "blind-2",
+          code: "Flight 2",
+          clue: "첫 향과 시간이 지난 뒤 향의 변화를 비교해보세요.",
+          note: "",
+        },
+        {
+          id: "blind-3",
+          code: "Flight 3",
+          clue: "당도 느낌, 산도, 알코올, 질감의 균형을 체크해보세요.",
+          note: "",
+        },
       ];
 
       const blindOptions = {
         producers: ["Antinori", "Stag's Leap Wine Cellars", "Haras de Pirque"],
         countries: ["Italy", "USA", "Chile"],
         regions: ["Toscana", "Bolgheri", "Napa Valley", "Maipo"],
-        varieties: ["Sangiovese", "Cabernet Sauvignon", "Cabernet Franc", "Carmenere", "Blend / Cuvée"],
+        varieties: [
+          "Sangiovese",
+          "Cabernet Sauvignon",
+          "Cabernet Franc",
+          "Carmenere",
+          "Blend / Cuvée",
+        ],
       };
 
       const state = {
@@ -1015,14 +1037,14 @@
                 </div>
 
                 <div class="form-row">
-              <select class="field" name="score" required>
-  <option value="">평점 선택</option>
-  <option value="Below Acceptable">1점 · Below Acceptable</option>
-  <option value="Acceptable">2점 · Acceptable</option>
-  <option value="Good">3점 · Good</option>
-  <option value="Very Good">4점 · Very Good</option>
-  <option value="Outstanding">5점 · Outstanding</option>
-</select>
+                  <select class="field" name="score" required>
+                    <option value="">평점 선택</option>
+                    <option value="Below Acceptable">1점 · Below Acceptable</option>
+                    <option value="Acceptable">2점 · Acceptable</option>
+                    <option value="Good">3점 · Good</option>
+                    <option value="Very Good">4점 · Very Good</option>
+                    <option value="Outstanding">5점 · Outstanding</option>
+                  </select>
                 </div>
 
                 <textarea
@@ -1056,7 +1078,9 @@
                         n.comment || ""
                       )}</p>
                       <div class="chat-footer">
-                        <span>${escapeHtml(n.score || "")}</span>
+                        <span>${escapeHtml(
+                          n.score || ""
+                        )}</span>
                         <button
                           type="button"
                           class="delete-btn"
@@ -1487,6 +1511,5 @@
       }
 
       init();
-    </script>
-  </body>
+    </script>  </body>
 </html>
