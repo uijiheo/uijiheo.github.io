@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>안티노리 First Class 대시보드</title>
-    <!-- version: clean-v3 with critic scores -->
+    <!-- version: 2026-04-29 uihee clean-with-dropdown-1 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
@@ -400,29 +400,6 @@
         resize: vertical;
       }
 
-      .rating-panel {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-
-     .rate-btn {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--surface);
-  padding: 9px 8px;
-  font-size: 11px;
-  color: var(--text);        /* 기존 */
-  -webkit-text-fill-color: var(--text);  /* 이 줄 추가 */
-}
-
-.rate-btn.active {
-  border-color: #7a2e38;
-  background: var(--chip);
-  color: #7a2e38;
-  -webkit-text-fill-color: #7a2e38;
-}
-
       .chat-actions {
         display: flex;
         justify-content: space-between;
@@ -629,8 +606,8 @@
       <div class="card intro">
         <h1>와인을 누르면 상세정보를 확인하고 시음평을 바로 남길 수 있어요.</h1>
         <p>
-          전체 와인 리스트를 유지하면서, Apps Script 웹앱과 연동해 이름·평점·코멘트를
-          저장하고 다시 불러오도록 정리한 버전입니다.
+          안티노리 First Class 시음회용으로 만든 개인 대시보드입니다. 와인 카드에서
+          바로 시음평을 남기고, Apps Script를 통해 스프레드시트에 저장합니다.
         </p>
       </div>
 
@@ -652,11 +629,13 @@
     </div>
 
     <script>
+      // ★ 이 URL은 아래 Apps Script 코드로 새로 만든 Web App의 /exec 주소로 바꿔줘야 한다.
       const CONFIG = {
         API_URL:
-          "https://script.google.com/macros/s/AKfycbz5rtfwF8V7BPSwHGr08pRHgHpn9Lz--6IY2kU3Lra9rRf09Y1pMSjIY4A2h2-iPuUu/exec",
+          "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYED_WEBAPP_ID/exec",
       };
 
+      // 1단계: 먼저 기본 6종만 넣어서 UI/연동 확인
       const wines = [
         {
           id: "biserno",
@@ -718,19 +697,13 @@
               source: "FAY 2020 – WA, WE, JD, WS",
               score: "WA 94 · WE 94 · JD 94 · WS 93",
               text:
-                "2020 FAY는 블루 과실과 리코리스, 체리, 플로럴 스파이스 향을 보이며, 입 안에서는 신선한 과실 풍미와 짭조름한 미네랄, 크리미하고 세이보리한 미드 팔레트가 인상적이라는 평가를 받습니다. 와인 애드보킷은 라즈베리와 체리, 허브, 바닐라, 카시스를 언급하며 94점을, Wine Enthusiast와 Jeb Dunnuck은 균형 좋은 산도와 중~풀 바디, 벨벳 같은 탄닌을 높게 보았고, Wine Spectator는 보이즌베리·플럼 퓌레와 리코리스, 스위트 토스트, 미세한 흙 뉘앙스를 언급하며 93점을 부여했습니다.",
+                "2020 FAY는 블루 과실과 리코리스, 체리, 플로럴 스파이스 향을 보이며, 입 안에서는 신선한 과실 풍미와 짭조름한 미네랄, 크리미하고 세이보리한 미드 팔레트가 인상적이라는 평가를 받습니다.",
             },
             {
               source: "Vivino & 생산자 노트",
               score: "Vivino 약 4.4 / 5",
               text:
-                "여러 사용자·리테일 노트에서는 잘 익은 블랙베리와 라즈베리, 무화과, 계피, 바이올렛, 민트, 초콜릿, 스위트 스파이스가 반복해서 등장합니다. 질감은 실키하고 탄닌은 곱지만 존재감이 뚜렷하며, 신선한 산도와 함께 Stag's Leap 특유의 우아하고 부드러운 구조를 가진 나파 카베르네라는 인상이 강합니다.",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "우아한 나파 카베르네",
-              text:
-                "FAY는 Stag's Leap 포트폴리오에서 가장 플로럴하고 레드·블랙베리 중심의 우아한 축에 있는 와인입니다. CASK 23과 S.L.V.보다 부드럽고 벨벳 같은 질감을 보여주기 때문에, 2007처럼 어느 정도 숙성된 빈티지와 2020 같은 젊은 빈티지를 함께 두고, 향의 방향성과 탄닌의 촉감, 산도의 선명도가 어떻게 달라지는지 비교해 보면 좋습니다.",
+                "잘 익은 블랙베리와 라즈베리, 무화과, 계피, 바이올렛, 민트, 초콜릿, 스위트 스파이스가 반복해서 등장합니다.",
             },
           ],
           tags: ["레드", "나파", "Cabernet Sauvignon"],
@@ -754,25 +727,7 @@
               source: "CASK 23 2010 – Wine Advocate",
               score: "WA 92",
               text:
-                "2010 CASK 23 Cabernet Sauvignon은 S.L.V와 FAY 두 빈야드의 셀렉션으로, 빈티지 특유의 선명한 테루아 표현과 함께 풍부한 과실과 구조를 보여주는 와인입니다. 와인 애드보킷은 2010의 과실 농도와 탄닌, 스모크·타르·인센스 같은 뉘앙스를 언급하며 92점을 부여했고, Stag's Leap Wine Cellars의 질적 상승을 상징하는 빈티지 중 하나로 평가합니다.",
-            },
-            {
-              source: "CASK 23 2010 – 생산자·리테일 노트",
-              score: "Rich & Structured",
-              text:
-                "생산자 노트에 따르면 2010 CASK 23은 FAY에서 오는 플로럴한 퍼퓸과 S.L.V에서 오는 구조와 다크 프루트 캐릭터가 결합된 스타일입니다. 잘 익은 베리와 대추, 코코아 스파이스, 카시스, 블랙 올리브, 석류 향이 겹치며, 풀바디이지만 균형 잡힌 구조와 지속적인 피니시, 풍부한 텍스처를 갖춘 와인으로 설명됩니다.",
-            },
-            {
-              source: "CASK 23 – 최근 빈티지 방향성",
-              score: "mid–high 90s (여러 평론)",
-              text:
-                "최근 빈티지 CASK 23은 나파의 새로운 시대를 반영해 과도한 오크나 농도보다 세련된 과실 표현과 구조를 강조하는 방향으로 평가되는 경우가 많습니다. 블랙커런트와 블루베리, 바이올렛, 흑연, 삼나무, 스파이스가 층을 이루며, 탄닌은 단단하지만 곱고, 산도와 미네랄이 피니시를 수직적으로 잡아주는 스타일이라는 평이 많아, 장기 숙성 잠재력이 큰 아이코닉 나파 카베르네로 인식됩니다.",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "FAY + S.L.V. 블렌드",
-              text:
-                "CASK 23은 이름 그대로 FAY와 S.L.V의 베스트 배럴을 합친 상위 큐베라, 두 빈야드의 캐릭터를 동시에 느껴 볼 수 있는 와인입니다. FAY의 플로럴한 퍼퓸과 부드러운 질감, S.L.V의 구조와 다크 프루트를 염두에 두고, 세 와인을 나란히 둔 상태에서 향의 폭, 탄닌의 밀도, 피니시 길이를 비교하면 Stag's Leap 스타일의 스펙트럼을 공부하기 좋습니다.",
+                "S.L.V와 FAY 두 빈야드의 셀렉션으로, 풍부한 과실과 구조를 보여주는 와인입니다.",
             },
           ],
           tags: ["레드", "나파", "아이콘"],
@@ -788,29 +743,10 @@
           style: "구조 중심 SLD 카베르네",
           price: "행사 리스트 기준",
           profile:
-            "Stag's Leap의 역사적인 포도밭에서 나오는, 구조와 미네랄이 강조된 나파 카베르네입니다.",
+            "역사적인 포도밭에서 나오는, 구조와 미네랄이 강조된 나파 카베르네입니다.",
           key:
             "파리의 심판 역사와 연결되는 상징적인 빈야드로, FAY·CASK 23과 비교 시 가장 구조적인 축입니다.",
-          expert: [
-            {
-              source: "S.L.V. 2007 – Wine Advocate",
-              score: "WA 91",
-              text:
-                "2007 S.L.V Cabernet Sauvignon은 불투명한 루비/퍼플 색을 띠며, FAY보다 한층 더 높은 농도와 구조, 깊이를 보여준다고 평가됩니다. 로버트 파커는 미디엄~풀바디에 더 집약된 블랙베리·블랙커런트 과실, 스파이스, 스모키한 오크, 탄탄한 구조를 언급하며, 몇 년의 추가 숙성 후 15년 이상 즐길 수 있는 잠재력을 가진다고 91점을 부여했습니다.",
-            },
-            {
-              source: "S.L.V. – 생산자·리테일 노트",
-              score: "Iconic Vineyard",
-              text:
-                "S.L.V는 1976 파리의 심판에서 승리한 카베르네가 나온 역사적인 포도밭으로, FAY보다 한층 더 미네랄과 흑연, 흙, 다크 프루트 중심의 캐릭터를 보여주는 것으로 알려져 있습니다. 최근 빈티지 노트에서도 블랙체리와 크러시드 스톤, 로즈메리, 시가 박스, 토스트 오크가 겹치며, 단단한 구조와 긴 피니시가 핵심이라는 코멘트가 반복됩니다.",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "구조 중심 SLD 카베르네",
-              text:
-                "S.L.V는 Stags Leap District 내에서도 가장 구조와 미네랄이 강조된 스타일이라, 같은 하우스의 FAY, CASK 23과 나란히 두고 마시면 차이가 뚜렷합니다. FAY가 플로럴·레드베리·우아함, S.L.V가 흑연·다크프루트·수직적인 구조라면, CASK 23은 그 둘의 교집합으로 정리해 두면 이후 다른 나파 카베르네를 설명할 때 좋은 기준점이 됩니다.",
-            },
-          ],
+          expert: [],
           tags: ["레드", "나파", "Cabernet Sauvignon"],
         },
         {
@@ -827,38 +763,7 @@
             "카베르네 소비뇽과 카르메네르를 중심으로 한 Maipo Andes의 대표 아이콘 블렌드입니다.",
           key:
             "나파와 토스카나의 보르도 블렌드와 비교해 칠레 특유의 허브·그래파이트·스파이스 축을 느껴보기 좋은 와인입니다.",
-          expert: [
-            {
-              source: "Albis 2020 – James Suckling",
-              score: "JS 94",
-              text:
-                "2020 Albis는 올리브 페이스트와 향신료를 머금은 블랙베리, 블랙커런트 아로마에 민트, 다크 초콜릿, 커런트 잎 뉘앙스가 더해진다고 평가됩니다. 풀바디에 초콜릿을 연상시키는 타닌이 단단하지만 곱게 자리 잡고 있어, 매우 젊고 수직적인 구조와 긴 피니시를 보여 준다는 코멘트와 함께 94점을 받았습니다.",
-            },
-            {
-              source: "Albis 2020 – Wine Spectator",
-              score: "WS 90",
-              text:
-                "Wine Spectator는 이 빈티지가 흙과 향신료, 플로럴 뉘앙스가 부드러운 자두와 카시스 풍미를 감싸며, 산도가 과실을 잘 받쳐준다고 설명합니다. 피니시에서는 모카와 잘 다듬어진 타닌이 남는다고 하며, 지금부터 2030년까지 즐길 수 있는 와인으로 90점을 부여했습니다.",
-            },
-            {
-              source: "Albis 2016–2018 – 평론·리뷰 종합",
-              score: "mid–low 90s (평균 약 91)",
-              text:
-                "2016, 2018 빈티지 역시 여러 리뷰에서 90점대 초중반을 받으며 Maipo Andes를 대표하는 아이콘급 칠레 레드로 언급됩니다. 블랙체리와 플럼, 카시스와 함께 그래파이트, 허브, 스파이스가 복합적으로 드러나고, 산도와 탄닌의 균형이 좋아 수년 이상의 숙성 잠재력을 갖춘다는 평가가 반복됩니다.",
-            },
-            {
-              source: "생산자 테이스팅 노트",
-              score: "Coffee · Spice · Graphite",
-              text:
-                "공식 노트에서는 Albis가 커피와 향신료, 블랙베리, 스모키 노트와 함께 민트와 신선한 허브, 감초, 후추 향을 보여 주는 와인이라고 설명합니다. 마이포 안데스 밸리 특유의 스파이스와 그래파이트, 길게 이어지는 피니시와 우아한 타닌이 하라스 스타일을 상징하는 아이콘 와인으로 자리 잡게 해 줍니다.",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "Maipo Andes 아이콘 블렌드",
-              text:
-                "Albis는 Cabernet Sauvignon과 Carmenère를 중심으로 한 Maipo Andes 블렌드로, 나파 카베르네와 비교했을 때 더 뚜렷한 허브·그래파이트·스파이스 축을 보여 줍니다. 같은 테이블에서 비세르노, CASK 23와 함께 두고 과실의 농도, 허브/그래파이트 뉘앙스, 타닌의 질감을 비교해 보면 칠레–나파–토스카나의 스타일 차이를 명확히 잡기 좋습니다.",
-            },
-          ],
+          expert: [],
           tags: ["레드", "칠레", "Cabernet · Carmenère"],
         },
         {
@@ -875,160 +780,27 @@
             "붉은 과실, 허브, 산뜻한 질감과 접근성 좋은 구조를 보여주는 보다 경쾌한 스타일입니다.",
           key:
             "Albis와 함께 두고 Maipo Andes 블렌드의 방향성과 구조를 비교해 볼 수 있는 와인입니다.",
-          expert: [
-            {
-              source: "Pitío – 생산자 공식 노트",
-              score: "-",
-              text:
-                "Pitío는 진한 루비 컬러에 잘 익은 다크 프루트와 포레스트 플로어, 말린 건초, 비터 초콜릿과 담배 향이 어우러진다고 설명됩니다. 입 안에서는 월계수 잎과 민트, 후추 뉘앙스가 더해지며, 다양한 향과 맛이 층을 이루는 균형 잡힌 팔레트와 우아한 피니시가 특징인 와인으로 소개됩니다.",
-            },
-            {
-              source: "스타일 요약",
-              score: "Maipo High – 구조형 레드",
-              text:
-                "Albis가 카베르네/카르메네르 아이콘 블렌드라면, Pitío는 좀 더 다크 프루트와 흙, 허브, 스파이스의 복합성을 전면에 내세운 구조형 스타일입니다. 탄닌은 단단하지만 거칠지 않고, 산도와 허브 계열 향 덕분에 음식과 함께할 때 존재감이 뚜렷해, 시음회에서는 보다 진중한 축에 두기 좋은 레이블입니다.",
-            },
-            {
-              source: "Vivino·리테일 리뷰 경향",
-              score: "대체로 4.0 전후",
-              text:
-                "여러 온라인 리뷰에서는 블랙베리와 자두, 허브, 다크 초콜릿, 스파이시한 피니시를 공통적으로 언급하며, 잘 만든 칠레 프리미엄 레드로 평가하는 패턴이 반복됩니다. 과도하게 과실만 밀어붙이지 않고, 허브·토바코·흙 뉘앙스를 통해 복합성을 유지하는 점이 강점으로 자주 언급됩니다.",
-            },
-            {
-              source: "스터디 포인트",
-              score: "Albis와의 비교",
-              text:
-                "Albis와 Pitío를 같은 Flight로 잡으면 Maipo Andes에서 카베르네/카르메네르 블렌드가 어떤 방향으로 표현되는지 비교하기 좋습니다. Albis의 커피·그래파이트·민트와 Pitío의 포레스트 플로어·담배·허브·다크 초콜릿 축을 대비해 보면서 향의 방향, 산도의 인상, 피니시 길이를 중심으로 메모해 보세요.",
-            },
-          ],
+          expert: [],
           tags: ["레드", "칠레", "2023"],
         },
-        // 나머지 안티노리/티냐넬로/솔라이아/체르바로/구아도/마타로키오 등
-        // 기존에 이미 잘 입력해 둔 나머지 wines 객체들은
-        // 여기 아래에 그대로 이어서 붙여 쓰면 된다.
       ];
-
-      const blindWines = [
-        {
-          id: "blind-1",
-          code: "Flight 1",
-          clue:
-            "와인의 색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 기록해보세요.",
-          note: "정답이 아닌 관찰 중심 메모용 Flight입니다.",
-        },
-        {
-          id: "blind-2",
-          code: "Flight 2",
-          clue:
-            "첫 향과 시간이 지난 뒤 향의 변화, 과실/허브/스파이스 결을 구분해보세요.",
-          note: "기본 구조를 우선 잡아보세요.",
-        },
-        {
-          id: "blind-3",
-          code: "Flight 3",
-          clue:
-            "당도 느낌, 산도, 알코올, 질감의 균형을 중심으로 추측해보세요.",
-          note: "품종이나 산지를 단정하지 않고 스타일을 먼저 적어보세요.",
-        },
-        {
-          id: "blind-4",
-          code: "Flight 4",
-          clue:
-            "입 안에서의 무게감, 피니시 길이, 오크 인상 유무를 체크해보세요.",
-          note: "구조와 인상을 분리해서 기록해보세요.",
-        },
-        {
-          id: "blind-5",
-          code: "Flight 5",
-          clue:
-            "차가울 때와 온도가 오른 뒤의 차이를 메모해보세요.",
-          note: "첫인상과 후반 인상을 나눠 적으면 좋습니다.",
-        },
-        {
-          id: "blind-6",
-          code: "Flight 6",
-          clue:
-            "과실 중심인지, 꽃/허브 중심인지, 숙성 뉘앙스가 있는지 확인해보세요.",
-          note: "정답보다 향의 층을 기록하는 데 집중하세요.",
-        },
-        {
-          id: "blind-7",
-          code: "Flight 7",
-          clue:
-            "산도와 탄닌, 질감이 음식과 어떻게 어울릴지 상상해보세요.",
-          note: "페어링 아이디어도 함께 적어두면 좋습니다.",
-        },
-        {
-          id: "blind-8",
-          code: "Flight 8",
-          clue:
-            "전체 밸런스와 기억에 남는 한 가지 특징을 남겨보세요.",
-          note: "마지막 Flight는 비교 정리에 활용하기 좋습니다.",
-        },
+            const blindWines = [
+        { id: "blind-1", code: "Flight 1", clue: "색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 관찰해보세요.", note: "" },
+        { id: "blind-2", code: "Flight 2", clue: "첫 향과 시간이 지난 뒤 향의 변화를 비교해보세요.", note: "" },
+        { id: "blind-3", code: "Flight 3", clue: "당도 느낌, 산도, 알코올, 질감의 균형을 체크해보세요.", note: "" },
       ];
 
       const blindOptions = {
-        producers: [
-          "Antinori",
-          "Marchesi Antinori",
-          "Guado al Tasso",
-          "Tignanello",
-          "Prunotto",
-          "Pian delle Vigne",
-          "Castello della Sala",
-          "Le Mortelle",
-          "Montenisa",
-          "Jermann",
-          "Stag's Leap Wine Cellars",
-          "Haras de Pirque",
-          "Bisiach & Carru",
-          "Tenuta Bocca di Lupo",
-          "Alois Lageder",
-          "Pèppoli",
-          "La Braccesca",
-        ],
-        countries: ["Italy", "USA", "Chile", "Hungary", "Malta"],
-        regions: [
-          "Toscana",
-          "Bolgheri",
-          "Umbria",
-          "Piemonte",
-          "Franciacorta",
-          "Friuli-Venezia Giulia",
-          "Napa Valley",
-          "Aconcagua / Maipo",
-          "Puglia",
-          "Montepulciano",
-          "Montalcino",
-          "Chianti Classico",
-          "Sicilia",
-          "Lombardia",
-          "Trentino-Alto Adige",
-        ],
-        varieties: [
-          "Sangiovese",
-          "Cabernet Sauvignon",
-          "Cabernet Franc",
-          "Merlot",
-          "Syrah",
-          "Chardonnay",
-          "Sauvignon Blanc",
-          "Pinot Noir",
-          "Nebbiolo",
-          "Barbera",
-          "Primitivo",
-          "Aglianico",
-          "Grechetto",
-          "Carmenere",
-          "Blend / Cuvée",
-        ],
+        producers: ["Antinori", "Stag's Leap Wine Cellars", "Haras de Pirque"],
+        countries: ["Italy", "USA", "Chile"],
+        regions: ["Toscana", "Bolgheri", "Napa Valley", "Maipo"],
+        varieties: ["Sangiovese", "Cabernet Sauvignon", "Cabernet Franc", "Carmenere", "Blend / Cuvée"],
       };
 
       const state = {
         allNotes: [],
         blindNotes: [],
         openedWineId: null,
-        blindActiveId: "blind-1",
         blindSavedFlights: new Set(),
         latestBlindScore: 0,
         blindLabels: { "blind-1": "Flight 1" },
@@ -1061,31 +833,16 @@
         ).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
       }
 
-      function scoreOptionLabel(score) {
-        const labels = {
-          1: "Below Acceptable",
-          2: "Acceptable",
-          3: "Good",
-          4: "Very Good",
-          5: "Outstanding",
-        };
-        return labels[score] || String(score);
-      }
-
       function getWineNotes(wineId) {
         return state.allNotes
           .filter((n) => n.wineId === wineId)
-          .sort(
-            (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-          );
+          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
       }
 
       function getBlindNotes(flightId) {
         return state.blindNotes
           .filter((n) => n.flightId === flightId)
-          .sort(
-            (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-          );
+          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
       }
 
       function getAverageScore(wineId) {
@@ -1094,35 +851,24 @@
         );
         if (!notes.length) return null;
         return (
-          notes.reduce(
-            (sum, n) => sum + Number(n.score),
-            0
-          ) / notes.length
+          notes.reduce((sum, n) => sum + Number(n.score), 0) / notes.length
         ).toFixed(1);
       }
 
       function getCriticAverage(wine) {
         if (!wine || !Array.isArray(wine.expert)) return null;
-
         const scores = [];
-
         wine.expert.forEach((item) => {
           if (!item || typeof item.score !== "string") return;
-
           const matches = item.score.match(/\d+/g);
           if (!matches) return;
-
           matches.forEach((m) => {
             const num = Number(m);
             if (!Number.isNaN(num)) scores.push(num);
           });
         });
-
         if (!scores.length) return null;
-
-        const avg =
-          scores.reduce((sum, v) => sum + v, 0) / scores.length;
-
+        const avg = scores.reduce((s, v) => s + v, 0) / scores.length;
         return avg.toFixed(1);
       }
 
@@ -1131,30 +877,16 @@
       }
 
       function renderSelectOptions(options, placeholder) {
-        return [
-          `<option value="">${placeholder}</option>`,
-        ]
+        return [`<option value="">${placeholder}</option>`]
           .concat(
             options.map(
               (option) =>
-                `<option value="${escapeHtml(
+                `<option value="${escapeHtml(option)}">${escapeHtml(
                   option
-                )}">${escapeHtml(option)}</option>`
+                )}</option>`
             )
           )
           .join("");
-      }
-
-      function scoreBlindGuess(form) {
-        let total = 0;
-        ["producer", "wine", "country", "region", "variety", "vintage"].forEach(
-          (name) => {
-            if (form[name] && String(form[name].value).trim()) {
-              total += 1;
-            }
-          }
-        );
-        return total;
       }
 
       async function fetchNotes() {
@@ -1170,9 +902,7 @@
         const data = await res.json();
         state.blindNotes = Array.isArray(data) ? data : [];
         state.blindSavedFlights = new Set(
-          state.blindNotes
-            .map((n) => n.flightId)
-            .filter(Boolean)
+          state.blindNotes.map((n) => n.flightId).filter(Boolean)
         );
       }
 
@@ -1191,10 +921,7 @@
       }
 
       async function deleteNote(payload) {
-        const body = new URLSearchParams({
-          action: "delete",
-          ...payload,
-        });
+        const body = new URLSearchParams({ action: "delete", ...payload });
         const res = await fetch(CONFIG.API_URL, {
           method: "POST",
           headers: {
@@ -1208,10 +935,7 @@
       }
 
       async function saveBlindNote(payload) {
-        const body = new URLSearchParams({
-          action: "saveBlind",
-          ...payload,
-        });
+        const body = new URLSearchParams({ action: "saveBlind", ...payload });
         const res = await fetch(CONFIG.API_URL, {
           method: "POST",
           headers: {
@@ -1306,18 +1030,16 @@
                   </select>
                 </div>
 
-                <input type="hidden" name="score" value="" />
-
-         <div class="form-row">
-  <select class="field" name="score" required>
-    <option value="">평점 선택</option>
-    <option value="1">1점 · Below Acceptable</option>
-    <option value="2">2점 · Acceptable</option>
-    <option value="3">3점 · Good</option>
-    <option value="4">4점 · Very Good</option>
-    <option value="5">5점 · Outstanding</option>
-  </select>
-</div>
+                <div class="form-row">
+                  <select class="field" name="score" required>
+                    <option value="">평점 선택</option>
+                    <option value="1">1점 · Below Acceptable</option>
+                    <option value="2">2점 · Acceptable</option>
+                    <option value="3">3점 · Good</option>
+                    <option value="4">4점 · Very Good</option>
+                    <option value="5">5점 · Outstanding</option>
+                  </select>
+                </div>
 
                 <textarea
                   class="textarea"
@@ -1478,24 +1200,6 @@
           .forEach((form) => {
             if (form.dataset.bound === "true") return;
             form.dataset.bound = "true";
-
-            const hiddenScore = form.querySelector(
-              'input[name="score"]'
-            );
-
-            form
-              .querySelectorAll(".rate-btn")
-              .forEach((btn) => {
-                btn.addEventListener("click", () => {
-                  form
-                    .querySelectorAll(".rate-btn")
-                    .forEach((el) =>
-                      el.classList.remove("active")
-                    );
-                  btn.classList.add("active");
-                  hiddenScore.value = btn.dataset.score;
-                });
-              });
 
             form.addEventListener("submit", async (e) => {
               e.preventDefault();
@@ -1692,6 +1396,18 @@
         bindBlindFormEvents();
       }
 
+      function scoreBlindGuess(form) {
+        let total = 0;
+        ["producer", "wine", "country", "region", "variety", "vintage"].forEach(
+          (name) => {
+            if (form[name] && String(form[name].value).trim()) {
+              total += 1;
+            }
+          }
+        );
+        return total;
+      }
+
       function bindBlindFormEvents() {
         document
           .querySelectorAll("[data-blind-form]")
@@ -1761,9 +1477,7 @@
           tab.addEventListener("click", () => {
             const target = tab.dataset.tab;
             tabs.forEach((t) => t.classList.remove("active"));
-            panels.forEach((p) =>
-              p.classList.remove("active")
-            );
+            panels.forEach((p) => p.classList.remove("active"));
             tab.classList.add("active");
             document
               .querySelector(`[data-panel="${target}"]`)
