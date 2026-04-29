@@ -1625,15 +1625,11 @@
             <div class="chat-top">
               <h4>참석자 시음평</h4>
               <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                ${
-                  avg
-                    ? `<div class="avg-badge">
-                         평균 ${scoreOptionLabel(
-                           Math.round(Number(avg))
-                         )} · ${getWineNotes(w.id).length}명
-                       </div>`
-                    : '<div class="avg-badge">아직 평점 없음</div>'
-                }
+        ${avg
+  ? `<div class="avg-badge">
+       평균 ${avg} / 5 · ${getWineNotes(w.id).length}명
+     </div>`
+  : '<div class="avg-badge">아직 평점 없음</div>'}
                 ${
                   status
                     ? `<div class="status-badge ${
