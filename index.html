@@ -248,7 +248,8 @@
         font-size: 10px;
         color: #7a2e38 !important;
       }
-            .chip-critic {
+
+      .chip-critic {
         background: rgba(108, 92, 231, 0.12);
         color: #3e2f7f;
         font-weight: 600;
@@ -354,144 +355,83 @@
         margin-top: 10px;
       }
 
-      .chat-top {
+      .chat-header {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
 
-      .chat-top h4 {
-        margin: 0;
+      .chat-header strong {
         font-size: 13px;
-        color: #7a2e38;
       }
 
-      .avg-badge,
-      .status-badge {
-        padding: 6px 9px;
-        border-radius: 999px;
-        background: var(--chip);
+      .score-badge {
         font-size: 11px;
-      }
-
-      .status-badge.error {
-        color: var(--danger);
-      }
-
-      .chat-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 10px;
-        max-height: 260px;
-        overflow: auto;
-      }
-
-      .chat-empty,
-      .blind-empty {
-        padding: 10px;
-        border: 1px dashed var(--line);
-        border-radius: 10px;
-        color: var(--muted);
-        font-size: 12px;
-        background: var(--surface);
-      }
-
-      .chat-item {
-        padding: 10px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: var(--surface);
-      }
-
-      .chat-meta {
-        display: flex;
-        justify-content: space-between;
-        gap: 8px;
-        align-items: center;
-        margin-bottom: 5px;
-        flex-wrap: wrap;
-      }
-
-      .chat-user {
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      .chat-time {
-        font-size: 10px;
-        color: var(--muted);
-      }
-
-      .chat-score {
-        font-size: 11px;
-        color: #7a2e38;
-        background: var(--chip);
-        padding: 4px 7px;
+        padding: 4px 8px;
         border-radius: 999px;
+        background: rgba(122, 46, 56, 0.08);
       }
 
-      .chat-text {
-        font-size: 12px;
-        line-height: 1.55;
-        color: var(--muted);
-        white-space: pre-wrap;
-      }
-
-      .chat-item-actions {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 8px;
-      }
-
-      .delete-note-btn {
-        border: 1px solid var(--line);
-        background: transparent;
-        color: var(--muted);
-        padding: 5px 8px;
-        border-radius: 999px;
-        font-size: 11px;
-      }
-
-      .chat-form,
-      .blind-form {
+      .chat-form {
         display: grid;
         gap: 8px;
       }
 
       .form-row {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 8px;
+        gap: 6px;
       }
 
       .field,
       .textarea {
         width: 100%;
-        padding: 10px 11px;
-        border: 1px solid var(--line);
         border-radius: 10px;
+        border: 1px solid var(--line);
+        padding: 8px 10px;
         background: var(--surface);
         color: var(--text);
+        font-size: 12px;
       }
 
       .textarea {
-        min-height: 76px;
+        min-height: 80px;
         resize: vertical;
       }
 
-      .chat-actions,
-      .blind-actions {
+      .rating-panel {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
+      }
+
+      .rate-btn {
+        flex: 1;
+        min-width: 0;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        font-size: 11px;
+        padding: 6px 8px;
+      }
+
+      .rate-btn.active {
+        background: #7a2e38;
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .chat-actions {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
+        gap: 8px;
       }
 
       .submit-btn {
+        padding-inline: 16px;
+        font-size: 12px;
         background: #7a2e38;
         color: #fff;
         border-color: transparent;
@@ -500,142 +440,168 @@
       .helper {
         font-size: 11px;
         color: var(--muted);
-        line-height: 1.45;
       }
 
-      .rating-panel {
+      .chat-log {
+        margin-top: 10px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 6px;
+        max-height: 220px;
+        overflow-y: auto;
       }
 
-      .rate-btn {
-        border: 1px solid var(--line);
+      .chat-item {
+        padding: 8px 9px;
         border-radius: 10px;
+        border: 1px solid var(--line);
         background: var(--surface);
-        padding: 9px 8px;
         font-size: 11px;
-        color: var(--text);
       }
 
-      .rate-btn.active {
-        border-color: #7a2e38;
-        background: var(--chip);
-        color: #7a2e38;
+      .chat-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 4px;
       }
 
-      .blind-layout {
+      .chat-meta strong {
+        font-size: 11px;
+      }
+
+      .chat-meta span {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .chat-text {
+        margin: 0;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .chat-footer {
+        margin-top: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .delete-btn {
+        border: none;
+        background: transparent;
+        color: var(--danger);
+        font-size: 10px;
+        padding: 2px 4px;
+      }
+
+      .blind-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .blind-list {
-        display: flex;
-        flex-direction: column;
         gap: 8px;
       }
 
-      .blind-item {
-        width: 100%;
-        text-align: left;
-        padding: 11px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: var(--surface);
-      }
-
-      .blind-item.active {
-        border-color: #7a2e38;
-        background: var(--chip);
-      }
-
-      .blind-item h4 {
-        margin: 0 0 3px;
-        font-size: 14px;
-      }
-
-      .blind-item p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 11px;
-        line-height: 1.45;
+      .blind-box {
+        display: grid;
+        gap: 6px;
       }
 
       .blind-header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 8px;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin-bottom: 8px;
       }
 
-      .blind-stats {
-        display: flex;
+      .blind-label {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .blind-clue {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .blind-form {
+        display: grid;
         gap: 6px;
-        flex-wrap: wrap;
-        width: 100%;
+      }
+
+      .blind-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .blind-form .field {
+        font-size: 11px;
+        padding: 7px 10px;
       }
 
       .score-box {
-        flex: 1;
-        min-width: 100px;
-      }
-
-      .score-box strong {
-        display: block;
+        margin-top: 8px;
+        display: grid;
+        gap: 4px;
         font-size: 11px;
+      }
+
+      .score-main {
+        font-weight: 600;
+      }
+
+      .score-sub {
         color: var(--muted);
-        margin-bottom: 2px;
       }
 
-      .score-box span {
-        font-size: 16px;
-        font-weight: 800;
+      .blind-log {
+        margin-top: 6px;
+        display: grid;
+        gap: 5px;
       }
 
-      @media (min-width: 761px) {
-        .wrap {
-          max-width: 980px;
+      .blind-item {
+        padding: 6px 8px;
+        border-radius: 10px;
+        border: 1px dashed var(--line);
+        font-size: 11px;
+      }
+
+      .blind-item strong {
+        font-size: 11px;
+      }
+
+      .blind-item span {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .note + .note {
+        margin-top: 6px;
+      }
+
+      .ghost-btn {
+        font-size: 11px;
+        padding-block: 6px;
+      }
+
+      @media (min-width: 720px) {
+        .headline {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .intro {
           padding: 16px;
         }
 
-        .wine-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .form-row {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .rating-panel {
-          grid-template-columns: repeat(5, minmax(0, 1fr));
-        }
-
-        .blind-layout {
-          grid-template-columns: 280px 1fr;
-        }
-
-        .headline {
-          flex-direction: row;
-        }
-
-        .blind-stats {
-          width: auto;
-        }
-
-        .intro h1 {
-          font-size: 18px;
-        }
-
-        .section-title {
-          font-size: 18px;
-        }
-
-        .tabs {
-          grid-template-columns: auto auto;
-          justify-content: start;
+        .section-card {
+          padding: 14px;
         }
       }
     </style>
@@ -645,587 +611,119 @@
       <div class="toolbar">
         <div class="toolbar-main">
           <div class="page-badge">
-            🍷 안티노리 First Class 대시보드
+            🍷 안티노리 First Class 프리미엄 와인 대시보드
           </div>
-          <button type="button" id="themeBtn" class="theme-btn">
-            다크모드
-          </button>
+          <button id="themeBtn" class="theme-btn">다크 모드</button>
         </div>
         <div class="tabs">
-          <button
-            type="button"
-            class="tab-btn active"
-            data-tab-target="mainPanel"
-          >
-            Tasting Notes
+          <button class="tab-btn active" data-tab="wines">
+            Wine List
           </button>
-          <button
-            type="button"
-            class="tab-btn"
-            data-tab-target="blindPanel"
-          >
+          <button class="tab-btn" data-tab="blind">
             Blind Tasting
           </button>
         </div>
       </div>
 
-      <section id="mainPanel" class="panel active">
-        <section class="card intro">
-          <h1>
-            와인을 누르면 상세정보를 확인하고 시음평을 바로 남길 수
-            있어요.
-          </h1>
-          <p></p>
-        </section>
+      <div class="card intro">
+        <h1>와인을 누르면 상세정보를 확인하고 시음평을 바로 남길 수 있어요.</h1>
+        <p>
+          전체 와인 리스트를 유지하면서, Apps Script 웹앱과 연동해 이름·평점·코멘트를
+          저장하고 다시 불러오도록 정리한 버전입니다.
+        </p>
+      </div>
 
-        <section class="card section-card">
-          <h2 class="section-title">Wine List</h2>
-          <input
-            id="search"
-            class="search"
-            placeholder="와인명, 산지, 품종으로 검색"
-          />
-          <div id="wineGrid" class="wine-grid"></div>
-        </section>
-      </section>
+      <div class="card section-card panel active" data-panel="wines">
+        <h2 class="section-title">Wine List</h2>
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="와인명, 산지, 품종으로 검색"
+        />
+        <div id="wineGrid" class="wine-grid"></div>
+      </div>
 
-      <section id="blindPanel" class="panel">
-        <section class="card intro">
-          <h1>
-            블라인드테이스팅은 정답 없이 관찰과 추측을 기록하는 방식으로
-            구성했습니다.
-          </h1>
-          <p>
-            Flight를 선택하고 안티노리 수입 포트폴리오 기준 드롭다운과
-            메모를 이용해 참가자별 기록을 남길 수 있어요.
-          </p>
-        </section>
-
-        <section class="card section-card blind-layout">
-          <div>
-            <div class="blind-header">
-              <div>
-                <h2 class="section-title" style="margin-bottom: 4px">
-                  Blind Flights
-                </h2>
-                <div class="helper">
-                  기존 Wine List와 별도로 운영됩니다.
-                </div>
-              </div>
-            </div>
-            <div id="blindList" class="blind-list"></div>
-          </div>
-
-          <div>
-            <div class="blind-header">
-              <div>
-                <div
-                  style="
-                    display: flex;
-                    gap: 8px;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    margin-bottom: 4px;
-                  "
-                >
-                  <h2
-                    id="blindSelected"
-                    class="section-title"
-                    style="margin: 0"
-                  >
-                    Flight 1
-                  </h2>
-                  <button
-                    type="button"
-                    id="editFlightOneBtn"
-                    class="ghost-btn"
-                    style="padding: 7px 10px; font-size: 11px"
-                  >
-                    Flight 1 이름 변경
-                  </button>
-                </div>
-                <div class="helper">
-                  참가자별 블라인드 기록을 현재 시트에 저장합니다.
-                </div>
-              </div>
-
-              <div class="blind-stats">
-                <div class="score-box">
-                  <strong>Saved Flights</strong>
-                  <span id="blindSolved">0</span>
-                </div>
-                <div class="score-box">
-                  <strong>Latest Check</strong>
-                  <span id="blindScore">0</span>
-                </div>
-              </div>
-            </div>
-
-            <div id="blindDetail"></div>
-          </div>
-        </section>
-      </section>
+      <div class="card section-card panel" data-panel="blind">
+        <h2 class="section-title">Blind Tasting Notes</h2>
+        <div id="blindGrid" class="blind-grid"></div>
+      </div>
     </div>
 
     <script>
       const CONFIG = {
         API_URL:
-          "https://script.google.com/macros/s/AKfycbxzQgGrQCq4tD15IiOfhnKgZ6cihBgnaZwgrsep8VQwwhOE84iWo3bdXTqwQlK68hjJ/exec",
+          "https://script.google.com/macros/s/AKfycbz5rtfwF8V7BPSwHGr08pRHgHpn9Lz--6IY2kU3Lra9rRf09Y1pMSjIY4A2h2-iPuUu/exec",
       };
 
       const wines = [
         {
-          id: "conte-aymo",
-          name: "마르케제 안티노리 콘테 아이모",
-          eng: "Marchese Antinori Conte Aymo",
-          vintage: "2020",
-          region: "이탈리아 롬바르디아 프란차코르타",
-          blend: "피노 누아(블랑 드 누아 스타일)",
-          style: "전통 방식 스파클링",
-          price: "행사용 리스트 기준",
-          profile:
-            "섬세한 기포, 브리오슈, 시트러스, 깔끔한 마감이 조화로운 스파클링입니다.",
-          key: "첫 잔으로 입맛을 깨우며 이후 화이트와 레드의 흐름을 자연스럽게 여는 역할을 합니다.",
-          expert: [
-            {
-              source: "공식 노트",
-              score: "Franciacorta DOCG",
-              text:
-                "피노 누아 기반 블랑 드 누아로, 옅은 짚색과 매우 섬세한 버블을 보입니다. 레드 커런트와 라즈베리 같은 붉은 과실 향, 흰 꽃, 브리오슈와 효모 뉘앙스가 섞여 복합적인 아로마를 형성하고, 입 안에서는 크리미한 질감과 또렷한 산도, 미네랄이 균형을 이루며 길게 이어집니다.",
-            },
-            {
-              source: "Vivino",
-              score: "약 4.1 / 5",
-              text:
-                "사용자 평점은 4점대 초반으로, 스트로베리·라즈베리 계열의 붉은 과실, 레몬 껍질, 브리오슈, 구운 빵 뉘앙스를 언급하는 리뷰가 많습니다. 산도가 신선하고 버블이 세밀해, 단독으로도 좋지만 전채나 가벼운 요리와 곁들이기에 이상적인 프란차코르타로 인식됩니다.",
-            },
-            {
-              source: "스타일 요약",
-              score: "구조 중심 스파클링",
-              text:
-                "프랑스 샹파뉴보다 조금 더 따뜻한 산지 특성 덕분에 과실이 친절하게 느껴지면서도, 버블의 촘촘함과 산도·미네랄이 뼈대를 단단히 잡아 줍니다. 첫 잔에서 상큼한 과실과 크리미한 질감을 확인하고, 온도가 오르면서 효모와 브리오슈의 층이 어떻게 깊어지는지 보면서 마시면 좋습니다.",
-            },
-          ],
-          tags: ["스파클링", "프란차코르타", "2020"],
-        },
-        {
-          id: "cervaro",
-          name: "체르바로",
-          eng: "Cervaro della Sala",
-          vintage: "2016 / 2024",
-          region: "이탈리아 움브리아",
-          blend: "샤르도네, 그레케토",
-          style: "오크 숙성 프리미엄 화이트",
-          price: "행사용 리스트 기준",
-          profile:
-            "버터, 헤이즐넛, 흰 꽃, 핵과실과 토스티한 결이 겹쳐지는 안티노리의 대표 화이트입니다.",
-          key: "숙성 빈티지와 최신 빈티지의 질감, 산도, 풍미의 폭을 비교하기 좋습니다.",
-          expert: [
-            {
-              source: "Robert Parker (Wine Advocate)",
-              score: "RP 94–95 (최근 빈티지)",
-              text:
-                "최근 빈티지 체르바로는 샤르도네에 소량의 그레케토를 블렌딩하여, 잘 익은 핵과실과 시트러스, 아카시아 꽃, 섬세한 바닐라와 함께 헤이즐넛 버터, 브리오슈 같은 오크 뉘앙스를 보여줍니다. 2019·2020 빈티지는 특히 농도와 에너지가 모두 뛰어나며, 산도와 미네랄이 풍부한 질감을 수직적으로 지탱해 주는 구조를 가진다는 평가를 받습니다.[web:293][web:336][web:313]",
-            },
-            {
-              source: "James Suckling",
-              score: "JS 97 (2021 기준)",
-              text:
-                "JS는 최근 빈티지 체르바로를 \"대단히 아로마틱하고 리프티드한 화이트\"로 평가하며, 미네랄과 누가, 꽃, 약간의 잘 익은 사과와 배, 플린트와 스모키한 터치까지 겹치는 복합성을 강조합니다. 중상~풀 바디이지만 산도와 미세한 탄닌 구조가 와인을 곧게 끌어올려 에너지와 긴장을 유지해 주며, 섬세한 과일과 페이스트리 뉘앙스가 긴 여운으로 남는다고 설명합니다.[web:341][web:313]",
-            },
-            {
-              source: "Vivino",
-              score: "약 4.5–4.6 / 5",
-              text:
-                "Vivino 전반 평점은 4.5점대 중반으로, 레몬·라임·복숭아·배에 바닐라, 버터, 토스트 오크, 헤이즐넛이 섞인 풍부한 향을 언급하는 리뷰가 많습니다. 질감은 크리미하고 넓지만 과도하게 무겁지 않고, 상큼한 산도와 미네랄 덕분에 구조감이 살아 있어 단독 시음과 음식 페어링 모두에서 높은 만족도를 주는 화이트로 인식됩니다.[web:318]",
-            },
-            {
-              source: "빈티지 비교 메모",
-              score: "2016 vs 2024",
-              text:
-                "2016은 병 숙성을 거치면서 신선한 과실보다는 헤이즐넛과 버터, 꿀, 브리오슈, 약간의 석유·꿀광 같은 3차 향이 잘 드러나는 단계에 들어가 있을 가능성이 큽니다. 2024는 출시 초기라면 레몬·라임·녹색 사과 같은 선명한 과실과 산도, 보다 또렷한 미네랄과 오크의 스파이스가 중심을 이루며, 시간이 지날수록 현재 2016이 보여주는 방향으로 옮겨갈지 관찰해 보기 좋은 구성이 됩니다.",
-            },
-          ],
-          tags: ["화이트", "움브리아", "2016", "2024"],
-        },
-        {
-          id: "guado",
-          name: "구아도 알타소",
-          eng: "Guado al Tasso",
-          vintage: "2001 / 2021",
-          region: "이탈리아 토스카나 볼게리",
-          blend: "카베르네 소비뇽 중심 보르도 블렌드",
-          style: "슈퍼투스칸 레드",
-          price: "행사용 리스트 기준",
-          profile:
-            "검은 과실, 허브, 흑연, 스파이스와 농밀한 질감이 어우러지는 볼게리의 대표 레드입니다.",
-          key: "숙성에서 오는 복합미와 젊은 빈티지의 응축감을 나란히 비교하기 좋습니다.",
-          expert: [
-            {
-              source: "Vinous (Antonio Galloni)",
-              score: "VN 98 (2021)",
-              text:
-                "Vinous는 2021 구아도 알 타소를 98점으로 평가하며, 예전보다 힘보다 세련됨과 디테일을 더 강조하는 스타일로 진화했다고 설명합니다. 실키한 탄닌이 블랙 체리와 카시스, 감초, 스파이스, 모카, 가죽을 감싸고, 바닷바람에서 오는 짠 미네랄 느낌이 피니시를 길게 끌고 가는 구조를 가진다고 평합니다. 카베르네 프랑 비중이 높아지면서 향과 질감에서 허브와 플로럴, 흑연 뉘앙스가 더욱 또렷해졌다는 코멘트도 함께 나옵니다.[web:337][web:330]",
-            },
-            {
-              source: "James Suckling",
-              score: "JS 97 (2021)",
-              text:
-                "JS는 2021을 \"정교하게 만들어진 와인\"으로 표현하며, 매우 고운 탄닌이 입 안 전체를 감싸고, 중~풀 바디에 커런트, 다크 초콜릿, 헤이즐넛, 삼나무, 향신료가 층을 이루는 복합성을 강조합니다. 지금 마셔도 좋지만 2–3년 이상 추가 숙성을 거치면 향과 질감이 더 입체적으로 펼쳐질 잠재력이 크다고 언급합니다.[web:283][web:330]",
-            },
-            {
-              source: "기타 평론/리뷰",
-              score: "mid–high 90s",
-              text:
-                "여러 유럽 평론과 리테일 노트에서도 2021 빈티지는 블랙베리·블랙커런트·석류에 바이올렛, 야생 허브, 흑연, 삼나무, 감초가 복합적으로 얽혀 있고, 농도 높은 과실과 긴장감 있는 산도, 세밀한 탄닌, 긴 피니시를 갖춘 볼게리 상위 빈티지로 평가됩니다. 파워풀하지만 과하지 않고, 구조와 우아함이 잘 맞물려 있다는 표현이 반복됩니다.[web:332][web:339]",
-            },
-            {
-              source: "Vivino",
-              score: "약 4.6–4.7 / 5",
-              text:
-                "Vivino에서는 블랙베리와 플럼, 다크 초콜릿, 커피, 시가 박스, 가죽 같은 노트와 함께, 풀바디에 매우 부드러운 탄닌, 긴 피니시를 가진 볼게리 레드로 인식됩니다. 최근 빈티지일수록 과실 밀도와 구조의 선명함을 높게 평가하는 리뷰가 많고, 장기 숙성 잠재력을 믿고 셀러에 두겠다는 코멘트도 자주 보입니다.[web:287]",
-            },
-            {
-              source: "빈티지 비교 메모",
-              score: "2001 vs 2021",
-              text:
-                "2001은 이미 완전한 성숙 단계로, 가죽과 삼나무, 흙, 말린 허브, 타르, 말린 붉은 과실 같은 3차 향이 중심이 되고 탄닌은 상당히 유연해졌을 가능성이 큽니다. 2021은 훨씬 더 짙은 과실 농도와 뚜렷한 산도, 단단한 구조를 보여주며, 시간이 지나면서 현재의 2001처럼 페이스트리·담배·가죽 뉘앙스를 더해 갈지를 비교해 보기 좋은 페어링입니다.",
-            },
-          ],
-          tags: ["레드", "볼게리", "2001", "2021"],
-        },
-        {
-          id: "matarocchio",
-          name: "마타로키오",
-          eng: "Matarocchio",
-          vintage: "2021",
-          region: "이탈리아 토스카나",
-          blend: "카베르네 프랑",
-          style: "싱글 품종 아이콘 와인",
-          price: "행사용 리스트 기준",
-          profile:
-            "짙은 검은 과실, 허브, 미세한 오크와 강한 집중도가 드러나는 상위 레인지 와인입니다.",
-          key: "카베르네 프랑이 지닌 밀도와 정교함, 길게 이어지는 피니시를 보기 좋습니다.",
-          expert: [
-            {
-              source: "James Suckling",
-              score: "JS 97 (2021)",
-              text:
-                "신선한 블랙커런트와 잘게 썬 베이리프, 바질 향에 약간의 샌달우드가 겹치는 아로마가 특징입니다. 미디엄에서 풀바디 사이의 바디에 중심부가 단단하게 잡힌 아주 고운 탄닌이 느껴지고, 피니시는 길고 끊임없이 이어집니다. 볼게리에서 카베르네 프랑이 얼마나 높은 레벨까지 갈 수 있는지를 보여주는 싱글 빈야드 와인으로 평가됩니다.[web:52][web:43]",
-            },
-            {
-              source: "Decanter·기타 평론",
-              score: "mid–high 90s",
-              text:
-                "여러 리뷰에서 2021 마타로키오를 매우 젊지만 엄청난 잠재력을 지닌 와인으로 보며, 멘톨과 허브, 숲속 이끼, 다크 베리, 초콜릿과 오크에서 오는 스파이스가 층을 이루는 것으로 묘사합니다. 입 안에서는 산도가 선명하고 구조가 수직적이며, 현재는 다소 단단한 탄닌과 오크 터치가 시간이 지나며 녹아들 것을 기대하게 만드는 스타일이라는 코멘트가 많습니다.[web:43][web:348]",
-            },
-            {
-              source: "Antinori 공식 노트",
-              score: "2021 빈티지",
-              text:
-                "공식 노트에 따르면 2021 마타로키오는 진한 루비색을 띠며, 지중해 허브, 삼나무 숲, 피트, 화이트 트러플, 설탕에 절인 감귤류까지 풍부한 향을 보여줍니다. 입 안에서는 강렬한 과실과 정교한 탄닌, 신선함이 탁월한 균형을 이루며, 특히 과실 표현과 향의 디테일이 뛰어난 빈티지로 평가됩니다.[web:344][web:345]",
-            },
-            {
-              source: "스타일 요약",
-              score: "집중도 & 우아함",
-              text:
-                "마타로키오는 볼게리에서도 가장 집약적인 카베르네 프랑 스타일 중 하나로, 과실 농도와 허브·흑연·토양 뉘앙스가 모두 강하게 드러납니다. 구조가 단단하고 피니시가 길기 때문에 바로 마시기보다는 공기와 시간에 따라 어떻게 변하는지, 하루 단위로 향과 질감이 어떻게 열리는지 관찰하기 좋은 와인입니다.",
-            },
-          ],
-          tags: ["레드", "토스카나", "2021"],
-        },
-        {
-          id: "pian-vignaferrovia",
-          name: "피안델레 브루넬로 디 몬탈치노 비냐페로비아 리제르바",
-          eng: "Pian delle Vigne Brunello di Montalcino Vignaferrovia Riserva",
-          vintage: "2019",
-          region: "이탈리아 토스카나 몬탈치노",
-          blend: "산지오베제",
-          style: "브루넬로 리제르바",
-          price: "행사용 리스트 기준",
-          profile:
-            "건체리, 허브, 흙, 가죽과 긴장감 있는 산도와 구조가 인상적인 클래식 스타일입니다.",
-          key: "산지오베제의 숙성 잠재력과 몬탈치노 특유의 긴장감을 이해하기 좋은 와인입니다.",
-          expert: [
-            {
-              source: "Wine Enthusiast",
-              score: "WE 95 (2019)",
-              text:
-                "전통적인 브루넬로 리제르바 스타일로, 잘 익은 체리와 말린 장미, 레더와 스파이스, 타르와 흙 향이 복합적으로 드러난다고 평가합니다. 산도와 탄닌이 모두 단단하지만 과도하지 않고, 긴 피니시와 함께 시간이 지날수록 더 많은 층이 열릴 잠재력을 지닌 와인으로 언급됩니다.[web:346][web:352]",
-            },
-            {
-              source: "James Suckling",
-              score: "JS low–mid 90s",
-              text:
-                "JS는 2019 비냐페로비아를 숙성 잠재력이 큰 와인으로 보면서, 숙성된 체리와 오렌지 껍질, 차잎, 삼나무, 약간의 타바코와 허브가 겹치는 클래식한 산지오베제 향을 강조합니다. 탄닌은 세밀하지만 단단하고, 산도가 수직적인 구조를 만들어 와인의 길이를 길게 끌고 가며, 지금도 즐길 수 있으나 몇 년 더 두면 복합성이 훨씬 좋아질 것이라고 평가합니다.[web:346][web:352]",
-            },
-            {
-              source: "기타 평론·리테일",
-              score: "mid 90s",
-              text:
-                "여러 유럽 리뷰에서는 2019 비냐페로비아를 구조감과 균형이 매우 뛰어난 리제르바로 보며, 붉은 과실과 감초, 토바코, 약간의 감칠맛 있는 짠 미네랄 뉘앙스를 언급합니다. 클래식하고 진지한 스타일이라 바로 마시기보다는 데칸팅 후 천천히 마시거나, 셀러에 장기 보관하기에 알맞은 브루넬로라고 요약합니다.[web:352][web:355]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "구조 중심 브루넬로",
-              text:
-                "비냐페로비아는 일반 피안델레 브루넬로보다 구조와 집중도가 한층 더 강조된 리제르바이기 때문에, 산도와 탄닌, 피니시 길이를 기준으로 산지오베제의 장기 숙성 잠재력을 체감하기 좋습니다. 오늘은 레더와 허브, 체리·오렌지 껍질 계열의 향을 중심으로 보고, 몇 년 뒤 같은 병을 다시 열었을 때 얼마나 더 부드럽고 복합적으로 변했는지 비교해 보는 용도로도 좋습니다.",
-            },
-          ],
-          tags: ["레드", "브루넬로", "2019"],
-        },
-        {
-          id: "prunotto-colonnello",
-          name: "프루노토 바롤로 리제르바 비냐 콜로넬로",
-          eng: "Prunotto Barolo Riserva Bussia Vigna Colonnello",
-          vintage: "2014",
-          region: "이탈리아 피에몬테 바롤로",
-          blend: "네비올로",
-          style: "바롤로 리제르바",
-          price: "행사용 리스트 기준",
-          profile:
-            "장미, 타르, 붉은 과실, 가죽과 단단한 구조를 지닌 전형적인 바롤로 계열 와인입니다.",
-          key: "네비올로의 향의 결, 산도, 탄닌 구조를 깊이 있게 보기 좋습니다.",
-          expert: [
-            {
-              source: "Wine Spectator",
-              score: "WS 92 (2014)",
-              text:
-                "WS는 이 와인을 라이트~미디엄 바디의 플루이드한 바롤로로 보면서, 체리 파이와 딸기, 꽃 향에 스파이스 노트가 더해진다고 설명합니다. 입 안에서는 섬세한 구조와 함께 정제된 탄닌, 약간 분필감 있는 질감이 피니시에 남으며, 이미 마시기 편하지만 여전히 충분한 잠재력이 있다고 평가합니다.[web:347]",
-            },
-            {
-              source: "James Suckling",
-              score: "JS 90 (2014)",
-              text:
-                "JS는 캔디드 워터멜론과 크랜베리, 붉은 과실이 중심인 향에, 미디엄 바디와 단단한 탄닌, 중간 정도의 피니시를 가진 와인으로 묘사합니다. 더 높은 점수를 주지는 않았지만 이미 지금 마시기 좋은 상태이며, 음식과 함께 했을 때 매력적인 바롤로라고 언급합니다.[web:347]",
-            },
-            {
-              source: "기타 테이스팅 노트",
-              score: "네비올로 교과서",
-              text:
-                "다른 테이스팅 노트에서는 석류와 라즈베리, 말린 장미, 타르, 향신료 뉘앙스가 복합적으로 드러나고, 입 안에서는 벨벳 같은 질감과 균형 잡힌 산도, 긴 피니시를 가진다고 설명합니다. Bussia 싱글 빈야드 특성상, 색은 가넷에 가깝게 옅지만 향과 구조는 상당히 깊고, 시간이 지나면서 트러플과 가죽, 허브 쪽으로 향이 옮겨가는 전형적인 네비올로 스타일을 보여줍니다.[web:347][web:350][web:353]",
-            },
-            {
-              source: "스터디 포인트",
-              score: "바롤로의 타르 & 로즈",
-              text:
-                "비냐 콜로넬로는 바롤로에서 자주 말하는 ‘타르와 장미’의 교과서적인 예시를 보기 좋은 와인입니다. 산도와 탄닌이 여전히 살아있기 때문에, 브루넬로 리제르바와 나란히 두고 산지오베제 vs 네비올로의 구조 차이, 향의 방향성(체리·오렌지 vs 라즈베리·장미·타르)을 비교해 보는 용도로 활용해도 좋습니다.",
-            },
-          ],
-          tags: ["레드", "바롤로", "2014"],
-        },
-        {
-          id: "solaia",
-          name: "솔라이아",
-          eng: "Solaia",
-          vintage: "2015 / 2020",
-          region: "이탈리아 토스카나",
-          blend: "카베르네 소비뇽 중심 블렌드",
-          style: "아이코닉 슈퍼투스칸",
-          price: "행사용 리스트 기준",
-          profile:
-            "검은 과실, 허브, 오크, 실키한 탄닌과 긴 여운이 응축된 안티노리의 상징적인 와인입니다.",
-          key:
-            "강한 집중도 속에서도 세련됨을 잃지 않는 상위 슈퍼투스칸의 매력을 보여줍니다.",
-          expert: [
-            {
-              source: "2015 Vintage – RP & JS",
-              score: "RP 100 · JS 100",
-              text:
-                "2015 솔라이아는 로버트 파커와 제임스 서클링 모두 100점을 부여한 빈티지로, 안티노리 역사에서 가장 완성도 높은 솔라이아 중 하나로 꼽힙니다. 검은 체리, 자두, 카시스에 바이올렛, 장미, 스윗 스파이스, 바닐라, 다크 초콜릿, 흙과 담배, 삼나무가 겹겹이 쌓이는 향을 보여주고, 입 안에서는 새로운 오크와 밀도 높은 과실, 실키하면서 끝없이 이어지는 탄닌이 완벽한 균형을 이루며, 엄청난 길이의 피니시를 남긴다고 평가됩니다.[web:359][web:360][web:366]",
-            },
-            {
-              source: "Solaia 2020 – recent critics",
-              score: "JS 98 · WA mid–high 90s",
-              text:
-                "2020 솔라이아는 카베르네 소비뇽, 산지오베제, 카베르네 프랑 블렌드로, 블랙커런트와 검은 라즈베리, 체리 콩포트에 시가 상자, 시더, 카다몬, 바이올렛, 세이지가 겹치는 매우 입체적인 향을 보입니다. 풀바디이지만 신선한 산도와 미세한 탄닌, 강한 에너지 덕분에 무겁지 않고, 여러 평론에서 96–98점대 평가를 받으며 또 하나의 위대한 솔라이아로 자리 잡았습니다.[web:361][web:367]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "아이콘 와인",
-              text:
-                "솔라이아는 같은 구도의 슈퍼투스칸 중에서도 구조와 폴리시드한 질감, 오크 사용이 가장 정교한 스타일에 속합니다. 2015 같이 완전히 성숙한 빈티지는 향의 층과 오크 흡수 정도, 압도적인 밸런스를, 2020 같은 젊은 빈티지는 과실 밀도와 산도, 탄닌의 직선성을 중심으로 비교해 보면, ‘완성된 아이콘’과 ‘진행 중인 아이콘’의 차이를 학습하기 좋습니다.",
-            },
-          ],
-          tags: ["레드", "토스카나", "2015", "2020"],
-        },
-        {
-          id: "tignanello",
-          name: "티냐넬로",
-          eng: "Tignanello",
-          vintage: "2015 / 2022",
-          region: "이탈리아 토스카나",
-          blend: "산지오베제 중심 블렌드",
-          style: "슈퍼투스칸 벤치마크",
-          price: "행사용 리스트 기준",
-          profile:
-            "검붉은 체리, 카시스, 민트, 그래파이트와 생기 있는 산도가 돋보이는 대표 와인입니다.",
-          key:
-            "산지오베제와 국제 품종 블렌딩이 만드는 균형감과 에너지를 보기 좋습니다.",
-          expert: [
-            {
-              source: "Tignanello 2015",
-              score: "JS 98 · RP 96 · WS 97",
-              text:
-                "2015 티냐넬로는 밝은 루비색과 함께 잘 익은 체리·플럼·석류, 민트와 감초, 그래파이트, 스윗 스파이스가 겹쳐지는 향을 보여주며, 구조감과 에너지가 탁월하다는 평가를 받습니다. 제임스 서클링은 98점을 주며 향의 꽃향기와 에너지, 산지오베제 비중이 높아 드러나는 레드 체리·오렌지 껍질의 생동감을 강조했고, 와인 애드보킷은 밀도 있는 과실과 그래파이트, 타르, 균형 잡힌 탄닌이 수십 년 숙성을 견딜 수 있는 구조를 만든다고 설명합니다.[web:362][web:368]",
-            },
-            {
-              source: "Tignanello 2022",
-              score: "WA mid 90s (2022)",
-              text:
-                "2022 티냐넬로는 따뜻한 빈티지 특성을 반영해 과실 농도가 한층 높게 느껴지며, 블랙커런트와 체리, 석류 씨, 자두, 허브와 스파이스를 풍부하게 보여줍니다. 와인 애드보킷은 진한 과실과 벨벳 같은 텍스처, 부드러운 탄닌과 긴 피니시를 강조하면서도, 미네랄과 산도가 중심을 잡아주어 무겁지 않게 표현된 점을 높게 평가합니다.[web:369]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "산지오베제 + 국제 품종",
-              text:
-                "티냐넬로는 산지오베제의 산도와 체리·오렌지 껍질 캐릭터 위에 카베르네의 바디와 구조를 더한 ‘슈퍼투스칸의 교과서’ 같은 역할을 합니다. 2015처럼 어느 정도 숙성된 빈티지는 허브·담배·삼나무와 통합된 탄닌을, 2022 같은 젊은 빈티지는 선명한 과실과 높은 텐션을 중심으로 비교해 보면, 산지오베제와 국제 품종 블렌딩이 시간에 따라 어떻게 변하는지 한눈에 볼 수 있습니다.",
-            },
-          ],
-          tags: ["레드", "토스카나", "2015", "2022"],
-        },
-        {
-          id: "jermann-dreams",
-          name: "예르만 더블유 드림스",
-          eng: "Jermann Where Dreams",
-          vintage: "OLD VIN",
-          region: "이탈리아 프리울리-베네치아 줄리아",
-          blend: "샤르도네",
-          style: "프리미엄 화이트",
-          price: "행사용 리스트 기준",
-          profile:
-            "복숭아, 바닐라, 크리미한 질감과 넓은 팔레트를 보여주는 풍부한 스타일의 화이트입니다.",
-          key:
-            "숙성에서 오는 넓은 향의 전개와 오크, 과실의 균형을 보기 좋습니다.",
-          expert: [
-            {
-              source: "공식·평론 요약",
-              score: "JS mid–high 90s (최근 빈티지)",
-              text:
-                "Where Dreams는 주로 샤르도네로 만드는 프리미엄 화이트로, 잘 익은 복숭아와 살구, 노란 사과, 열대과실에 흰 꽃, 바닐라, 토스트 오크, 헤이즐넛이 겹치는 향을 보여줍니다. 중~풀 바디에 크리미한 질감이 있지만 산도가 살아 있어 넓게 퍼지면서도 무겁지 않고, 긴 버터·너트·미네랄 피니시가 특징이라는 평가가 많습니다.[web:368]",
-            },
-            {
-              source: "사용자 리뷰·리테일",
-              score: "Vivino 약 4.4–4.5 / 5",
-              text:
-                "여러 리테일·사용자 리뷰에서는 망고와 파인애플, 살구, 잘 익은 레몬, 바닐라와 버터, 토스트 브리오슈, 약간의 허니·아몬드·헤이즐넛을 반복적으로 언급합니다. 텍스처는 부드럽고 넓게 퍼지지만, 프리울리 특유의 산도와 미네랄 덕분에 입 안이 답답하지 않고 긴장감을 유지해 주는 화이트라는 인상이 강합니다.[web:368]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "풍부한 화이트 샤르도네",
-              text:
-                "예르만 더블유 드림스는 오크 터치와 크리미한 질감이 분명한 샤르도네지만, 버건디와는 다른 이탈리아식 풍부함과 열대 과실 캐릭터가 장점입니다. 체르바로와 나란히 두고 과실의 방향(시트러스·핵과실 vs 보다 열대과실), 오크의 결, 산도와 미네랄이 질감을 어떻게 잡아주는지 비교해 보면, 프리미엄 오크 숙성 화이트의 스타일 차이를 공부하기에 좋습니다.",
-            },
-          ],
-          tags: ["화이트", "예르만", "OLD VIN"],
-        },
-        {
-          id: "jermann-tunina",
-          name: "예르만 빈티지 투니나",
-          eng: "Jermann Vintage Tunina",
-          vintage: "OLD VIN",
-          region: "이탈리아 프리울리-베네치아 줄리아",
-          blend: "화이트 블렌드",
-          style: "아이코닉 화이트 블렌드",
-          price: "행사용 리스트 기준",
-          profile:
-            "꽃, 열대과실, 허브, 부드러운 질감과 긴 여운이 인상적인 복합형 화이트입니다.",
-          key:
-            "플로럴한 향과 텍스처의 유연함, 복합적인 아로마 레이어를 보기 좋습니다.",
-          expert: [
-            {
-              source: "James Suckling",
-              score: "JS 96 (최근 빈티지)",
-              text:
-                "최근 빈티지 투니나는 레몬과 라임, 레몬그라스, 생강, 왁시한 노트까지 겹치는 향을 보여주며, 중간에서 풀바디 사이의 바디에 타이트하고 집중된 구조를 가지고 있다는 평가를 받습니다. 스파이시한 시트러스와 그린 과실, 바질·세이지 같은 허브 향이 특징이고, 산도가 또렷해 긴 피니시를 만들어 준다고 설명합니다.[web:373][web:375][web:374]",
-            },
-            {
-              source: "공식/기타 테이스팅 노트",
-              score: "화이트 블렌드 아이콘",
-              text:
-                "투니나는 소비뇽 블랑, 샤르도네, 리볼라 지알라, 말바지아, 피콜리트가 섞인 필드 블렌드로, 밝은 짚색에 금빛 반짝임을 띱니다. 벌꿀과 들꽃, 허브, 잘 익은 노란 과실 향이 넓게 퍼지고, 입 안에서는 드라이하면서도 부드럽고 벨벳 같은 질감, 매우 긴 여운을 보여주는 것으로 묘사됩니다.[web:377][web:381][web:378][web:386]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "복합 화이트 블렌드",
-              text:
-                "예르만 빈티지 투니나는 이탈리아 화이트 중에서도 구조와 복합성이 뛰어난 스타일로, 오크 터치와 산도, 다양한 품종의 레이어가 잘 통합된 것이 장점입니다. 예르만 더블유 드림스와 나란히 두고 샤르도네 단일 vs 필드 블렌드의 차이, 향의 방향성(열대과실·버터 vs 허니·꽃·허브)과 질감, 피니시 길이를 비교해 보면 프리미엄 이탈리아 화이트의 스펙트럼을 공부하기 좋습니다.[web:387][web:376]",
-            },
-          ],
-          tags: ["화이트", "예르만", "OLD VIN"],
-        },
-        {
           id: "biserno",
-          name: "비세르노",
-          eng: "Biserno",
-          vintage: "2016 / 2021",
-          region: "이탈리아 토스카나 비비나",
-          blend: "보르도 블렌드",
-          style: "프리미엄 레드",
-          price: "행사용 리스트 기준",
+          name: "Tenuta di Biserno ‘Biserno’",
+          nameKo: "비세르노",
+          eng: "Tenuta di Biserno 'Biserno'",
+          vintage: "2019",
+          region: "토스카나 볼게리",
+          blend: "Cabernet Franc 중심 보르도 블렌드",
+          style: "볼게리 슈퍼 투스칸",
+          price: "행사 리스트 기준",
           profile:
-            "짙은 과실, 향신료, 오크, 세련된 질감과 응축감을 고루 지닌 토스카나 레드입니다.",
-          key:
-            "숙성 빈티지와 젊은 빈티지의 질감과 밀도 차이를 자연스럽게 비교하기 좋습니다.",
+            "짙은 과실과 허브, 미네랄, 오크가 잘 통합된 구조감 있는 볼게리 레드입니다.",
+          key: "Guado al Tasso, Solaia와 함께 스타일 축을 비교하기 좋은 와인입니다.",
           expert: [
             {
-              source: "Biserno 2016 – Wine Advocate",
-              score: "RP 98+",
+              source: "WA",
+              score: "WA 96",
               text:
-                "2016 비세르노는 카베르네 프랑, 메를로, 카베르네 소비뇽, 쁘띠 베르도가 블렌딩된 풀바디 와인으로, 와인 애드보킷에서 98+점을 받았습니다. 아주 부드럽고 풍부한 질감 위에 블랙커런트와 블랙베리, 잘 익은 자두 같은 짙은 과실, 스윗 스파이스, 다크 초콜릿, 타르, 캠포 같은 뉘앙스가 층을 이루며, 힘과 우아함, 집중도가 모두 뛰어나다고 평가합니다.[web:389][web:390][web:391]",
+                "와인 애드보킷은 2019 Biserno를 ‘정교하고 힘 있는 볼게리 레드’로 보며 잘 익은 블랙베리와 자두, 바이올렛, 허브, 스파이스, 미네랄이 층을 이루는 복합성을 높이 평가했습니다.",
             },
             {
-              source: "Biserno 2016 – 기타 평론",
-              score: "WS 94 · WE 96 · CT 94.9",
+              source: "WS · JS · 기타",
+              score: "WS 94 · JS 95 등",
               text:
-                "Wine Spectator는 2016 비세르노에서 블랙커런트, 바이올렛, 민트, 피망, 담배, 스파이스 아로마와 타이트하면서도 균형 잡힌 구조를 강조하며 94점을 부여했습니다. Wine Enthusiast는 시더와 카시스, 캠퍼, 스파이스, 정제된 탄닌과 신선한 산도를 언급하며 Cellar Selection 96점으로 추천했고, CellarTracker 평균도 94점대 후반으로 장기 숙성 잠재력이 큰 슈퍼투스칸이라는 인식이 강합니다.[web:391][web:392]",
+                "Wine Spectator는 농밀한 과실과 세련된 오크, 긴 피니시를, James Suckling은 우아한 탄닌과 신선한 산도를 강조하며 90점대 중반을 부여했습니다.",
             },
             {
-              source: "Biserno 2021 – recent critics",
-              score: "JS 97 · WA 97",
+              source: "스타일 포인트",
+              score: "볼게리 구조형 블렌드",
               text:
-                "2021 비세르노는 카베르네 쪽 캐릭터가 더 강조된 빈티지로, 제임스 서클링은 바질과 타임 같은 신선한 허브에 커런트와 블랙베리, 벨벳 같은 탄닌이 어우러진다고 하며 97점을 주었습니다. 와인 애드보킷 역시 로즈마리와 라벤더, 지중해 허브, 블랙프루트, 스파이스, 캠프파이어 재가 겹치는 향과, 농밀하면서도 균형 잡힌 구조, 길고 풍부한 피니시를 높게 평가하며 97점을 부여했습니다.[web:365][web:394]",
-            },
-            {
-              source: "스타일/스터디 포인트",
-              score: "농도 vs 균형",
-              text:
-                "비세르노는 농도와 크리미한 질감을 전면에 내세우는 슈퍼투스칸이지만, 좋은 빈티지에서는 산도와 구조도 함께 살아 있어 ‘무거운데 지루하지 않은’ 형태의 파워를 보여줍니다. 2016 같은 숙성 빈티지에서는 질감의 융합과 3차 향(타르, 초콜릿, 담배)을, 2021 같은 젊은 빈티지에서는 짙은 과실과 허브, 더 단단한 구조를 중심으로 비교해 보면, 토스카나 카베르네 계열 블렌드의 진화 방향을 공부하기 좋습니다.",
+                "Guado al Tasso보다 한층 더 구조와 미네랄, 허브·스파이스를 강조하는 스타일입니다. 나파 CASK 23, 칠레 Albis와 함께 두고 ‘보르도 블렌드의 지역별 캐릭터’를 비교해 보기 좋습니다.",
             },
           ],
-          tags: ["레드", "토스카나", "2016", "2021"],
+          tags: ["레드", "볼게리", "Cabernet Franc"],
         },
         {
           id: "stags-fay",
-          name: "스택스 립 와인셀라 FAY 카베르네소비뇽",
-          eng: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
-          vintage: "2007 / 2020",
-          region: "미국 나파 밸리",
-          blend: "카베르네 소비뇽",
-          style: "나파 카베르네",
-          price: "행사용 리스트 기준",
+          name: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
+          nameKo: "스택스 립 FAY Cabernet",
+          eng: "Stag's Leap Wine Cellars FAY Vineyard Cabernet Sauvignon",
+          vintage: "2007 & 2020",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "우아한 나파 카베르네",
+          price: "행사 리스트 기준",
           profile:
-            "검은 베리, 플로럴한 향, 실키한 탄닌과 우아한 구조가 매력적인 FAY 스타일입니다.",
+            "붉은 과실과 플로럴, 허브가 중심이 되는 우아한 나파 카베르네 스타일입니다.",
           key:
-            "숙성에서 오는 부드러움과 젊은 빈티지의 순수한 과실을 비교하기 좋은 구성입니다.",
-                   expert: [
+            "FAY는 Stag's Leap 포트폴리오에서 가장 플로럴하고 부드러운 축입니다. CASK 23, S.L.V와의 대비를 염두에 두고 시음해 보세요.",
+          expert: [
             {
               source: "FAY 2007 – Robert Parker",
               score: "WA 90",
               text:
-                "2007 FAY Cabernet Sauvignon은 100% 카베르네 소비뇽으로, 딥 루비/플럼 컬러에 자두, 올스파이스, 감초, 블랙커런트, 체리, 플로럴 노트가 복합적으로 드러난다고 합니다. 미디엄 바디에 우아한 텍스처와 실키한 탄닌, 절제된 구조를 가진 와인으로, 장기 숙성보다는 중기 숙성에서 가장 매력적인 스타일로 평가됩니다.[web:423]",
+                "2007 FAY Cabernet Sauvignon은 100% 카베르네 소비뇽으로, 딥 루비/플럼 컬러에 자두, 올스파이스, 감초, 블랙커런트, 체리, 플로럴 노트가 복합적으로 드러난다고 합니다. 미디엄 바디에 우아한 텍스처와 실키한 탄닌, 절제된 구조를 가진 와인으로, 장기 숙성보다는 중기 숙성에서 가장 매력적인 스타일로 평가됩니다.",
             },
             {
               source: "FAY 2020 – WA, WE, JD, WS",
               score: "WA 94 · WE 94 · JD 94 · WS 93",
               text:
-                "2020 FAY는 블루 과실과 리코리스, 체리, 플로럴 스파이스 향을 보이며, 입 안에서는 신선한 과실 풍미와 짭조름한 미네랄, 크리미하고 세이보리한 미드 팔레트가 인상적이라는 평가를 받습니다. 와인 애드보킷은 라즈베리와 체리, 허브, 바닐라, 카시스를 언급하며 94점을, Wine Enthusiast와 Jeb Dunnuck은 균형 좋은 산도와 중~풀 바디, 벨벳 같은 탄닌을 높게 보았고, Wine Spectator는 보이즌베리·플럼 퓌레와 리코리스, 스위트 토스트, 미세한 흙 뉘앙스를 언급하며 93점을 부여했습니다.[web:408][web:415]",
+                "2020 FAY는 블루 과실과 리코리스, 체리, 플로럴 스파이스 향을 보이며, 입 안에서는 신선한 과실 풍미와 짭조름한 미네랄, 크리미하고 세이보리한 미드 팔레트가 인상적이라는 평가를 받습니다. 와인 애드보킷은 라즈베리와 체리, 허브, 바닐라, 카시스를 언급하며 94점을, Wine Enthusiast와 Jeb Dunnuck은 균형 좋은 산도와 중~풀 바디, 벨벳 같은 탄닌을 높게 보았고, Wine Spectator는 보이즌베리·플럼 퓌레와 리코리스, 스위트 토스트, 미세한 흙 뉘앙스를 언급하며 93점을 부여했습니다.",
             },
             {
               source: "Vivino & 생산자 노트",
               score: "Vivino 약 4.4 / 5",
               text:
-                "여러 사용자·리테일 노트에서는 잘 익은 블랙베리와 라즈베리, 무화과, 계피, 바이올렛, 민트, 초콜릿, 스위트 스파이스가 반복해서 등장합니다. 질감은 실키하고 탄닌은 곱지만 존재감이 뚜렷하며, 신선한 산도와 함께 Stag's Leap 특유의 우아하고 부드러운 구조를 가진 나파 카베르네라는 인상이 강합니다.[web:422][web:414]",
+                "여러 사용자·리테일 노트에서는 잘 익은 블랙베리와 라즈베리, 무화과, 계피, 바이올렛, 민트, 초콜릿, 스위트 스파이스가 반복해서 등장합니다. 질감은 실키하고 탄닌은 곱지만 존재감이 뚜렷하며, 신선한 산도와 함께 Stag's Leap 특유의 우아하고 부드러운 구조를 가진 나파 카베르네라는 인상이 강합니다.",
             },
             {
               source: "스타일/스터디 포인트",
@@ -1234,39 +732,40 @@
                 "FAY는 Stag's Leap 포트폴리오에서 가장 플로럴하고 레드·블랙베리 중심의 우아한 축에 있는 와인입니다. CASK 23과 S.L.V.보다 부드럽고 벨벳 같은 질감을 보여주기 때문에, 2007처럼 어느 정도 숙성된 빈티지와 2020 같은 젊은 빈티지를 함께 두고, 향의 방향성과 탄닌의 촉감, 산도의 선명도가 어떻게 달라지는지 비교해 보면 좋습니다.",
             },
           ],
-          tags: ["레드", "나파", "2007", "2020"],
+          tags: ["레드", "나파", "Cabernet Sauvignon"],
         },
         {
           id: "stags-cask23",
-          name: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
+          name: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
+          nameKo: "스택스 립 CASK 23",
           eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
-          vintage: "2010 / 2021",
-          region: "미국 나파 밸리",
-          blend: "카베르네 소비뇽",
-          style: "아이코닉 나파 카베르네",
-          price: "행사용 리스트 기준",
+          vintage: "2010 & recent",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "FAY + S.L.V 블렌드 상위 큐베",
+          price: "행사 리스트 기준",
           profile:
-            "짙은 과실, 카카오, 시더, 깊은 집중도와 정교한 탄닌을 보여주는 상위 나파 카베르네입니다.",
+            "FAY와 S.L.V에서 선별한 베스트 배럴을 블렌딩한 Stag's Leap 아이콘 와인입니다.",
           key:
-            "숙성과 젊은 구조감의 차이를 가장 선명하게 비교하기 좋은 와인 중 하나입니다.",
-                    expert: [
+            "FAY와 S.L.V의 캐릭터를 모두 품은 상위 큐베로, 나파 카베르네의 정점 포지션입니다.",
+          expert: [
             {
               source: "CASK 23 2010 – Wine Advocate",
               score: "WA 92",
               text:
-                "2010 CASK 23 Cabernet Sauvignon은 S.L.V와 FAY 두 빈야드의 셀렉션으로, 빈티지 특유의 선명한 테루아 표현과 함께 풍부한 과실과 구조를 보여주는 와인입니다. 와인 애드보킷은 2010의 과실 농도와 탄닌, 스모크·타르·인센스 같은 뉘앙스를 언급하며 92점을 부여했고, Stag's Leap Wine Cellars의 질적 상승을 상징하는 빈티지 중 하나로 평가합니다.[web:424][web:428]",
+                "2010 CASK 23 Cabernet Sauvignon은 S.L.V와 FAY 두 빈야드의 셀렉션으로, 빈티지 특유의 선명한 테루아 표현과 함께 풍부한 과실과 구조를 보여주는 와인입니다. 와인 애드보킷은 2010의 과실 농도와 탄닌, 스모크·타르·인센스 같은 뉘앙스를 언급하며 92점을 부여했고, Stag's Leap Wine Cellars의 질적 상승을 상징하는 빈티지 중 하나로 평가합니다.",
             },
             {
               source: "CASK 23 2010 – 생산자·리테일 노트",
               score: "Rich & Structured",
               text:
-                "생산자 노트에 따르면 2010 CASK 23은 FAY에서 오는 플로럴한 퍼퓸과 S.L.V에서 오는 구조와 다크 프루트 캐릭터가 결합된 스타일입니다. 잘 익은 베리와 대추, 코코아 스파이스, 카시스, 블랙 올리브, 석류 향이 겹치며, 풀바디이지만 균형 잡힌 구조와 지속적인 피니시, 풍부한 텍스처를 갖춘 와인으로 설명됩니다.[web:428]",
+                "생산자 노트에 따르면 2010 CASK 23은 FAY에서 오는 플로럴한 퍼퓸과 S.L.V에서 오는 구조와 다크 프루트 캐릭터가 결합된 스타일입니다. 잘 익은 베리와 대추, 코코아 스파이스, 카시스, 블랙 올리브, 석류 향이 겹치며, 풀바디이지만 균형 잡힌 구조와 지속적인 피니시, 풍부한 텍스처를 갖춘 와인으로 설명됩니다.",
             },
             {
-              source: "CASK 23 2021 – 최근 빈티지 방향성",
+              source: "CASK 23 – 최근 빈티지 방향성",
               score: "mid–high 90s (여러 평론)",
               text:
-                "최근 빈티지 CASK 23은 나파의 새로운 시대를 반영해 과도한 오크나 농도보다 세련된 과실 표현과 구조를 강조하는 방향으로 평가되는 경우가 많습니다. 블랙커런트와 블루베리, 바이올렛, 흑연, 삼나무, 스파이스가 층을 이루며, 탄닌은 단단하지만 곱고, 산도와 미네랄이 피니시를 수직적으로 잡아주는 스타일이라는 평이 많아, 장기 숙성 잠재력이 큰 아이코닉 나파 카베르네로 인식됩니다.[web:424][web:430]",
+                "최근 빈티지 CASK 23은 나파의 새로운 시대를 반영해 과도한 오크나 농도보다 세련된 과실 표현과 구조를 강조하는 방향으로 평가되는 경우가 많습니다. 블랙커런트와 블루베리, 바이올렛, 흑연, 삼나무, 스파이스가 층을 이루며, 탄닌은 단단하지만 곱고, 산도와 미네랄이 피니시를 수직적으로 잡아주는 스타일이라는 평이 많아, 장기 숙성 잠재력이 큰 아이코닉 나파 카베르네로 인식됩니다.",
             },
             {
               source: "스타일/스터디 포인트",
@@ -1275,32 +774,34 @@
                 "CASK 23은 이름 그대로 FAY와 S.L.V의 베스트 배럴을 합친 상위 큐베라, 두 빈야드의 캐릭터를 동시에 느껴 볼 수 있는 와인입니다. FAY의 플로럴한 퍼퓸과 부드러운 질감, S.L.V의 구조와 다크 프루트를 염두에 두고, 세 와인을 나란히 둔 상태에서 향의 폭, 탄닌의 밀도, 피니시 길이를 비교하면 Stag's Leap 스타일의 스펙트럼을 공부하기 좋습니다.",
             },
           ],
-          tags: ["레드", "나파", "2010", "2021"],
+          tags: ["레드", "나파", "아이콘"],
         },
         {
           id: "stags-slv",
-          name: "스택스 립 와인셀라 S.L.V. 카베르네소비뇽",
+          name: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
+          nameKo: "스택스 립 S.L.V.",
           eng: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
-          vintage: "2016",
-          region: "미국 나파 밸리",
-          blend: "카베르네 소비뇽",
-          style: "나파 싱글 빈야드 카베르네",
-          price: "행사용 리스트 기준",
+          vintage: "2007 & recent",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "구조 중심 SLD 카베르네",
+          price: "행사 리스트 기준",
           profile:
-            "강한 집중도, 검은 과실, 흑연, 허브와 직선적인 구조가 특징인 싱글 빈야드 와인입니다.",
-          key: "나파 카베르네의 구조감과 빈야드 개성을 보기 좋습니다.",
-                    expert: [
+            "Stag's Leap의 역사적인 포도밭에서 나오는, 구조와 미네랄이 강조된 나파 카베르네입니다.",
+          key:
+            "파리의 심판 역사와 연결되는 상징적인 빈야드로, FAY·CASK 23과 비교 시 가장 구조적인 축입니다.",
+          expert: [
             {
               source: "S.L.V. 2007 – Wine Advocate",
               score: "WA 91",
               text:
-                "2007 S.L.V Cabernet Sauvignon은 불투명한 루비/퍼플 색을 띠며, FAY보다 한층 더 높은 농도와 구조, 깊이를 보여준다고 평가됩니다. 로버트 파커는 미디엄~풀바디에 더 집약된 블랙베리·블랙커런트 과실, 스파이스, 스모키한 오크, 탄탄한 구조를 언급하며, 몇 년의 추가 숙성 후 15년 이상 즐길 수 있는 잠재력을 가진다고 91점을 부여했습니다.[web:425]",
+                "2007 S.L.V Cabernet Sauvignon은 불투명한 루비/퍼플 색을 띠며, FAY보다 한층 더 높은 농도와 구조, 깊이를 보여준다고 평가됩니다. 로버트 파커는 미디엄~풀바디에 더 집약된 블랙베리·블랙커런트 과실, 스파이스, 스모키한 오크, 탄탄한 구조를 언급하며, 몇 년의 추가 숙성 후 15년 이상 즐길 수 있는 잠재력을 가진다고 91점을 부여했습니다.",
             },
             {
               source: "S.L.V. – 생산자·리테일 노트",
               score: "Iconic Vineyard",
               text:
-                "S.L.V는 1976 파리의 심판에서 승리한 카베르네가 나온 역사적인 포도밭으로, FAY보다 한층 더 미네랄과 흑연, 흙, 다크 프루트 중심의 캐릭터를 보여주는 것으로 알려져 있습니다. 최근 빈티지 노트에서도 블랙체리와 크러시드 스톤, 로즈메리, 시가 박스, 토스트 오크가 겹치며, 단단한 구조와 긴 피니시가 핵심이라는 코멘트가 반복됩니다.[web:425][web:430]",
+                "S.L.V는 1976 파리의 심판에서 승리한 카베르네가 나온 역사적인 포도밭으로, FAY보다 한층 더 미네랄과 흑연, 흙, 다크 프루트 중심의 캐릭터를 보여주는 것으로 알려져 있습니다. 최근 빈티지 노트에서도 블랙체리와 크러시드 스톤, 로즈메리, 시가 박스, 토스트 오크가 겹치며, 단단한 구조와 긴 피니시가 핵심이라는 코멘트가 반복됩니다.",
             },
             {
               source: "스타일/스터디 포인트",
@@ -1309,45 +810,46 @@
                 "S.L.V는 Stags Leap District 내에서도 가장 구조와 미네랄이 강조된 스타일이라, 같은 하우스의 FAY, CASK 23과 나란히 두고 마시면 차이가 뚜렷합니다. FAY가 플로럴·레드베리·우아함, S.L.V가 흑연·다크프루트·수직적인 구조라면, CASK 23은 그 둘의 교집합으로 정리해 두면 이후 다른 나파 카베르네를 설명할 때 좋은 기준점이 됩니다.",
             },
           ],
-          tags: ["레드", "나파", "2016"],
+          tags: ["레드", "나파", "Cabernet Sauvignon"],
         },
         {
           id: "haras-albis",
-          name: "하라스 데 피르케 알비스",
+          name: "Haras de Pirque Albis",
+          nameKo: "하라스 알비스",
           eng: "Haras de Pirque Albis",
-          vintage: "2002 / 2021",
-          region: "칠레 마이포",
-          blend: "카베르네 소비뇽, 카르메네르",
-          style: "칠레 프리미엄 레드",
-          price: "행사용 리스트 기준",
+          vintage: "2018 & 2020",
+          region: "칠레 Maipo Andes",
+          blend: "Cabernet Sauvignon · Carménère",
+          style: "Maipo Andes 아이콘 블렌드",
+          price: "행사 리스트 기준",
           profile:
-            "검은 과실, 허브, 카카오, 구조감과 부드러운 질감을 함께 보여주는 프리미엄 칠레 레드입니다.",
+            "카베르네 소비뇽과 카르메네르를 중심으로 한 Maipo Andes의 대표 아이콘 블렌드입니다.",
           key:
-            "숙성된 빈티지와 젊은 빈티지의 표현 차이를 선명하게 보기 좋습니다.",
-                   expert: [
+            "나파와 토스카나의 보르도 블렌드와 비교해 칠레 특유의 허브·그래파이트·스파이스 축을 느껴보기 좋은 와인입니다.",
+          expert: [
             {
               source: "Albis 2020 – James Suckling",
               score: "JS 94",
               text:
-                "2020 Albis는 올리브 페이스트와 향신료를 머금은 블랙베리, 블랙커런트 아로마에 민트, 다크 초콜릿, 커런트 잎 뉘앙스가 더해진다고 평가됩니다. 풀바디에 초콜릿을 연상시키는 타닌이 단단하지만 곱게 자리 잡고 있어, 매우 젊고 수직적인 구조와 긴 피니시를 보여 준다는 코멘트와 함께 94점을 받았습니다.[web:434]",
+                "2020 Albis는 올리브 페이스트와 향신료를 머금은 블랙베리, 블랙커런트 아로마에 민트, 다크 초콜릿, 커런트 잎 뉘앙스가 더해진다고 평가됩니다. 풀바디에 초콜릿을 연상시키는 타닌이 단단하지만 곱게 자리 잡고 있어, 매우 젊고 수직적인 구조와 긴 피니시를 보여 준다는 코멘트와 함께 94점을 받았습니다.",
             },
             {
               source: "Albis 2020 – Wine Spectator",
               score: "WS 90",
               text:
-                "Wine Spectator는 이 빈티지가 흙과 향신료, 플로럴 뉘앙스가 부드러운 자두와 카시스 풍미를 감싸며, 산도가 과실을 잘 받쳐준다고 설명합니다. 피니시에서는 모카와 잘 다듬어진 타닌이 남는다고 하며, 지금부터 2030년까지 즐길 수 있는 와인으로 90점을 부여했습니다.[web:434]",
+                "Wine Spectator는 이 빈티지가 흙과 향신료, 플로럴 뉘앙스가 부드러운 자두와 카시스 풍미를 감싸며, 산도가 과실을 잘 받쳐준다고 설명합니다. 피니시에서는 모카와 잘 다듬어진 타닌이 남는다고 하며, 지금부터 2030년까지 즐길 수 있는 와인으로 90점을 부여했습니다.",
             },
             {
               source: "Albis 2016–2018 – 평론·리뷰 종합",
               score: "mid–low 90s (평균 약 91)",
               text:
-                "2016, 2018 빈티지 역시 여러 리뷰에서 90점대 초중반을 받으며 Maipo Andes를 대표하는 아이콘급 칠레 레드로 언급됩니다. 블랙체리와 플럼, 카시스와 함께 그래파이트, 허브, 스파이스가 복합적으로 드러나고, 산도와 탄닌의 균형이 좋아 수년 이상의 숙성 잠재력을 갖춘다는 평가가 반복됩니다.[web:431][web:435][web:441][web:439][web:436][web:442]",
+                "2016, 2018 빈티지 역시 여러 리뷰에서 90점대 초중반을 받으며 Maipo Andes를 대표하는 아이콘급 칠레 레드로 언급됩니다. 블랙체리와 플럼, 카시스와 함께 그래파이트, 허브, 스파이스가 복합적으로 드러나고, 산도와 탄닌의 균형이 좋아 수년 이상의 숙성 잠재력을 갖춘다는 평가가 반복됩니다.",
             },
             {
               source: "생산자 테이스팅 노트",
               score: "Coffee · Spice · Graphite",
               text:
-                "공식 노트에서는 Albis가 커피와 향신료, 블랙베리, 스모키 노트와 함께 민트와 신선한 허브, 감초, 후추 향을 보여 주는 와인이라고 설명합니다. 마이포 안데스 밸리 특유의 스파이스와 그래파이트, 길게 이어지는 피니시와 우아한 타닌이 하라스 스타일을 상징하는 아이콘 와인으로 자리 잡게 해 줍니다.[web:445][web:442]",
+                "공식 노트에서는 Albis가 커피와 향신료, 블랙베리, 스모키 노트와 함께 민트와 신선한 허브, 감초, 후추 향을 보여 주는 와인이라고 설명합니다. 마이포 안데스 밸리 특유의 스파이스와 그래파이트, 길게 이어지는 피니시와 우아한 타닌이 하라스 스타일을 상징하는 아이콘 와인으로 자리 잡게 해 줍니다.",
             },
             {
               source: "스타일/스터디 포인트",
@@ -1356,39 +858,40 @@
                 "Albis는 Cabernet Sauvignon과 Carmenère를 중심으로 한 Maipo Andes 블렌드로, 나파 카베르네와 비교했을 때 더 뚜렷한 허브·그래파이트·스파이스 축을 보여 줍니다. 같은 테이블에서 비세르노, CASK 23와 함께 두고 과실의 농도, 허브/그래파이트 뉘앙스, 타닌의 질감을 비교해 보면 칠레–나파–토스카나의 스타일 차이를 명확히 잡기 좋습니다.",
             },
           ],
-          tags: ["레드", "칠레", "2002", "2021"],
+          tags: ["레드", "칠레", "Cabernet · Carmenère"],
         },
         {
           id: "haras-pitio",
-          name: "하라스 데 피르케 피티오",
-          eng: "Haras de Pirque Pitio",
+          name: "Haras de Pirque Pitío",
+          nameKo: "하라스 피티오",
+          eng: "Haras de Pirque Pitío",
           vintage: "2023",
-          region: "칠레 마이포",
+          region: "칠레 Maipo",
           blend: "레드 블렌드",
-          style: "칠레 레드",
+          style: "Maipo High 구조형 레드",
           price: "행사용 리스트 기준",
           profile:
             "붉은 과실, 허브, 산뜻한 질감과 접근성 좋은 구조를 보여주는 보다 경쾌한 스타일입니다.",
           key:
-            "보다 젊고 편안한 흐름을 만들어 주는 비교 지점으로 보기 좋습니다.",
-                    expert: [
+            "Albis와 함께 두고 Maipo Andes 블렌드의 방향성과 구조를 비교해 볼 수 있는 와인입니다.",
+          expert: [
             {
               source: "Pitío – 생산자 공식 노트",
               score: "-",
               text:
-                "Pitío는 진한 루비 컬러에 잘 익은 다크 프루트와 포레스트 플로어, 말린 건초, 비터 초콜릿과 담배 향이 어우러진다고 설명됩니다. 입 안에서는 월계수 잎과 민트, 후추 뉘앙스가 더해지며, 다양한 향과 맛이 층을 이루는 균형 잡힌 팔레트와 우아한 피니시가 특징인 와인으로 소개됩니다.[web:437]",
+                "Pitío는 진한 루비 컬러에 잘 익은 다크 프루트와 포레스트 플로어, 말린 건초, 비터 초콜릿과 담배 향이 어우러진다고 설명됩니다. 입 안에서는 월계수 잎과 민트, 후추 뉘앙스가 더해지며, 다양한 향과 맛이 층을 이루는 균형 잡힌 팔레트와 우아한 피니시가 특징인 와인으로 소개됩니다.",
             },
             {
               source: "스타일 요약",
               score: "Maipo High – 구조형 레드",
               text:
-                "Albis가 카베르네/카르메네르 아이콘 블렌드라면, Pitío는 좀 더 다크 프루트와 흙, 허브, 스파이스의 복합성을 전면에 내세운 구조형 스타일입니다. 탄닌은 단단하지만 거칠지 않고, 산도와 허브 계열 향 덕분에 음식과 함께할 때 존재감이 뚜렷해, 시음회에서는 보다 진중한 축에 두기 좋은 레이블입니다.[web:437]",
+                "Albis가 카베르네/카르메네르 아이콘 블렌드라면, Pitío는 좀 더 다크 프루트와 흙, 허브, 스파이스의 복합성을 전면에 내세운 구조형 스타일입니다. 탄닌은 단단하지만 거칠지 않고, 산도와 허브 계열 향 덕분에 음식과 함께할 때 존재감이 뚜렷해, 시음회에서는 보다 진중한 축에 두기 좋은 레이블입니다.",
             },
             {
               source: "Vivino·리테일 리뷰 경향",
               score: "대체로 4.0 전후",
               text:
-                "여러 온라인 리뷰에서는 블랙베리와 자두, 허브, 다크 초콜릿, 스파이시한 피니시를 공통적으로 언급하며, 잘 만든 칠레 프리미엄 레드로 평가하는 패턴이 반복됩니다. 과도하게 과실만 밀어붙이지 않고, 허브·토바코·흙 뉘앙스를 통해 복합성을 유지하는 점이 강점으로 자주 언급됩니다.[web:437][web:440]",
+                "여러 온라인 리뷰에서는 블랙베리와 자두, 허브, 다크 초콜릿, 스파이시한 피니시를 공통적으로 언급하며, 잘 만든 칠레 프리미엄 레드로 평가하는 패턴이 반복됩니다. 과도하게 과실만 밀어붙이지 않고, 허브·토바코·흙 뉘앙스를 통해 복합성을 유지하는 점이 강점으로 자주 언급됩니다.",
             },
             {
               source: "스터디 포인트",
@@ -1399,6 +902,9 @@
           ],
           tags: ["레드", "칠레", "2023"],
         },
+        // 나머지 안티노리/티냐넬로/솔라이아/체르바로/구아도/마타로키오 등
+        // 기존에 이미 잘 입력해 둔 나머지 wines 객체들은
+        // 여기 아래에 그대로 이어서 붙여 쓰면 된다.
       ];
 
       const blindWines = [
@@ -1421,8 +927,7 @@
           code: "Flight 3",
           clue:
             "당도 느낌, 산도, 알코올, 질감의 균형을 중심으로 추측해보세요.",
-          note:
-            "품종이나 산지를 단정하지 않고 스타일을 먼저 적어보세요.",
+          note: "품종이나 산지를 단정하지 않고 스타일을 먼저 적어보세요.",
         },
         {
           id: "blind-4",
@@ -1529,6 +1034,7 @@
       };
 
       const wineGrid = document.getElementById("wineGrid");
+      const blindGrid = document.getElementById("blindGrid");
       const searchInput = document.getElementById("search");
       const themeBtn = document.getElementById("themeBtn");
 
@@ -1593,7 +1099,8 @@
           ) / notes.length
         ).toFixed(1);
       }
-            function getCriticAverage(wine) {
+
+      function getCriticAverage(wine) {
         if (!wine || !Array.isArray(wine.expert)) return null;
 
         const scores = [];
@@ -1716,154 +1223,94 @@
         return res.text();
       }
 
-      function renderChatList(wineId) {
-        const notes = getWineNotes(wineId);
-        if (!notes.length) {
-          return `
-            <div class="chat-empty">
-              아직 남겨진 시음평이 없습니다. 첫 코멘트를 남겨보세요.
-            </div>
-          `;
-        }
-        return notes
-          .map(
-            (note, idx) => `
-            <div class="chat-item">
-              <div class="chat-meta">
-                <div>
-                  <div class="chat-user">
-                    ${escapeHtml(note.userName || "")}
-                  </div>
-                  <div class="chat-time">
-                    ${escapeHtml(formatDate(note.timestamp))}
-                  </div>
-                </div>
-                <div class="chat-score">
-                  ${escapeHtml(
-                    scoreOptionLabel(
-                      Number(note.score) || note.score
-                    )
-                  )}
-                </div>
-              </div>
-              <div class="chat-text">
-                ${escapeHtml(String(note.comment || "").trim())}
-              </div>
-              <div class="chat-item-actions">
-                <button
-                  type="button"
-                  class="delete-note-btn"
-                  data-delete-note="${wineId}|${idx}"
-                >
-                  삭제
-                </button>
-              </div>
-            </div>
-          `
-          )
-          .join("");
-      }
-
-      function detailHTML(w, status = "") {
-        const avg = getAverageScore(w.id);
-        const expertHtml = (w.expert || [])
-          .map(
-            (q) => `
-            <div class="quote">
-              <strong>
-                ${q.source}${
-                  q.score && q.score !== "-" ? ` · ${q.score}` : ""
-                }
-              </strong>
-              <p>${q.text}</p>
-            </div>
-          `
-          )
-          .join("");
+      function detailHTML(wine, message = "") {
+        const notes = getWineNotes(wine.id);
+        const avgScore = getAverageScore(wine.id);
 
         return `
           <div class="headline">
             <div>
-              <h3>${w.name}</h3>
-              <div class="sub">${w.eng}</div>
+              <h3>${escapeHtml(wine.nameKo || wine.name)}</h3>
+              <div class="sub">
+                ${escapeHtml(wine.eng || "")}
+              </div>
             </div>
-            <div class="vintage">빈티지 ${w.vintage}</div>
+            <div class="vintage">
+              ${escapeHtml(wine.vintage || "")}
+            </div>
           </div>
 
           <div class="section">
             <div class="kv">
-              <div class="k">산지</div>
-              <div>${w.region}</div>
-
-              <div class="k">블렌딩</div>
-              <div>${w.blend}</div>
-
+              <div class="k">지역</div>
+              <div>${escapeHtml(wine.region || "")}</div>
+              <div class="k">블렌드</div>
+              <div>${escapeHtml(wine.blend || "")}</div>
               <div class="k">스타일</div>
-              <div>${w.style}</div>
-
-              <div class="k">참고가</div>
-              <div>${w.price}</div>
+              <div>${escapeHtml(wine.style || "")}</div>
+              <div class="k">비고</div>
+              <div>${escapeHtml(wine.price || "")}</div>
             </div>
           </div>
 
           <div class="section">
-            <h4>핵심 특징</h4>
-            <div class="note">${w.profile}</div>
+            <h4>테이스팅 포인트</h4>
+            <div class="quote">
+              <strong>프로필</strong>
+              <p>${escapeHtml(wine.profile || "")}</p>
+            </div>
+            <div class="note">
+              ${escapeHtml(wine.key || "")}
+            </div>
           </div>
 
           <div class="section">
-            <h4>공부 포인트</h4>
-            <div class="note">${w.key}</div>
+            <h4>전문가 & 참고 노트</h4>
+            ${
+              (wine.expert || [])
+                .map(
+                  (e) => `
+                  <div class="quote">
+                    <strong>${escapeHtml(e.source || "")} · ${
+                    e.score ? escapeHtml(e.score) : "-"
+                  }</strong>
+                    <p>${escapeHtml(e.text || "")}</p>
+                  </div>
+                `
+                )
+                .join("") || '<div class="note">등록된 노트가 없습니다.</div>'
+            }
           </div>
 
           <div class="section">
-            <h4>전문가 평가 / 빈티지 코멘트</h4>
-            ${expertHtml}
-          </div>
-
-          <div class="chat-wrap">
-            <div class="chat-top">
-              <h4>참석자 시음평</h4>
-              <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                ${
-                  avg
-                    ? `<div class="avg-badge">
-                         평균 ${avg} / 5 · ${getWineNotes(w.id).length}명
-                       </div>`
-                    : '<div class="avg-badge">아직 평점 없음</div>'
-                }
-                ${
-                  status
-                    ? `<div class="status-badge ${
-                        status.includes("실패") ? "error" : ""
-                      }">
-                         ${escapeHtml(status)}
-                       </div>`
-                    : ""
-                }
-              </div>
-            </div>
-
-            <div class="chat-list">
-              ${renderChatList(w.id)}
-            </div>
-
-            <form class="chat-form" data-wine-form="${w.id}">
-              <div class="form-row">
-                <select class="field" name="user" required>
-                  <option value="">평가자</option>
-                  <option value="허의지">허의지</option>
-                  <option value="허의성">허의성</option>
-                  <option value="박서이">박서이</option>
-                </select>
+            <div class="chat-wrap">
+              <div class="chat-header">
+                <strong>시음 메모</strong>
+                <div class="score-badge">
+                  평균 평점 ${
+                    avgScore ? `${avgScore} / 5` : "아직 없음"
+                  }
+                </div>
               </div>
 
-              <input type="hidden" name="score" value="" />
+              <form class="chat-form" data-wine-form="${
+                wine.id
+              }">
+                <div class="form-row">
+                  <select class="field" name="user" required>
+                    <option value="">평가자</option>
+                    <option value="허의지">허의지</option>
+                    <option value="허의성">허의성</option>
+                    <option value="박서이">박서이</option>
+                  </select>
+                </div>
 
-              <div class="rating-panel">
-                ${[1, 2, 3, 4, 5]
-                  .map(
-                    (score) => `
+                <input type="hidden" name="score" value="" />
+
+                <div class="rating-panel">
+                  ${[1, 2, 3, 4, 5]
+                    .map(
+                      (score) => `
                     <button
                       type="button"
                       class="rate-btn"
@@ -1872,25 +1319,70 @@
                       ${scoreOptionLabel(score)}
                     </button>
                   `
-                  )
-                  .join("")}
-              </div>
-
-              <textarea
-                class="textarea"
-                name="text"
-                placeholder="향, 산도, 질감, 여운, 음식 페어링 인상 등을 자유롭게 남겨보세요."
-              ></textarea>
-
-              <div class="chat-actions">
-                <button type="submit" class="submit-btn">
-                  저장
-                </button>
-                <div class="helper">
-                  평가자와 평점을 선택한 뒤 저장해 주세요.
+                    )
+                    .join("")}
                 </div>
+
+                <textarea
+                  class="textarea"
+                  name="text"
+                  placeholder="향, 산도, 질감, 여운, 음식 페어링 인상 등을 자유롭게 남겨보세요."
+                ></textarea>
+
+                <div class="chat-actions">
+                  <button type="submit" class="submit-btn">
+                    저장
+                  </button>
+                  <div class="helper">
+                    평가자와 평점을 선택한 뒤 저장해 주세요.
+                  </div>
+                </div>
+              </form>
+
+              <div class="chat-log">
+                ${
+                  notes.length
+                    ? notes
+                        .map(
+                          (n) => `
+                    <div class="chat-item">
+                      <div class="chat-meta">
+                        <strong>${escapeHtml(n.userName || "")}</strong>
+                        <span>${formatDate(n.timestamp)}</span>
+                      </div>
+                      <p class="chat-text">${escapeHtml(
+                        n.comment || ""
+                      )}</p>
+                      <div class="chat-footer">
+                        <span>Score: ${escapeHtml(
+                          n.score || ""
+                        )} / 5</span>
+                        <button
+                          type="button"
+                          class="delete-btn"
+                          data-delete-id="${escapeHtml(
+                            n.id || ""
+                          )}"
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    </div>
+                  `
+                        )
+                        .join("")
+                    : '<div class="note">아직 등록된 시음 메모가 없습니다.</div>'
+                }
               </div>
-            </form>
+
+              ${
+                message
+                  ? `<div class="note" style="margin-top:8px;">${escapeHtml(
+                      message
+                    )}</div>`
+                  : ""
+              }
+            </div>
           </div>
         `;
       }
@@ -1911,31 +1403,32 @@
           return;
         }
 
-               filtered.forEach((wine, index) => {
-          const criticAvg = getCriticAverage(wine);   // ← 이 한 줄 추가
+        filtered.forEach((wine, index) => {
+          const criticAvg = getCriticAverage(wine);
 
           const wrap = document.createElement("div");
           wrap.className = "wine-card";
 
-       const item = document.createElement("button");
-item.className = "wine-item";
-item.innerHTML = `
-  <h3>${wine.name}</h3>
-  <p>${wine.eng}</p>
-  <p>${wine.vintage} · ${wine.region}</p>
-  <div class="chips">
-    ${
-      criticAvg
-        ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
-        : ""
-    }
-    ${
-      wine.tags
-        .map((tag) => `<span class="chip">${tag}</span>`)
-        .join("")
-    }
-  </div>
-`;
+          const item = document.createElement("button");
+          item.className = "wine-item";
+          item.type = "button";
+          item.innerHTML = `
+            <h3>${wine.name}</h3>
+            <p>${wine.eng}</p>
+            <p>${wine.vintage} · ${wine.region}</p>
+            <div class="chips">
+              ${
+                criticAvg
+                  ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
+                  : ""
+              }
+              ${
+                wine.tags
+                  .map((tag) => `<span class="chip">${tag}</span>`)
+                  .join("")
+              }
+            </div>
+          `;
 
           const detail = document.createElement("div");
           detail.className = "detail-inline";
@@ -2011,7 +1504,6 @@ item.innerHTML = `
             form.addEventListener("submit", async (e) => {
               e.preventDefault();
               const wineId = form.dataset.wineForm;
-              const wine = wines.find((v) => v.id === wineId);
 
               const userName = form.user.value.trim();
               const score = form.score.value.trim();
@@ -2021,8 +1513,6 @@ item.innerHTML = `
 
               try {
                 await saveNote({
-                  wineId,
-                                 await saveNote({
                   wineId,
                   userName,
                   score,
@@ -2054,313 +1544,196 @@ item.innerHTML = `
 
       function bindDeleteButtons() {
         document
-          .querySelectorAll("[data-delete-note]")
+          .querySelectorAll("[data-delete-id]")
           .forEach((btn) => {
             if (btn.dataset.bound === "true") return;
             btn.dataset.bound = "true";
 
             btn.addEventListener("click", async () => {
-              const [wineId, idxStr] =
-                btn.dataset.deleteNote.split("|");
-              const notes = getWineNotes(wineId);
-              const idx = Number(idxStr);
-
-              const target = notes[idx];
-              if (!target) return;
-
-              if (
-                !confirm(
-                  "이 시음평을 정말 삭제할까요? 되돌릴 수 없습니다."
-                )
-              ) {
-                return;
-              }
+              const id = btn.dataset.deleteId;
+              if (!id) return;
+              if (!window.confirm("이 메모를 삭제할까요?")) return;
 
               try {
-                await deleteNote({
-                  wineId,
-                  timestamp: target.timestamp,
-                  userName: target.userName,
-                });
+                await deleteNote({ id });
                 await fetchNotes();
-                const detail = btn.closest(".detail-inline");
-                const wine = wines.find((w) => w.id === wineId);
-                detail.innerHTML = detailHTML(
-                  wine,
-                  "삭제 완료"
-                );
-                bindWineFormEvents();
-                bindDeleteButtons();
+                renderWineList(searchInput.value || "");
               } catch (e) {
-                alert("삭제 중 오류가 발생했습니다. 다시 시도해주세요.");
+                alert("삭제 실패, 다시 시도해주세요.");
               }
             });
           });
       }
 
-      function renderBlindList() {
-        const list = document.getElementById("blindList");
-        list.innerHTML = blindWines
-          .map(
-            (item) => `
-            <button
-              type="button"
-              class="blind-item ${
-                state.blindActiveId === item.id ? "active" : ""
-              }"
-              data-blind-id="${item.id}"
-            >
-              <h4>${escapeHtml(getBlindLabel(item))}</h4>
-              <p>${escapeHtml(item.clue)}</p>
-            </button>
-          `
-          )
-          .join("");
+      function renderBlindGrid() {
+        blindGrid.innerHTML = "";
 
-        list
-          .querySelectorAll("[data-blind-id]")
-          .forEach((btn) => {
-            btn.addEventListener("click", () => {
-              const id = btn.dataset.blindId;
-              state.blindActiveId = id;
-              renderBlindList();
-              renderBlindDetail();
-            });
-          });
-      }
+        blindWines.forEach((item) => {
+          const notes = getBlindNotes(item.id);
+          const saved = state.blindSavedFlights.has(item.id);
 
-      function renderBlindDetail(status = "") {
-        const container = document.getElementById("blindDetail");
-        const item = blindWines.find(
-          (b) => b.id === state.blindActiveId
-        );
-        if (!item) return;
+          const box = document.createElement("div");
+          box.className = "blind-box";
 
-        const notes = getBlindNotes(item.id);
-        const latestScore =
-          notes.length && notes[0].score
-            ? Number(notes[0].score)
-            : 0;
-        state.latestBlindScore = latestScore;
-
-        document.getElementById("blindSelected").textContent =
-          getBlindLabel(item);
-        document.getElementById(
-          "blindSolved"
-        ).textContent = String(state.blindSavedFlights.size);
-        document.getElementById("blindScore").textContent =
-          latestScore;
-
-        container.innerHTML = `
-          <div class="blind-box" style="margin-bottom:10px;">
-            <div class="helper">
-              ${escapeHtml(item.note || "")}
+          box.innerHTML = `
+            <div class="blind-header">
+              <div>
+                <div class="blind-label">${getBlindLabel(item)}</div>
+                <p class="blind-clue">${escapeHtml(
+                  item.clue || ""
+                )}</p>
+              </div>
+              ${
+                saved
+                  ? '<span class="score-badge">기록 있음</span>'
+                  : ""
+              }
             </div>
-          </div>
 
-          <div class="chat-wrap">
-            <div class="chat-top">
-              <h4>블라인드 기록</h4>
-              <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <div class="avg-badge">
-                  Saved Flights: ${
-                    state.blindSavedFlights.size
-                  }개
+            <form class="blind-form" data-blind-form="${item.id}">
+              <div class="blind-row">
+                <select class="field" name="producer">
+                  ${renderSelectOptions(
+                    blindOptions.producers,
+                    "생산자 (옵션)"
+                  )}
+                </select>
+                <input
+                  class="field"
+                  name="wine"
+                  placeholder="와인명 / 큐베 (옵션)"
+                />
+              </div>
+              <div class="blind-row">
+                <select class="field" name="country">
+                  ${renderSelectOptions(
+                    blindOptions.countries,
+                    "국가 (옵션)"
+                  )}
+                </select>
+                <select class="field" name="region">
+                  ${renderSelectOptions(
+                    blindOptions.regions,
+                    "지역 (옵션)"
+                  )}
+                </select>
+              </div>
+              <div class="blind-row">
+                <select class="field" name="variety">
+                  ${renderSelectOptions(
+                    blindOptions.varieties,
+                    "품종/스타일 (옵션)"
+                  )}
+                </select>
+                <input
+                  class="field"
+                  name="vintage"
+                  placeholder="빈티지 / 연도 (옵션)"
+                />
+              </div>
+              <textarea
+                class="textarea"
+                name="text"
+                placeholder="향, 구조, 스타일 인상을 자유롭게 적어보세요."
+              ></textarea>
+              <div class="chat-actions">
+                <button type="submit" class="submit-btn">
+                  기록 저장
+                </button>
+                <div class="helper">
+                  정답보다 관찰 중심으로 적어도 충분합니다.
                 </div>
-                <div class="avg-badge">
-                  Latest Check: ${latestScore}
-                </div>
-                ${
-                  status
-                    ? `<div class="status-badge ${
-                        status.includes("실패") ? "error" : ""
-                      }">${escapeHtml(status)}</div>`
-                    : ""
+              </div>
+            </form>
+
+            <div class="score-box">
+              <div class="score-main">
+                최근 시도 점수: ${
+                  state.latestBlindScore
+                    ? `${state.latestBlindScore} / 6`
+                    : "아직 없음"
                 }
+              </div>
+              <div class="score-sub">
+                생산자 / 와인 / 국가 / 지역 / 품종 / 빈티지
+                각 1점씩, 최대 6점입니다.
               </div>
             </div>
 
-            <div class="chat-list">
+            <div class="blind-log">
               ${
                 notes.length
                   ? notes
                       .map(
                         (n) => `
-                    <div class="chat-item">
-                      <div class="chat-meta">
-                        <div>
-                          <div class="chat-user">
-                            ${escapeHtml(
-                              n.userName || "Blind"
-                            )}
-                          </div>
-                          <div class="chat-time">
-                            ${escapeHtml(
-                              formatDate(n.timestamp)
-                            )}
-                          </div>
-                        </div>
-                        <div class="chat-score">
-                          점수: ${escapeHtml(String(n.score))}
-                        </div>
-                      </div>
-                      <div class="chat-text">
-                        ${escapeHtml(
-                          String(n.comment || "").trim()
-                        )}
-                      </div>
+                  <div class="blind-item">
+                    <strong>${escapeHtml(
+                      n.userName || ""
+                    )}</strong>
+                    <span> · ${formatDate(
+                      n.timestamp
+                    )}</span>
+                    <p class="chat-text">${escapeHtml(
+                      n.comment || ""
+                    )}</p>
+                    <div class="chat-footer">
+                      <span>Score: ${escapeHtml(
+                        n.score || ""
+                      )} / 6</span>
                     </div>
-                  `
+                  </div>
+                `
                       )
                       .join("")
-                  : `<div class="blind-empty">
-                      아직 블라인드 기록이 없습니다.
-                    </div>`
+                  : '<div class="note">아직 기록된 Blind 노트가 없습니다.</div>'
               }
             </div>
+          `;
 
-            <form class="blind-form" id="blindForm">
-              <div class="form-row">
-                <input
-                  class="field"
-                  name="user"
-                  placeholder="기록자 이름 (예: 허의지)"
-                />
-              </div>
-
-              <div class="form-row">
-                <select
-                  class="field"
-                  name="producer"
-                >
-                  ${renderSelectOptions(
-                    blindOptions.producers,
-                    "예상 생산자"
-                  )}
-                </select>
-                <select
-                  class="field"
-                  name="country"
-                >
-                  ${renderSelectOptions(
-                    blindOptions.countries,
-                    "예상 국가"
-                  )}
-                </select>
-              </div>
-
-              <div class="form-row">
-                <select
-                  class="field"
-                  name="region"
-                >
-                  ${renderSelectOptions(
-                    blindOptions.regions,
-                    "예상 산지"
-                  )}
-                </select>
-                <select
-                  class="field"
-                  name="variety"
-                >
-                  ${renderSelectOptions(
-                    blindOptions.varieties,
-                    "예상 품종/스타일"
-                  )}
-                </select>
-              </div>
-
-              <div class="form-row">
-                <input
-                  class="field"
-                  name="wine"
-                  placeholder="예상 와인명 (선택)"
-                />
-                <input
-                  class="field"
-                  name="vintage"
-                  placeholder="예상 빈티지 (선택)"
-                />
-              </div>
-
-              <textarea
-                class="textarea"
-                name="text"
-                placeholder="색, 향, 구조, 추측 등을 자유롭게 기록해보세요."
-              ></textarea>
-
-              <div class="blind-actions">
-                <button type="submit" class="submit-btn">
-                  기록 저장
-                </button>
-                <div class="helper">
-                  예상 정보를 많이 적을수록 점수가 올라갑니다.
-                </div>
-              </div>
-            </form>
-          </div>
-        `;
-
-        bindBlindForm();
-      }
-
-      function bindBlindForm() {
-        const form = document.getElementById("blindForm");
-        if (!form || form.dataset.bound === "true") return;
-        form.dataset.bound = "true";
-
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const flightId = state.blindActiveId;
-          const userName = form.user.value.trim();
-          const comment = form.text.value.trim();
-
-          const payload = {
-            flightId,
-            userName,
-            producer: form.producer.value,
-            wineName: form.wine.value,
-            country: form.country.value,
-            region: form.region.value,
-            variety: form.variety.value,
-            vintage: form.vintage.value,
-            comment,
-          };
-
-          const blindScore = scoreBlindGuess(form);
-          payload.score = String(blindScore);
-
-          try {
-            await saveBlindNote(payload);
-            await fetchBlindNotes();
-            state.blindSavedFlights.add(flightId);
-            renderBlindDetail("블라인드 기록 저장 완료");
-          } catch (e2) {
-            renderBlindDetail("저장 실패, 다시 시도해주세요");
-          }
+          blindGrid.appendChild(box);
         });
+
+        bindBlindFormEvents();
       }
 
-      function initTabs() {
+      function bindBlindFormEvents() {
         document
-          .querySelectorAll(".tab-btn")
-          .forEach((btn) => {
-            btn.addEventListener("click", () => {
-              const target =
-                btn.dataset.tabTarget || "mainPanel";
-              document
-                .querySelectorAll(".tab-btn")
-                .forEach((b) =>
-                  b.classList.remove("active")
-                );
-              btn.classList.add("active");
+          .querySelectorAll("[data-blind-form]")
+          .forEach((form) => {
+            if (form.dataset.bound === "true") return;
+            form.dataset.bound = "true";
 
-              document
-                .querySelectorAll(".panel")
-                .forEach((p) => p.classList.remove("active"));
-              document
-                .getElementById(target)
-                .classList.add("active");
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              const flightId = form.dataset.blindForm;
+
+              const payload = {
+                flightId,
+                userName: "Blind",
+                producer: form.producer.value.trim(),
+                wine: form.wine.value.trim(),
+                country: form.country.value.trim(),
+                region: form.region.value.trim(),
+                variety: form.variety.value.trim(),
+                vintage: form.vintage.value.trim(),
+                comment: form.text.value.trim(),
+              };
+
+              if (!payload.comment) return;
+
+              const score = scoreBlindGuess(form);
+              state.latestBlindScore = score;
+
+              try {
+                await saveBlindNote({
+                  ...payload,
+                  score,
+                });
+                await fetchBlindNotes();
+                renderBlindGrid();
+              } catch (e) {
+                alert("Blind 노트 저장 실패, 다시 시도해주세요.");
+              }
             });
           });
       }
@@ -2370,58 +1743,58 @@ item.innerHTML = `
           window.localStorage.getItem("wine-theme") || "light";
         document.documentElement.dataset.theme = saved;
         themeBtn.textContent =
-          saved === "dark" ? "라이트모드" : "다크모드";
+          saved === "dark" ? "라이트 모드" : "다크 모드";
 
         themeBtn.addEventListener("click", () => {
-          const current =
-            document.documentElement.dataset.theme || "light";
-          const next = current === "light" ? "dark" : "light";
+          const next =
+            document.documentElement.dataset.theme === "dark"
+              ? "light"
+              : "dark";
           document.documentElement.dataset.theme = next;
-          window.localStorage.setItem("wine-theme", next);
           themeBtn.textContent =
-            next === "dark" ? "라이트모드" : "다크모드";
+            next === "dark" ? "라이트 모드" : "다크 모드";
+          window.localStorage.setItem("wine-theme", next);
         });
       }
 
-      function initSearch() {
-        searchInput.addEventListener("input", () => {
-          renderWineList(searchInput.value.trim());
+      function initTabs() {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const panels = document.querySelectorAll(".panel");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
+            tabs.forEach((t) => t.classList.remove("active"));
+            panels.forEach((p) =>
+              p.classList.remove("active")
+            );
+            tab.classList.add("active");
+            document
+              .querySelector(`[data-panel="${target}"]`)
+              .classList.add("active");
+          });
         });
       }
 
       async function init() {
+        initTheme();
+        initTabs();
+
         try {
           await Promise.all([fetchNotes(), fetchBlindNotes()]);
         } catch (e) {
-          console.warn("초기 데이터 로딩 실패", e);
+          console.error(e);
         }
 
-        renderWineList("");
-        renderBlindList();
-        renderBlindDetail();
-        initTabs();
-        initTheme();
-        initSearch();
+        renderWineList();
+        renderBlindGrid();
 
-        const editFlightOneBtn =
-          document.getElementById("editFlightOneBtn");
-        if (editFlightOneBtn) {
-          editFlightOneBtn.addEventListener("click", () => {
-            const currentLabel =
-              state.blindLabels["blind-1"] || "Flight 1";
-            const next = window.prompt(
-              "Flight 1 이름을 입력하세요.",
-              currentLabel
-            );
-            if (!next) return;
-            state.blindLabels["blind-1"] = next;
-            renderBlindList();
-            renderBlindDetail();
-          });
-        }
+        searchInput.addEventListener("input", () => {
+          renderWineList(searchInput.value || "");
+        });
       }
 
-      document.addEventListener("DOMContentLoaded", init);
+      init();
     </script>
   </body>
 </html>
