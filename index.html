@@ -461,104 +461,50 @@
       const API_URL = "https://script.google.com/macros/s/AKfycbyor3dGc7aT27GdKRLLraI2m3t3JKWVgH3VJAudD7D6EIaCBwvjk8g--KHyWf7boHQ1/exec";
 
       const wines = [
-                {
+              {
           id: "conte-aymo",
-          name: "Marchese Antinori Conte Aymo",
-          nameKo: "마르케제 안티노리 콘테 아이모",
-          eng: "Marchese Antinori Conte Aymo",
+          name: "마르케제 안티노리 콘테 아이모",
           vintage: "2020",
-          region: "이탈리아 롬바르디아 프란차코르타",
-          blend: "샤르도네 중심 스파클링",
-          style: "프란차코르타 DOCG",
-          price: "행사 리스트 기준",
-          profile:
-            "섬세한 기포와 시트러스, 흰 꽃, 브리오슈 뉘앙스가 조화로운 프리미엄 이탈리안 스파클링입니다.",
-          key:
-            "오프닝 와인으로 좋고, 이후 화이트와 레드 시음 전에 산도와 질감의 기준점을 잡아주기 좋습니다.",
-          expert: [
-            {
-              source: "JS",
-              score: "92",
-              text: "섬세한 버블과 시트러스, 흰 꽃, 브리오슈 인상이 깔끔하게 이어지는 우아한 프란차코르타 스타일.",
-            },
-            {
-              source: "WS",
-              score: "91",
-              text: "산뜻한 산도와 정돈된 과실감이 중심을 잡아주며, 오프닝 와인으로 쓰기 좋은 균형감이 돋보입니다.",
-            },
-            {
-              source: "RP",
-              score: "90",
-              text: "효모에서 오는 고소한 결이 과하지 않고, 전체적으로 절제된 구조와 깨끗한 마무리가 인상적입니다.",
-            },
+          region: "Franciacorta / Italy",
+          weather: "프란차코르타 스타일의 산뜻함과 균형감 중심으로 보면 좋은 스파클링",
+          style: "시트러스, 흰 꽃, 브리오슈, 섬세한 버블",
+          points: "오프닝 와인으로 산도와 질감의 기준점 역할",
+          scores: "전문가 점수는 행사 자료 반영 권장",
+          highlights: [
+            "첫 잔에서 산도와 기포 질감 체크",
+            "브리오슈와 시트러스 균형 기록",
+            "뒤이어 나올 화이트와의 산도 비교 기준",
           ],
-          tags: ["스파클링", "이탈리아", "2020"],
         },
         {
           id: "cervaro",
-          name: "Cervaro della Sala",
-          nameKo: "체르바로",
-          eng: "Cervaro della Sala",
+          name: "체르바로",
           vintage: "2016 · 2024",
-          region: "이탈리아 움브리아",
-          blend: "Chardonnay · Grechetto",
-          style: "안티노리 아이콘 화이트",
-          price: "행사 리스트 기준",
-          profile:
-            "오크 숙성과 산도가 균형을 이루는 복합적인 화이트로, 풍부한 질감과 긴 피니시가 특징입니다.",
-          key:
-            "숙성 빈티지와 최신 빈티지를 비교하면 질감, 오크 통합감, 산도 표현 차이를 보기 좋습니다.",
-          expert: [
-            {
-              source: "JS",
-              score: "96",
-              text: "잘 익은 핵과류와 시트러스, 오크, 미네랄이 정교하게 결합된 이탈리아 대표 아이콘 화이트.",
-            },
-            {
-              source: "WS",
-              score: "94",
-              text: "풍부한 질감과 산도의 균형이 좋고, 긴 피니시에서 복합적인 향과 오크의 통합감이 또렷하게 드러납니다.",
-            },
-            {
-              source: "RP",
-              score: "95",
-              text: "숙성 잠재력과 구조감이 뛰어나며, 볼륨감 있는 샤르도네 스타일 속에서도 세련된 긴장감을 유지합니다.",
-            },
+          region: "Umbria / Italy",
+          weather: "숙성 빈티지와 최신 빈티지 비교에 적합한 조건",
+          style: "오크, 핵과류, 시트러스, 질감 중심의 복합 화이트",
+          points: "숙성과 신선함의 대비가 핵심",
+          scores: "JS/WS/RP 등 빈티지별 전문가 점수 반영 가능",
+          highlights: [
+            "2016과 2024의 질감 차이 기록",
+            "오크 통합감과 산도 표현 비교",
+            "화이트 중 가장 구조적인 스타일인지 체크",
           ],
-          tags: ["화이트", "움브리아", "2016", "2024"],
         },
         {
           id: "guado",
-          name: "Guado al Tasso",
-          nameKo: "구아도 알 타소",
-          eng: "Guado al Tasso",
+          name: "구아도 알 타소",
           vintage: "2001 · 2021",
-          region: "이탈리아 토스카나 볼게리",
-          blend: "Cabernet Sauvignon · Merlot · Cabernet Franc",
-          style: "볼게리 슈퍼 투스칸",
-          price: "행사 리스트 기준",
-          profile:
-            "검은 과실, 그래파이트, 허브, 오크가 입체적으로 어우러지는 안티노리 대표 볼게리 레드입니다.",
-          key:
-            "2001과 2021을 함께 보면 숙성 복합미와 최근 빈티지의 응축감 차이가 뚜렷합니다.",
-          expert: [
-            {
-              source: "JS",
-              score: "97",
-              text: "검은 과실, 그래파이트, 허브, 스파이스가 층을 이루며 전개되는 강렬하고 세련된 볼게리 레드.",
-            },
-            {
-              source: "WS",
-              score: "95",
-              text: "응축된 과실과 잘 다듬어진 탄닌, 오크의 균형이 뛰어나고 긴 여운에서 슈퍼 투스칸의 완성도가 잘 드러납니다.",
-            },
-            {
-              source: "RP",
-              score: "96",
-              text: "풍부한 농도와 깊이, 구조감이 인상적이며 숙성에 따라 더욱 복합적으로 발전할 여지가 큰 와인입니다.",
-            },
+          region: "Bolgheri / Italy",
+          weather: "숙성미와 응축감 차이가 뚜렷하게 드러나는 비교 구간",
+          style: "검은 과실, 허브, 그래파이트, 오크의 입체감",
+          points: "숙성 2001과 젊은 2021의 대비가 핵심",
+          scores: "빈티지별 전문가 고득점 와인",
+          highlights: [
+            "2001의 삼차 향과 2021의 응축감 비교",
+            "탄닌 질감과 피니시 길이 체크",
+            "슈퍼투스칸 내 존재감 메모",
           ],
-          tags: ["레드", "볼게리", "2001", "2021"],
         },
         {
           id: "matarocchio-2021",
