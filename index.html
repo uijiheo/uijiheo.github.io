@@ -785,16 +785,31 @@
       const elWineList = document.getElementById("wine-list");
       const elBlindList = document.getElementById("blind-list");
 
-      async function apiPost(payload) {
-        const res = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        const data = await res.json();
-        if (!data.ok) throw new Error(data.error || "API error");
-        return data.result;
-      }
+   async function apiPost(payload) {
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    // 응답 상태 먼저 확인
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`HTTP ${res.status} / ${text}`);
+    }
+
+    const data = await res.json();
+    if (!data.ok) {
+      throw new Error(data.error || "API error");
+    }
+    return data.result;
+  } catch (err) {
+    // 여기서 실제 에러 내용을 그대로 띄움
+    alert("API 호출 에러: " + err.message);
+    throw err;
+  }
+}
 
       function getReviews(id) {
         return appState.reviews[id] || [];
