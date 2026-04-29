@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>안티노리 First Class 대시보드</title>
-    <!-- version: clean-v1 -->
+    <!-- version: clean-v2 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
@@ -516,7 +516,7 @@
       .rate-btn.active {
         border-color: #7a2e38;
         background: var(--chip);
-         color: #7a2e38;
+        color: #7a2e38;
       }
 
       .blind-layout {
@@ -765,7 +765,7 @@
     <script>
       const CONFIG = {
         API_URL:
-          "hhttps://script.google.com/macros/s/AKfycbzZ3r_53Xf70eOa5U2H9tIXyMCa4e4yBd8agGuqmFSfQC4xqeDp3mxdyjeT_sa_SN-F/exec",
+          "https://script.google.com/macros/s/AKfycbxzQgGrQCq4tD15IiOfhnKgZ6cihBgnaZwgrsep8VQwwhOE84iWo3bdXTqwQlK68hjJ/exec",
       };
 
       const wines = [
@@ -1113,7 +1113,8 @@
         },
         {
           id: "stags-cask23",
-          name: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
+          name:
+            "스택스 립 와인셀라 CASK23 카베르네소비뇽",
           eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
           vintage: "2010 / 2021",
           region: "미국 나파 밸리",
@@ -1144,7 +1145,8 @@
         },
         {
           id: "stags-slv",
-          name: "스택스 립 와인셀라 S.L.V. 카베르네소비뇽",
+          name:
+            "스택스 립 와인셀라 S.L.V. 카베르네소비뇽",
           eng: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
           vintage: "2016",
           region: "미국 나파 밸리",
@@ -1625,11 +1627,13 @@
             <div class="chat-top">
               <h4>참석자 시음평</h4>
               <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        ${avg
-  ? `<div class="avg-badge">
+        ${
+          avg
+            ? `<div class="avg-badge">
        평균 ${avg} / 5 · ${getWineNotes(w.id).length}명
      </div>`
-  : '<div class="avg-badge">아직 평점 없음</div>'}
+            : '<div class="avg-badge">아직 평점 없음</div>'
+        }
                 ${
                   status
                     ? `<div class="status-badge ${
@@ -1654,8 +1658,7 @@
                   <option value="허의성">허의성</option>
                   <option value="박서이">박서이</option>
                 </select>
-            
-              </div>
+            </div>
 
               <input type="hidden" name="score" value="" />
 
