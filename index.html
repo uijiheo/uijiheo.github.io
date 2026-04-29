@@ -1276,94 +1276,94 @@ const wines = [
         `;
       }
 
-      function renderWineList(filter = "") {
-        wineGrid.innerHTML = "";
+   function renderWineList(filter = "") {
+  wineGrid.innerHTML = "";
 
-        const filtered = wines.filter((w) =>
-          [w.name, w.eng, w.region, w.blend, ...(w.tags || [])]
-            .join(" ")
-            .toLowerCase()
-            .includes(filter.toLowerCase())
-        );
+  const filtered = wines.filter((w) =>
+    [w.nameKo, w.name, w.eng, w.region, w.blend, ...(w.tags || [])]
+      .join(" ")
+      .toLowerCase()
+      .includes(filter.toLowerCase())
+  );
 
-        if (!filtered.length) {
-          wineGrid.innerHTML =
-            '<div class="note">검색 결과가 없습니다.</div>';
-          return;
+  if (!filtered.length) {
+    wineGrid.innerHTML =
+      '<div class="note">검색 결과가 없습니다.</div>';
+    return;
+  }
+
+  filtered.forEach((wine, index) => {
+    const criticAvg = getCriticAverage(wine);
+
+    const wrap = document.createElement("div");
+    wrap.className = "wine-card";
+
+    const item = document.createElement("button");
+    item.className = "wine-item";
+    item.type = "button";
+    item.innerHTML = `
+      <h3>${wine.nameKo || wine.name}</h3>
+      <p>${wine.eng || wine.name}</p>
+      <p>${wine.vintage} · ${wine.region}</p>
+      <div class="chips">
+        ${
+          criticAvg
+            ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
+            : ""
         }
+        ${
+          (wine.tags || [])
+            .map((tag) => `<span class="chip">${tag}</span>`)
+            .join("")
+        }
+      </div>
+    `;
 
-        filtered.forEach((wine, index) => {
-          const criticAvg = getCriticAverage(wine);
+    const detail = document.createElement("div");
+    detail.className = "detail-inline";
+    detail.innerHTML = detailHTML(wine);
 
-          const wrap = document.createElement("div");
-          wrap.className = "wine-card";
+    item.addEventListener("click", () => {
+      const alreadyOpen = detail.classList.contains("open");
 
-          const item = document.createElement("button");
-          item.className = "wine-item";
-          item.type = "button";
-       item.innerHTML = `
-  <h3>${wine.nameKo || wine.name}</h3>
-  <p>${wine.eng}</p>
-  <p>${wine.vintage} · ${wine.region}</p>
-  <div class="chips">
-    ${
-      criticAvg
-        ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
-        : ""
-    }
-    ${
-      wine.tags
-        .map((tag) => `<span class="chip">${tag}</span>`)
-        .join("")
-    }
-  </div>
-`;
-          const detail = document.createElement("div");
-          detail.className = "detail-inline";
-          detail.innerHTML = detailHTML(wine);
+      document
+        .querySelectorAll(".wine-item")
+        .forEach((el) => el.classList.remove("active"));
+      document
+        .querySelectorAll(".detail-inline")
+        .forEach((el) => el.classList.remove("open"));
 
-          item.addEventListener("click", () => {
-            const alreadyOpen = detail.classList.contains("open");
-
-            document
-              .querySelectorAll(".wine-item")
-              .forEach((el) => el.classList.remove("active"));
-            document
-              .querySelectorAll(".detail-inline")
-              .forEach((el) => el.classList.remove("open"));
-
-            if (alreadyOpen) {
-              state.openedWineId = null;
-              return;
-            }
-
-            item.classList.add("active");
-            detail.classList.add("open");
-            state.openedWineId = wine.id;
-
-            bindWineFormEvents();
-            bindDeleteButtons();
-          });
-
-          wrap.appendChild(item);
-          wrap.appendChild(detail);
-          wineGrid.appendChild(wrap);
-
-          const shouldOpen =
-            state.openedWineId === wine.id ||
-            (!state.openedWineId && index === 0);
-
-          if (shouldOpen) {
-            item.classList.add("active");
-            detail.classList.add("open");
-            state.openedWineId = wine.id;
-          }
-        });
-
-        bindWineFormEvents();
-        bindDeleteButtons();
+      if (alreadyOpen) {
+        state.openedWineId = null;
+        return;
       }
 
+      item.classList.add("active");
+      detail.classList.add("open");
+      state.openedWineId = wine.id;
+
+      bindWineFormEvents();
+      bindDeleteButtons();
+    });
+
+    wrap.appendChild(item);
+    wrap.appendChild(detail);
+    wineGrid.appendChild(wrap);
+
+    const shouldOpen =
+      state.openedWineId === wine.id ||
+      (!state.openedWineId && index === 0);
+
+    if (shouldOpen) {
+      item.classList.add("active");
+      detail.classList.add("open");
+      state.openedWineId = wine.id;
+    }
+  });
+
+  bindWineFormEvents();
+  bindDeleteButtons();
+}
       function bindWineFormEvents() {
         document
           .querySelectorAll("[data-wine-form]")
