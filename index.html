@@ -1136,7 +1136,7 @@
           const item = document.createElement("button");
           item.className = "wine-item";
           item.type = "button";
-         item.innerHTML = `
+       item.innerHTML = `
   <h3>${wine.nameKo || wine.name}</h3>
   <p>${wine.eng}</p>
   <p>${wine.vintage} · ${wine.region}</p>
@@ -1153,7 +1153,6 @@
     }
   </div>
 `;
-
           const detail = document.createElement("div");
           detail.className = "detail-inline";
           detail.innerHTML = detailHTML(wine);
