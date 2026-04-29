@@ -845,16 +845,6 @@
           .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
       }
 
-      function getAverageScore(wineId) {
-        const notes = getWineNotes(wineId).filter(
-          (n) => !Number.isNaN(Number(n.score))
-        );
-        if (!notes.length) return null;
-        return (
-          notes.reduce((sum, n) => sum + Number(n.score), 0) / notes.length
-        ).toFixed(1);
-      }
-
       function getCriticAverage(wine) {
         if (!wine || !Array.isArray(wine.expert)) return null;
         const scores = [];
@@ -950,7 +940,6 @@
 
       function detailHTML(wine, message = "") {
         const notes = getWineNotes(wine.id);
-        const avgScore = getAverageScore(wine.id);
 
         return `
           <div class="headline">
@@ -1011,11 +1000,6 @@
             <div class="chat-wrap">
               <div class="chat-header">
                 <strong>시음 메모</strong>
-                <div class="score-badge">
-                  평균 평점 ${
-                    avgScore ? `${avgScore} / 5` : "아직 없음"
-                  }
-                </div>
               </div>
 
               <form class="chat-form" data-wine-form="${
@@ -1072,9 +1056,7 @@
                         n.comment || ""
                       )}</p>
                       <div class="chat-footer">
-                        <span>Score: ${escapeHtml(
-                          n.score || ""
-                        )} / 5</span>
+                        <span>${escapeHtml(n.score || "")}</span>
                         <button
                           type="button"
                           class="delete-btn"
