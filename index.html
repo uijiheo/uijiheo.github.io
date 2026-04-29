@@ -418,9 +418,6 @@
             각 와인을 눌러 바로 아래에서 상세 정보와 시음 메모를 남겨보세요.
           </p>
         </div>
-        <div class="actions">
-          <button class="chip-btn" id="theme-toggle">🌙</button>
-        </div>
       </header>
 
       <nav class="tabs">
@@ -1010,19 +1007,6 @@
               : "dark";
           root.setAttribute("data-theme", next);
           e.target.textContent = next === "dark" ? "☀️" : "🌙";
-          return;
-        }
-
-        if (e.target.id === "export-json") {
-          const blob = new Blob(
-            [JSON.stringify(appState, null, 2)],
-            { type: "application/json" }
-          );
-          const a = document.createElement("a");
-          a.href = URL.createObjectURL(blob);
-          a.download = "antinori-tasting-inline.json";
-          a.click();
-          URL.revokeObjectURL(a.href);
           return;
         }
       });
