@@ -97,10 +97,11 @@
       }
 
       .app {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: var(--space-5) var(--space-4) var(--space-8);
-      }
+  max-width: 100%;                               /* 화면 전체 */
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3) var(--space-6);  /* 좌우 패딩만 살짝 */
+  text-align: left;                              /* 안쪽 기본 왼쪽 정렬 */
+}
 
       .header-bar {
         display: flex;
@@ -380,7 +381,7 @@
         color: var(--color-text-muted);
       }
 
-      @media (max-width: 768px) {
+      @media (max-width: 100%) {
         .app {
           padding: var(--space-4) var(--space-3) var(--space-6);
         }
