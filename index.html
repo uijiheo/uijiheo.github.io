@@ -584,388 +584,387 @@
       }
     </style>
   </head>
- <body>
-  <div class="wrap">
-    <div class="toolbar">
-      <div class="toolbar-main">
-        <div class="page-badge">
-          🍷 안티노리 First Class 프리미엄 와인 대시보드
+  <body>
+    <div class="wrap">
+      <div class="toolbar">
+        <div class="toolbar-main">
+          <div class="page-badge">
+            🍷 안티노리 First Class 프리미엄 와인 대시보드
+          </div>
+          <button id="themeBtn" class="theme-btn">다크 모드</button>
         </div>
-        <button id="themeBtn" class="theme-btn">다크 모드</button>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="wines">
+            와인 노트
+          </button>
+          <button class="tab-btn" data-tab="blind">
+            블라인드 테이스팅
+          </button>
+        </div>
       </div>
 
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="wines">
-          와인 노트
-        </button>
-        <button class="tab-btn" data-tab="blind">
-          블라인드 테이스팅
-        </button>
+      <div class="card intro">
+        <h1>와인을 누르면 상세정보를 확인하고 시음평을 바로 남길 수 있어요.</h1>
+        <p>
+          안티노리 First Class 시음회용으로 만든 개인 대시보드입니다. 와인 카드에서
+          바로 시음평을 남기고, Apps Script를 통해 스프레드시트에 저장합니다.
+        </p>
+      </div>
+
+      <div class="card section-card panel active" data-panel="wines">
+        <h2 class="section-title">와인 리스트</h2>
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="와인명, 산지, 품종으로 검색"
+        />
+        <div id="wineGrid" class="wine-grid"></div>
+      </div>
+
+      <div class="card section-card panel" data-panel="blind">
+        <h2 class="section-title">블라인드 테이스팅 노트</h2>
+        <div id="blindGrid" class="blind-grid"></div>
       </div>
     </div>
 
-    <div class="card intro">
-      <h1>와인을 누르면 상세정보를 확인하고 시음평을 바로 남길 수 있어요.</h1>
-      <p>
-        안티노리 First Class 시음회용으로 만든 개인 대시보드입니다. 와인 카드에서
-        바로 시음평을 남기고, Apps Script를 통해 스프레드시트에 저장합니다.
-      </p>
-    </div>
-
-    <div class="card section-card panel active" data-panel="wines">
-      <h2 class="section-title">와인 리스트</h2>
-      <input
-        id="search"
-        class="search"
-        type="search"
-        placeholder="와인명, 산지, 품종으로 검색"
-      />
-      <div id="wineGrid" class="wine-grid"></div>
-    </div>
-
-    <div class="card section-card panel" data-panel="blind">
-      <h2 class="section-title">블라인드 테이스팅 노트</h2>
-      <div id="blindGrid" class="blind-grid"></div>
-    </div>
-  </div>
-
-  <script>
-    // ★ 이 URL은 아래 Apps Script 코드로 새로 만든 Web App의 /exec 주소로 바꿔줘야 한다.
+    <script>
       const CONFIG = {
         API_URL:
           "https://script.google.com/macros/s/AKfycbyP4q7ApvYTQk_gkUsagumqDevYJdCkdT-A0W6sWw-9O_aYyxo4rPkErwwUC-_GeFoF/exec",
       };
 
-const wines = [
-  {
-    id: "conte-aymo",
-    name: "Marchese Antinori Conte Aymo",
-    nameKo: "마르케제 안티노리 콘테 아이모",
-    eng: "Marchese Antinori Conte Aymo",
-    vintage: "2020",
-    region: "이탈리아 롬바르디아 프란차코르타",
-    blend: "샤르도네 중심 스파클링",
-    style: "프란차코르타 DOCG",
-    price: "행사 리스트 기준",
-    profile:
-      "섬세한 기포와 시트러스, 흰 꽃, 브리오슈 뉘앙스가 조화로운 프리미엄 이탈리안 스파클링입니다.",
-    key:
-      "오프닝 와인으로 좋고, 이후 화이트와 레드 시음 전에 산도와 질감의 기준점을 잡아주기 좋습니다.",
-    expert: [],
-    tags: ["스파클링", "이탈리아", "2020"],
-  },
-  {
-    id: "cervaro",
-    name: "Cervaro della Sala",
-    nameKo: "체르바로",
-    eng: "Cervaro della Sala",
-    vintage: "2016 · 2024",
-    region: "이탈리아 움브리아",
-    blend: "Chardonnay · Grechetto",
-    style: "안티노리 아이콘 화이트",
-    price: "행사 리스트 기준",
-    profile:
-      "오크 숙성과 산도가 균형을 이루는 복합적인 화이트로, 풍부한 질감과 긴 피니시가 특징입니다.",
-    key:
-      "숙성 빈티지와 최신 빈티지를 비교하면 질감, 오크 통합감, 산도 표현 차이를 보기 좋습니다.",
-    expert: [],
-    tags: ["화이트", "움브리아", "2016", "2024"],
-  },
-  {
-    id: "guado",
-    name: "Guado al Tasso",
-    nameKo: "구아도 알 타소",
-    eng: "Guado al Tasso",
-    vintage: "2001 · 2021",
-    region: "이탈리아 토스카나 볼게리",
-    blend: "Cabernet Sauvignon · Merlot · Cabernet Franc",
-    style: "볼게리 슈퍼 투스칸",
-    price: "행사 리스트 기준",
-    profile:
-      "검은 과실, 그래파이트, 허브, 오크가 입체적으로 어우러지는 안티노리 대표 볼게리 레드입니다.",
-    key:
-      "2001과 2021을 함께 보면 숙성 복합미와 최근 빈티지의 응축감 차이가 뚜렷합니다.",
-    expert: [],
-    tags: ["레드", "볼게리", "2001", "2021"],
-  },
-  {
-    id: "matarocchio",
-    name: "Matarocchio",
-    nameKo: "마타로키오",
-    eng: "Matarocchio",
-    vintage: "2021",
-    region: "이탈리아 토스카나 볼게리",
-    blend: "Cabernet Franc",
-    style: "안티노리 아이콘 싱글 버라이어털",
-    price: "행사 리스트 기준",
-    profile:
-      "강한 집중도와 섬세한 허브, 미네랄, 카베르네 프랑 특유의 깊이가 돋보이는 최상위급 볼게리 와인입니다.",
-    key:
-      "구아도 알 타소, 솔라이아와 비교하면 품종 중심의 긴장감과 수직적인 구조가 두드러집니다.",
-    expert: [],
-    tags: ["레드", "볼게리", "Cabernet Franc", "2021"],
-  },
-  {
-    id: "pian-vignaferrovia",
-    name: "Pian delle Vigne Brunello di Montalcino Vignaferrovia Riserva",
-    nameKo: "피안델레 브루넬로 디 몬탈치노 비냐페로비아 리제르바",
-    eng: "Pian delle Vigne Brunello di Montalcino Vignaferrovia Riserva",
-    vintage: "2019",
-    region: "이탈리아 토스카나 몬탈치노",
-    blend: "Sangiovese",
-    style: "브루넬로 디 몬탈치노 리제르바",
-    price: "행사 리스트 기준",
-    profile:
-      "붉은 체리, 말린 허브, 흙내음, 탄탄한 산도와 구조가 조화를 이루는 전통적 브루넬로 스타일입니다.",
-    key:
-      "티냐넬로와 비교하면 산지와 품종 해석 차이, 보다 전통적인 숙성감이 선명합니다.",
-    expert: [],
-    tags: ["레드", "몬탈치노", "Sangiovese", "2019"],
-  },
-  {
-    id: "prunotto-colonnello",
-    name: "Prunotto Barolo Riserva Bussia Vigna Colonnello",
-    nameKo: "프루노토 바롤로 리제르바 비냐 콜로넬로",
-    eng: "Prunotto Barolo Riserva Bussia Vigna Colonnello",
-    vintage: "2014",
-    region: "이탈리아 피에몬테 바롤로",
-    blend: "Nebbiolo",
-    style: "바롤로 리제르바",
-    price: "행사 리스트 기준",
-    profile:
-      "장미, 타르, 붉은 과실, 향신료와 단단한 탄닌이 중심이 되는 고전적인 바롤로 스타일입니다.",
-    key:
-      "토스카나 계열 레드들과 비교하면 산도와 탄닌 결, 향의 방향성이 확실히 다릅니다.",
-    expert: [],
-    tags: ["레드", "피에몬테", "Nebbiolo", "2014"],
-  },
-  {
-    id: "solaia",
-    name: "Solaia",
-    nameKo: "솔라이아",
-    eng: "Solaia",
-    vintage: "2015 · 2020",
-    region: "이탈리아 토스카나",
-    blend: "Cabernet Sauvignon · Sangiovese · Cabernet Franc",
-    style: "안티노리 아이콘 슈퍼 투스칸",
-    price: "행사 리스트 기준",
-    profile:
-      "농밀한 검은 과실, 스파이스, 오크, 실크 같은 질감과 긴 여운을 갖춘 안티노리 최상위 레드입니다.",
-    key:
-      "2015와 2020 비교 시 숙성된 완성도와 젊은 빈티지의 에너지 차이를 보기 좋습니다.",
-    expert: [],
-    tags: ["레드", "토스카나", "2015", "2020"],
-  },
-  {
-    id: "tignanello",
-    name: "Tignanello",
-    nameKo: "티냐넬로",
-    eng: "Tignanello",
-    vintage: "2015 · 2022",
-    region: "이탈리아 토스카나 키안티 클라시코",
-    blend: "Sangiovese · Cabernet Sauvignon · Cabernet Franc",
-    style: "슈퍼 투스칸",
-    price: "행사 리스트 기준",
-    profile:
-      "산지오베제의 산도와 허브감, 보르도 품종의 구조가 균형 있게 어우러진 상징적인 토스카나 레드입니다.",
-    key:
-      "솔라이아와 비교하면 더 선명한 산도와 토스카나스러운 허브·체리 캐릭터가 느껴집니다.",
-    expert: [],
-    tags: ["레드", "토스카나", "2015", "2022"],
-  },
-  {
-    id: "jermann-dreams",
-    name: "Jermann Where Dreams Have No End",
-    nameKo: "예르만 더블유 드림스",
-    eng: "Jermann Where Dreams Have No End",
-    vintage: "OLD VIN",
-    region: "이탈리아 프리울리",
-    blend: "Chardonnay",
-    style: "프리미엄 화이트",
-    price: "행사 리스트 기준",
-    profile:
-      "풍부한 질감, 잘 익은 과실, 바닐라와 오크, 크리미한 피니시가 특징인 볼륨감 있는 화이트입니다.",
-    key:
-      "체르바로와 비교하면 오크와 풍미 밀도, 지역적 스타일 차이를 느끼기 좋습니다.",
-    expert: [],
-    tags: ["화이트", "프리울리", "OLD VIN"],
-  },
-  {
-    id: "jermann-tunina",
-    name: "Jermann Vintage Tunina",
-    nameKo: "예르만 빈티지 투니나",
-    eng: "Jermann Vintage Tunina",
-    vintage: "OLD VIN",
-    region: "이탈리아 프리울리",
-    blend: "화이트 블렌드",
-    style: "아이코닉 블렌드 화이트",
-    price: "행사 리스트 기준",
-    profile:
-      "아로마틱한 향과 실키한 질감, 성숙한 과실과 미네랄이 조화를 이루는 예르만의 대표 화이트입니다.",
-    key:
-      "Where Dreams와 함께 두면 단일 품종적 표현과 블렌드 복합성 차이를 비교할 수 있습니다.",
-    expert: [],
-    tags: ["화이트", "프리울리", "OLD VIN"],
-  },
-  {
-    id: "biserno",
-    name: "Tenuta di Biserno Biserno",
-    nameKo: "비세르노",
-    eng: "Tenuta di Biserno Biserno",
-    vintage: "2016 · 2021",
-    region: "이탈리아 토스카나 볼게리",
-    blend: "Cabernet Franc 중심 보르도 블렌드",
-    style: "볼게리 아이콘 레드",
-    price: "행사 리스트 기준",
-    profile:
-      "짙은 과실, 허브, 미네랄, 스파이스와 구조감이 정교하게 결합된 볼게리 스타일의 상급 레드입니다.",
-    key:
-      "구아도 알 타소, 솔라이아와 함께 놓고 비교하면 볼게리의 또 다른 고급 해석을 볼 수 있습니다.",
-    expert: [],
-    tags: ["레드", "볼게리", "2016", "2021"],
-  },
-  {
-    id: "stags-fay-2020",
-    name: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
-    nameKo: "스택스 립 와인셀라 FAY 카베르네소비뇽",
-    eng: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
-    vintage: "2020",
-    region: "미국 나파 밸리 Stags Leap District",
-    blend: "Cabernet Sauvignon",
-    style: "우아한 나파 카베르네",
-    price: "행사 리스트 기준",
-    profile:
-      "플로럴한 향, 붉은 과실, 부드러운 질감이 돋보이는 Stag's Leap의 대표적인 우아한 스타일입니다.",
-    key:
-      "같은 FAY라도 숙성된 2007과 비교하면 과실 톤과 질감 차이가 선명합니다.",
-    expert: [],
-    tags: ["레드", "나파", "FAY", "2020"],
-  },
-  {
-    id: "stags-cask23-2021",
-    name: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
-    nameKo: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
-    eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
-    vintage: "2021",
-    region: "미국 나파 밸리 Stags Leap District",
-    blend: "Cabernet Sauvignon",
-    style: "아이콘 나파 카베르네",
-    price: "행사 리스트 기준",
-    profile:
-      "FAY와 S.L.V.의 장점을 결합한 최상위 큐베로, 농밀함과 우아함을 동시에 보여줍니다.",
-    key:
-      "Stag's Leap 라인업 내에서 가장 상징적인 포지션으로, FAY와 S.L.V.의 정점으로 이해하면 좋습니다.",
-    expert: [],
-    tags: ["레드", "나파", "CASK23", "2021"],
-  },
-  {
-    id: "stags-slv-2016",
-    name: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
-    nameKo: "스택스 립 와인셀라 S.L.V. 카베르네소비뇽",
-    eng: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
-    vintage: "2016",
-    region: "미국 나파 밸리 Stags Leap District",
-    blend: "Cabernet Sauvignon",
-    style: "구조 중심 나파 카베르네",
-    price: "행사 리스트 기준",
-    profile:
-      "미네랄과 구조감, 깊은 과실과 긴 숙성 잠재력이 강조되는 역사적인 빈야드 와인입니다.",
-    key:
-      "FAY보다 더 구조적이고, CASK23보다는 빈야드 개성이 직접적으로 드러납니다.",
-    expert: [],
-    tags: ["레드", "나파", "S.L.V.", "2016"],
-  },
-  {
-    id: "stags-fay-2007",
-    name: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
-    nameKo: "스택스 립 와인셀라 FAY 카베르네소비뇽",
-    eng: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
-    vintage: "2007",
-    region: "미국 나파 밸리 Stags Leap District",
-    blend: "Cabernet Sauvignon",
-    style: "숙성된 우아한 나파 카베르네",
-    price: "행사 리스트 기준",
-    profile:
-      "숙성에서 오는 실키함과 말린 허브, 붉은 과실, 부드러운 삼차 향이 돋보이는 FAY의 성숙한 표현입니다.",
-    key:
-      "2020 FAY와 비교 시 숙성에 따른 탄닌 변화와 향의 복합성 차이를 확인하기 좋습니다.",
-    expert: [],
-    tags: ["레드", "나파", "FAY", "2007"],
-  },
-  {
-    id: "stags-cask23-2010",
-    name: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
-    nameKo: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
-    eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
-    vintage: "2010",
-    region: "미국 나파 밸리 Stags Leap District",
-    blend: "Cabernet Sauvignon",
-    style: "숙성된 아이콘 나파 카베르네",
-    price: "행사 리스트 기준",
-    profile:
-      "풍부한 과실과 구조가 잘 통합된 상급 숙성 단계의 CASK23으로, 깊이와 균형감이 돋보입니다.",
-    key:
-      "2021 CASK23과 함께 놓으면 숙성 전후의 밀도와 결 차이를 비교하기 좋습니다.",
-    expert: [],
-    tags: ["레드", "나파", "CASK23", "2010"],
-  },
-  {
-    id: "haras-albis",
-    name: "Haras de Pirque Albis",
-    nameKo: "하라스 데 피르케 알비스",
-    eng: "Haras de Pirque Albis",
-    vintage: "2002 · 2021",
-    region: "칠레 Maipo Andes",
-    blend: "Cabernet Sauvignon · Carménère",
-    style: "칠레 아이콘 블렌드",
-    price: "행사 리스트 기준",
-    profile:
-      "카베르네의 구조와 카르메네르의 향신료, 허브, 그래파이트가 결합된 Maipo Andes 대표 와인입니다.",
-    key:
-      "나파와 볼게리 보르도 블렌드와 비교하면 칠레 특유의 허브와 스파이스 결이 두드러집니다.",
-    expert: [],
-    tags: ["레드", "칠레", "2002", "2021"],
-  },
-  {
-    id: "haras-pitio",
-    name: "Haras de Pirque Pitío",
-    nameKo: "하라스 데 피르케 피티오",
-    eng: "Haras de Pirque Pitío",
-    vintage: "2023",
-    region: "칠레 Maipo",
-    blend: "레드 블렌드",
-    style: "Maipo 레드",
-    price: "행사 리스트 기준",
-    profile:
-      "신선한 과실과 허브, 접근성 좋은 질감이 특징인 보다 경쾌한 스타일의 칠레 레드입니다.",
-    key:
-      "Albis와 함께 시음하면 Maipo 라인업 안에서 농도와 구조 차이를 이해하기 쉽습니다.",
-    expert: [],
-    tags: ["레드", "칠레", "2023"],
-  },
-];
+      const wines = [
+        {
+          id: "conte-aymo",
+          name: "Marchese Antinori Conte Aymo",
+          nameKo: "마르케제 안티노리 콘테 아이모",
+          eng: "Marchese Antinori Conte Aymo",
+          vintage: "2020",
+          region: "이탈리아 롬바르디아 프란차코르타",
+          blend: "샤르도네 중심 스파클링",
+          style: "프란차코르타 DOCG",
+          price: "행사 리스트 기준",
+          profile:
+            "섬세한 기포와 시트러스, 흰 꽃, 브리오슈 뉘앙스가 조화로운 프리미엄 이탈리안 스파클링입니다.",
+          key:
+            "오프닝 와인으로 좋고, 이후 화이트와 레드 시음 전에 산도와 질감의 기준점을 잡아주기 좋습니다.",
+          expert: [],
+          tags: ["스파클링", "이탈리아", "2020"],
+        },
+        {
+          id: "cervaro",
+          name: "Cervaro della Sala",
+          nameKo: "체르바로",
+          eng: "Cervaro della Sala",
+          vintage: "2016 · 2024",
+          region: "이탈리아 움브리아",
+          blend: "Chardonnay · Grechetto",
+          style: "안티노리 아이콘 화이트",
+          price: "행사 리스트 기준",
+          profile:
+            "오크 숙성과 산도가 균형을 이루는 복합적인 화이트로, 풍부한 질감과 긴 피니시가 특징입니다.",
+          key:
+            "숙성 빈티지와 최신 빈티지를 비교하면 질감, 오크 통합감, 산도 표현 차이를 보기 좋습니다.",
+          expert: [],
+          tags: ["화이트", "움브리아", "2016", "2024"],
+        },
+        {
+          id: "guado",
+          name: "Guado al Tasso",
+          nameKo: "구아도 알 타소",
+          eng: "Guado al Tasso",
+          vintage: "2001 · 2021",
+          region: "이탈리아 토스카나 볼게리",
+          blend: "Cabernet Sauvignon · Merlot · Cabernet Franc",
+          style: "볼게리 슈퍼 투스칸",
+          price: "행사 리스트 기준",
+          profile:
+            "검은 과실, 그래파이트, 허브, 오크가 입체적으로 어우러지는 안티노리 대표 볼게리 레드입니다.",
+          key:
+            "2001과 2021을 함께 보면 숙성 복합미와 최근 빈티지의 응축감 차이가 뚜렷합니다.",
+          expert: [],
+          tags: ["레드", "볼게리", "2001", "2021"],
+        },
+        {
+          id: "matarocchio",
+          name: "Matarocchio",
+          nameKo: "마타로키오",
+          eng: "Matarocchio",
+          vintage: "2021",
+          region: "이탈리아 토스카나 볼게리",
+          blend: "Cabernet Franc",
+          style: "안티노리 아이콘 싱글 버라이어털",
+          price: "행사 리스트 기준",
+          profile:
+            "강한 집중도와 섬세한 허브, 미네랄, 카베르네 프랑 특유의 깊이가 돋보이는 최상위급 볼게리 와인입니다.",
+          key:
+            "구아도 알 타소, 솔라이아와 비교하면 품종 중심의 긴장감과 수직적인 구조가 두드러집니다.",
+          expert: [],
+          tags: ["레드", "볼게리", "Cabernet Franc", "2021"],
+        },
+        {
+          id: "pian-vignaferrovia",
+          name: "Pian delle Vigne Brunello di Montalcino Vignaferrovia Riserva",
+          nameKo: "피안델레 브루넬로 디 몬탈치노 비냐페로비아 리제르바",
+          eng: "Pian delle Vigne Brunello di Montalcino Vignaferrovia Riserva",
+          vintage: "2019",
+          region: "이탈리아 토스카나 몬탈치노",
+          blend: "Sangiovese",
+          style: "브루넬로 디 몬탈치노 리제르바",
+          price: "행사 리스트 기준",
+          profile:
+            "붉은 체리, 말린 허브, 흙내음, 탄탄한 산도와 구조가 조화를 이루는 전통적 브루넬로 스타일입니다.",
+          key:
+            "티냐넬로와 비교하면 산지와 품종 해석 차이, 보다 전통적인 숙성감이 선명합니다.",
+          expert: [],
+          tags: ["레드", "몬탈치노", "Sangiovese", "2019"],
+        },
+        {
+          id: "prunotto-colonnello",
+          name: "Prunotto Barolo Riserva Bussia Vigna Colonnello",
+          nameKo: "프루노토 바롤로 리제르바 비냐 콜로넬로",
+          eng: "Prunotto Barolo Riserva Bussia Vigna Colonnello",
+          vintage: "2014",
+          region: "이탈리아 피에몬테 바롤로",
+          blend: "Nebbiolo",
+          style: "바롤로 리제르바",
+          price: "행사 리스트 기준",
+          profile:
+            "장미, 타르, 붉은 과실, 향신료와 단단한 탄닌이 중심이 되는 고전적인 바롤로 스타일입니다.",
+          key:
+            "토스카나 계열 레드들과 비교하면 산도와 탄닌 결, 향의 방향성이 확실히 다릅니다.",
+          expert: [],
+          tags: ["레드", "피에몬테", "Nebbiolo", "2014"],
+        },
+        {
+          id: "solaia",
+          name: "Solaia",
+          nameKo: "솔라이아",
+          eng: "Solaia",
+          vintage: "2015 · 2020",
+          region: "이탈리아 토스카나",
+          blend: "Cabernet Sauvignon · Sangiovese · Cabernet Franc",
+          style: "안티노리 아이콘 슈퍼 투스칸",
+          price: "행사 리스트 기준",
+          profile:
+            "농밀한 검은 과실, 스파이스, 오크, 실크 같은 질감과 긴 여운을 갖춘 안티노리 최상위 레드입니다.",
+          key:
+            "2015와 2020 비교 시 숙성된 완성도와 젊은 빈티지의 에너지 차이를 보기 좋습니다.",
+          expert: [],
+          tags: ["레드", "토스카나", "2015", "2020"],
+        },
+        {
+          id: "tignanello",
+          name: "Tignanello",
+          nameKo: "티냐넬로",
+          eng: "Tignanello",
+          vintage: "2015 · 2022",
+          region: "이탈리아 토스카나 키안티 클라시코",
+          blend: "Sangiovese · Cabernet Sauvignon · Cabernet Franc",
+          style: "슈퍼 투스칸",
+          price: "행사 리스트 기준",
+          profile:
+            "산지오베제의 산도와 허브감, 보르도 품종의 구조가 균형 있게 어우러진 상징적인 토스카나 레드입니다.",
+          key:
+            "솔라이아와 비교하면 더 선명한 산도와 토스카나스러운 허브·체리 캐릭터가 느껴집니다.",
+          expert: [],
+          tags: ["레드", "토스카나", "2015", "2022"],
+        },
+        {
+          id: "jermann-dreams",
+          name: "Jermann Where Dreams Have No End",
+          nameKo: "예르만 더블유 드림스",
+          eng: "Jermann Where Dreams Have No End",
+          vintage: "OLD VIN",
+          region: "이탈리아 프리울리",
+          blend: "Chardonnay",
+          style: "프리미엄 화이트",
+          price: "행사 리스트 기준",
+          profile:
+            "풍부한 질감, 잘 익은 과실, 바닐라와 오크, 크리미한 피니시가 특징인 볼륨감 있는 화이트입니다.",
+          key:
+            "체르바로와 비교하면 오크와 풍미 밀도, 지역적 스타일 차이를 느끼기 좋습니다.",
+          expert: [],
+          tags: ["화이트", "프리울리", "OLD VIN"],
+        },
+        {
+          id: "jermann-tunina",
+          name: "Jermann Vintage Tunina",
+          nameKo: "예르만 빈티지 투니나",
+          eng: "Jermann Vintage Tunina",
+          vintage: "OLD VIN",
+          region: "이탈리아 프리울리",
+          blend: "화이트 블렌드",
+          style: "아이코닉 블렌드 화이트",
+          price: "행사 리스트 기준",
+          profile:
+            "아로마틱한 향과 실키한 질감, 성숙한 과실과 미네랄이 조화를 이루는 예르만의 대표 화이트입니다.",
+          key:
+            "Where Dreams와 함께 두면 단일 품종적 표현과 블렌드 복합성 차이를 비교할 수 있습니다.",
+          expert: [],
+          tags: ["화이트", "프리울리", "OLD VIN"],
+        },
+        {
+          id: "biserno",
+          name: "Tenuta di Biserno Biserno",
+          nameKo: "비세르노",
+          eng: "Tenuta di Biserno Biserno",
+          vintage: "2016 · 2021",
+          region: "이탈리아 토스카나 볼게리",
+          blend: "Cabernet Franc 중심 보르도 블렌드",
+          style: "볼게리 아이콘 레드",
+          price: "행사 리스트 기준",
+          profile:
+            "짙은 과실, 허브, 미네랄, 스파이스와 구조감이 정교하게 결합된 볼게리 스타일의 상급 레드입니다.",
+          key:
+            "구아도 알 타소, 솔라이아와 함께 놓고 비교하면 볼게리의 또 다른 고급 해석을 볼 수 있습니다.",
+          expert: [],
+          tags: ["레드", "볼게리", "2016", "2021"],
+        },
+        {
+          id: "stags-fay-2020",
+          name: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
+          nameKo: "스택스 립 와인셀라 FAY 카베르네소비뇽",
+          eng: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
+          vintage: "2020",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "우아한 나파 카베르네",
+          price: "행사 리스트 기준",
+          profile:
+            "플로럴한 향, 붉은 과실, 부드러운 질감이 돋보이는 Stag's Leap의 대표적인 우아한 스타일입니다.",
+          key:
+            "같은 FAY라도 숙성된 2007과 비교하면 과실 톤과 질감 차이가 선명합니다.",
+          expert: [],
+          tags: ["레드", "나파", "FAY", "2020"],
+        },
+        {
+          id: "stags-cask23-2021",
+          name: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
+          nameKo: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
+          eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
+          vintage: "2021",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "아이콘 나파 카베르네",
+          price: "행사 리스트 기준",
+          profile:
+            "FAY와 S.L.V.의 장점을 결합한 최상위 큐베로, 농밀함과 우아함을 동시에 보여줍니다.",
+          key:
+            "Stag's Leap 라인업 내에서 가장 상징적인 포지션으로, FAY와 S.L.V.의 정점으로 이해하면 좋습니다.",
+          expert: [],
+          tags: ["레드", "나파", "CASK23", "2021"],
+        },
+        {
+          id: "stags-slv-2016",
+          name: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
+          nameKo: "스택스 립 와인셀라 S.L.V. 카베르네소비뇽",
+          eng: "Stag's Leap Wine Cellars S.L.V. Cabernet Sauvignon",
+          vintage: "2016",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "구조 중심 나파 카베르네",
+          price: "행사 리스트 기준",
+          profile:
+            "미네랄과 구조감, 깊은 과실과 긴 숙성 잠재력이 강조되는 역사적인 빈야드 와인입니다.",
+          key:
+            "FAY보다 더 구조적이고, CASK23보다는 빈야드 개성이 직접적으로 드러납니다.",
+          expert: [],
+          tags: ["레드", "나파", "S.L.V.", "2016"],
+        },
+        {
+          id: "stags-fay-2007",
+          name: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
+          nameKo: "스택스 립 와인셀라 FAY 카베르네소비뇽",
+          eng: "Stag's Leap Wine Cellars FAY Cabernet Sauvignon",
+          vintage: "2007",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "숙성된 우아한 나파 카베르네",
+          price: "행사 리스트 기준",
+          profile:
+            "숙성에서 오는 실키함과 말린 허브, 붉은 과실, 부드러운 삼차 향이 돋보이는 FAY의 성숙한 표현입니다.",
+          key:
+            "2020 FAY와 비교 시 숙성에 따른 탄닌 변화와 향의 복합성 차이를 확인하기 좋습니다.",
+          expert: [],
+          tags: ["레드", "나파", "FAY", "2007"],
+        },
+        {
+          id: "stags-cask23-2010",
+          name: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
+          nameKo: "스택스 립 와인셀라 CASK23 카베르네소비뇽",
+          eng: "Stag's Leap Wine Cellars CASK 23 Cabernet Sauvignon",
+          vintage: "2010",
+          region: "미국 나파 밸리 Stags Leap District",
+          blend: "Cabernet Sauvignon",
+          style: "숙성된 아이콘 나파 카베르네",
+          price: "행사 리스트 기준",
+          profile:
+            "풍부한 과실과 구조가 잘 통합된 상급 숙성 단계의 CASK23으로, 깊이와 균형감이 돋보입니다.",
+          key:
+            "2021 CASK23과 함께 놓으면 숙성 전후의 밀도와 결 차이를 비교하기 좋습니다.",
+          expert: [],
+          tags: ["레드", "나파", "CASK23", "2010"],
+        },
+        {
+          id: "haras-albis",
+          name: "Haras de Pirque Albis",
+          nameKo: "하라스 데 피르케 알비스",
+          eng: "Haras de Pirque Albis",
+          vintage: "2002 · 2021",
+          region: "칠레 Maipo Andes",
+          blend: "Cabernet Sauvignon · Carménère",
+          style: "칠레 아이콘 블렌드",
+          price: "행사 리스트 기준",
+          profile:
+            "카베르네의 구조와 카르메네르의 향신료, 허브, 그래파이트가 결합된 Maipo Andes 대표 와인입니다.",
+          key:
+            "나파와 볼게리 보르도 블렌드와 비교하면 칠레 특유의 허브와 스파이스 결이 두드러집니다.",
+          expert: [],
+          tags: ["레드", "칠레", "2002", "2021"],
+        },
+        {
+          id: "haras-pitio",
+          name: "Haras de Pirque Pitío",
+          nameKo: "하라스 데 피르케 피티오",
+          eng: "Haras de Pirque Pitío",
+          vintage: "2023",
+          region: "칠레 Maipo",
+          blend: "레드 블렌드",
+          style: "Maipo 레드",
+          price: "행사 리스트 기준",
+          profile:
+            "신선한 과실과 허브, 접근성 좋은 질감이 특징인 보다 경쾌한 스타일의 칠레 레드입니다.",
+          key:
+            "Albis와 함께 시음하면 Maipo 라인업 안에서 농도와 구조 차이를 이해하기 쉽습니다.",
+          expert: [],
+          tags: ["레드", "칠레", "2023"],
+        },
+      ];
+
+      const blindWines = [
         {
           id: "blind-1",
-       const blindWines = [
-  {
-    id: "blind-1",
-    code: "Flight 1",
-    clue: "색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 관찰해보세요.",
-    note: "",
-  },
-  {
-    id: "blind-2",
-    code: "Flight 2",
-    clue: "첫 향과 시간이 지난 뒤 향의 변화를 비교해보세요.",
-    note: "",
-  },
-  {
-    id: "blind-3",
-    code: "Flight 3",
-    clue: "당도 느낌, 산도, 알코올, 질감의 균형을 체크해보세요.",
-    note: "",
-  },
-];
+          code: "Flight 1",
+          clue: "색, 향, 산도, 바디, 탄닌, 오크 여부를 중심으로 관찰해보세요.",
+          note: "",
+        },
+        {
+          id: "blind-2",
+          code: "Flight 2",
+          clue: "첫 향과 시간이 지난 뒤 향의 변화를 비교해보세요.",
+          note: "",
+        },
+        {
+          id: "blind-3",
+          code: "Flight 3",
+          clue: "당도 느낌, 산도, 알코올, 질감의 균형을 체크해보세요.",
+          note: "",
+        },
+      ];
+
       const blindOptions = {
         producers: ["Antinori", "Stag's Leap Wine Cellars", "Haras de Pirque"],
         countries: ["Italy", "USA", "Chile"],
@@ -985,7 +984,11 @@ const wines = [
         openedWineId: null,
         blindSavedFlights: new Set(),
         latestBlindScore: 0,
-        blindLabels: { "blind-1": "Flight 1" },
+        blindLabels: {
+          "blind-1": "Flight 1",
+          "blind-2": "Flight 2",
+          "blind-3": "Flight 3",
+        },
       };
 
       const wineGrid = document.getElementById("wineGrid");
@@ -994,13 +997,15 @@ const wines = [
       const themeBtn = document.getElementById("themeBtn");
 
       function escapeHtml(str = "") {
-        return String(str).replace(/[&<>"']/g, (ch) => ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        })[ch]);
+        return String(str).replace(/[&<>"']/g, (ch) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          }[ch])
+        );
       }
 
       function formatDate(value) {
@@ -1184,9 +1189,7 @@ const wines = [
                 <strong>시음 메모</strong>
               </div>
 
-              <form class="chat-form" data-wine-form="${
-                wine.id
-              }">
+              <form class="chat-form" data-wine-form="${wine.id}">
                 <div class="form-row">
                   <select class="field" name="user" required>
                     <option value="">평가자</option>
@@ -1271,95 +1274,95 @@ const wines = [
         `;
       }
 
-   function renderWineList(filter = "") {
-  wineGrid.innerHTML = "";
+      function renderWineList(filter = "") {
+        wineGrid.innerHTML = "";
 
-  const filtered = wines.filter((w) =>
-    [w.nameKo, w.name, w.eng, w.region, w.blend, ...(w.tags || [])]
-      .join(" ")
-      .toLowerCase()
-      .includes(filter.toLowerCase())
-  );
+        const filtered = wines.filter((w) =>
+          [w.nameKo, w.name, w.eng, w.region, w.blend, ...(w.tags || [])]
+            .join(" ")
+            .toLowerCase()
+            .includes(filter.toLowerCase())
+        );
 
-  if (!filtered.length) {
-    wineGrid.innerHTML =
-      '<div class="note">검색 결과가 없습니다.</div>';
-    return;
-  }
-
-  filtered.forEach((wine, index) => {
-    const criticAvg = getCriticAverage(wine);
-
-    const wrap = document.createElement("div");
-    wrap.className = "wine-card";
-
-    const item = document.createElement("button");
-    item.className = "wine-item";
-    item.type = "button";
-    item.innerHTML = `
-      <h3>${wine.nameKo || wine.name}</h3>
-      <p>${wine.eng || wine.name}</p>
-      <p>${wine.vintage} · ${wine.region}</p>
-      <div class="chips">
-        ${
-          criticAvg
-            ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
-            : ""
+        if (!filtered.length) {
+          wineGrid.innerHTML =
+            '<div class="note">검색 결과가 없습니다.</div>';
+          return;
         }
-        ${
-          (wine.tags || [])
-            .map((tag) => `<span class="chip">${tag}</span>`)
-            .join("")
-        }
-      </div>
-    `;
 
-    const detail = document.createElement("div");
-    detail.className = "detail-inline";
-    detail.innerHTML = detailHTML(wine);
+        filtered.forEach((wine, index) => {
+          const criticAvg = getCriticAverage(wine);
 
-    item.addEventListener("click", () => {
-      const alreadyOpen = detail.classList.contains("open");
+          const wrap = document.createElement("div");
+          wrap.className = "wine-card";
 
-      document
-        .querySelectorAll(".wine-item")
-        .forEach((el) => el.classList.remove("active"));
-      document
-        .querySelectorAll(".detail-inline")
-        .forEach((el) => el.classList.remove("open"));
+          const item = document.createElement("button");
+          item.className = "wine-item";
+          item.type = "button";
+          item.innerHTML = `
+            <h3>${wine.nameKo || wine.name}</h3>
+            <p>${wine.eng || wine.name}</p>
+            <p>${wine.vintage} · ${wine.region}</p>
+            <div class="chips">
+              ${
+                criticAvg
+                  ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
+                  : ""
+              }
+              ${
+                (wine.tags || [])
+                  .map((tag) => `<span class="chip">${tag}</span>`)
+                  .join("")
+              }
+            </div>
+          `;
 
-      if (alreadyOpen) {
-        state.openedWineId = null;
-        return;
+          const detail = document.createElement("div");
+          detail.className = "detail-inline";
+          detail.innerHTML = detailHTML(wine);
+
+          item.addEventListener("click", () => {
+            const alreadyOpen = detail.classList.contains("open");
+
+            document
+              .querySelectorAll(".wine-item")
+              .forEach((el) => el.classList.remove("active"));
+            document
+              .querySelectorAll(".detail-inline")
+              .forEach((el) => el.classList.remove("open"));
+
+            if (alreadyOpen) {
+              state.openedWineId = null;
+              return;
+            }
+
+            item.classList.add("active");
+            detail.classList.add("open");
+            state.openedWineId = wine.id;
+
+            bindWineFormEvents();
+            bindDeleteButtons();
+          });
+
+          wrap.appendChild(item);
+          wrap.appendChild(detail);
+          wineGrid.appendChild(wrap);
+
+          const shouldOpen =
+            state.openedWineId === wine.id ||
+            (!state.openedWineId && index === 0);
+
+          if (shouldOpen) {
+            item.classList.add("active");
+            detail.classList.add("open");
+            state.openedWineId = wine.id;
+          }
+        });
+
+        bindWineFormEvents();
+        bindDeleteButtons();
       }
-
-      item.classList.add("active");
-      detail.classList.add("open");
-      state.openedWineId = wine.id;
-
-      bindWineFormEvents();
-      bindDeleteButtons();
-    });
-
-    wrap.appendChild(item);
-    wrap.appendChild(detail);
-    wineGrid.appendChild(wrap);
-
-    const shouldOpen =
-      state.openedWineId === wine.id ||
-      (!state.openedWineId && index === 0);
-
-    if (shouldOpen) {
-      item.classList.add("active");
-      detail.classList.add("open");
-      state.openedWineId = wine.id;
-    }
-  });
-
-  bindWineFormEvents();
-  bindDeleteButtons();
-}
-      function bindWineFormEvents() {
+            function bindWineFormEvents() {
         document
           .querySelectorAll("[data-wine-form]")
           .forEach((form) => {
@@ -1616,21 +1619,18 @@ const wines = [
       }
 
       function initTheme() {
-        const saved =
-          window.localStorage.getItem("wine-theme") || "light";
-        document.documentElement.dataset.theme = saved;
+        let currentTheme = document.documentElement.dataset.theme || "light";
         themeBtn.textContent =
-          saved === "dark" ? "라이트 모드" : "다크 모드";
+          currentTheme === "dark" ? "라이트 모드" : "다크 모드";
 
         themeBtn.addEventListener("click", () => {
-          const next =
+          currentTheme =
             document.documentElement.dataset.theme === "dark"
               ? "light"
               : "dark";
-          document.documentElement.dataset.theme = next;
+          document.documentElement.dataset.theme = currentTheme;
           themeBtn.textContent =
-            next === "dark" ? "라이트 모드" : "다크 모드";
-          window.localStorage.setItem("wine-theme", next);
+            currentTheme === "dark" ? "라이트 모드" : "다크 모드";
         });
       }
 
@@ -1670,5 +1670,6 @@ const wines = [
       }
 
       init();
-    </script>  </body>
+    </script>
+  </body>
 </html>
