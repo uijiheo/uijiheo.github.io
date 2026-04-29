@@ -406,21 +406,22 @@
         flex-wrap: wrap;
       }
 
-      .rate-btn {
-        flex: 1;
-        min-width: 0;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        background: var(--surface);
-        font-size: 11px;
-        padding: 6px 8px;
-      }
+     .rate-btn {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 9px 8px;
+  font-size: 11px;
+  color: var(--text);        /* 기존 */
+  -webkit-text-fill-color: var(--text);  /* 이 줄 추가 */
+}
 
-      .rate-btn.active {
-        background: #7a2e38;
-        color: #fff;
-        border-color: transparent;
-      }
+.rate-btn.active {
+  border-color: #7a2e38;
+  background: var(--chip);
+  color: #7a2e38;
+  -webkit-text-fill-color: #7a2e38;
+}
 
       .chat-actions {
         display: flex;
