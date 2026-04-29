@@ -1136,23 +1136,23 @@
           const item = document.createElement("button");
           item.className = "wine-item";
           item.type = "button";
-          item.innerHTML = `
-            <h3>${wine.name}</h3>
-            <p>${wine.eng}</p>
-            <p>${wine.vintage} · ${wine.region}</p>
-            <div class="chips">
-              ${
-                criticAvg
-                  ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
-                  : ""
-              }
-              ${
-                wine.tags
-                  .map((tag) => `<span class="chip">${tag}</span>`)
-                  .join("")
-              }
-            </div>
-          `;
+         item.innerHTML = `
+  <h3>${wine.nameKo || wine.name}</h3>
+  <p>${wine.eng}</p>
+  <p>${wine.vintage} · ${wine.region}</p>
+  <div class="chips">
+    ${
+      criticAvg
+        ? `<span class="chip chip-critic">Critics ${criticAvg}</span>`
+        : ""
+    }
+    ${
+      wine.tags
+        .map((tag) => `<span class="chip">${tag}</span>`)
+        .join("")
+    }
+  </div>
+`;
 
           const detail = document.createElement("div");
           detail.className = "detail-inline";
