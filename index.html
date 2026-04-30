@@ -908,6 +908,38 @@
                     .map((h) => `<li>${h}</li>`)
                     .join("")}
                 </ul>
+                                ${
+                  w.expert && w.expert.length
+                    ? `
+                <div style="margin-top:0.6rem;">
+                  <div style="font-size:var(--text-xs);font-weight:600;margin-bottom:0.25rem;">
+                    전문가 평
+                  </div>
+                  <div class="review-list">
+                    ${w.expert
+                      .map(
+                        (e) => `
+                      <article class="review-item">
+                        <div class="review-head">
+                          <strong>${e.source}</strong>
+                          ${
+                            e.score
+                              ? `<span class="badge VeryGood">${e.score}</span>`
+                              : ""
+                          }
+                        </div>
+                        <div class="muted" style="font-size:var(--text-xs);">
+                          ${e.text}
+                        </div>
+                      </article>
+                    `
+                      )
+                      .join("")}
+                  </div>
+                </div>
+                `
+                    : ""
+                }
               </div>
               <div>
                 <div>
