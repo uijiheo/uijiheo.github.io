@@ -96,11 +96,11 @@
         min-height: 80px;
       }
 
-      .app {
-  max-width: 100%;                               /* 화면 전체 */
+.app {
+  max-width: 100%;
   margin: 0 auto;
-  padding: var(--space-5) var(--space-3) var(--space-6);  /* 좌우 패딩만 살짝 */
-  text-align: left;                              /* 안쪽 기본 왼쪽 정렬 */
+  padding: var(--space-5) 0.4rem var(--space-6);
+  text-align: left;
 }
 
       .header-bar {
@@ -178,13 +178,14 @@
         align-items: stretch; /* 카드들이 컨테이너 폭에 맞게 늘어나도록 */
       }
 
-      .wine-card {
-        border-radius: var(--radius-md);
-        border: 1px solid var(--color-border);
-        background: var(--color-surface);
-        box-shadow: var(--shadow-sm);
-        width: 100%; /* 항상 왼쪽부터 꽉 차게 */
-      }
+     .wine-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  margin: 0; /* 혹시 margin이 생겼다면 제거 */
+}
 
       .wine-header {
         width: 100%;
