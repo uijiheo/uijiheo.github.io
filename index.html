@@ -99,8 +99,9 @@
 .app {
   max-width: 100%;
   margin: 0 auto;
-  padding: var(--space-5) 0.4rem var(--space-6);
+  padding: var(--space-5) 0 var(--space-6); /* 데스크톱 */
   text-align: left;
+}
 }
 
       .header-bar {
@@ -384,7 +385,7 @@
 
   @media (max-width: 768px) {
   .app {
-    padding: var(--space-4) var(--space-2) var(--space-5);
+    padding: var(--space-4) 0 var(--space-5); /* ← 좌우 0으로 */
   }
   .header-bar {
     flex-direction: column;
